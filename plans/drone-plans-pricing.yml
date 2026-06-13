@@ -1,0 +1,88 @@
+name: Drone Plans and Pricing
+description: >-
+  Drone CI/CD platform pricing is structured around two main editions — a free
+  open-source edition for self-hosting and a paid enterprise edition for
+  organizations needing advanced features, support, and scale. The open-source
+  edition is licensed under Apache 2 and the enterprise edition uses the
+  Polyform Small Business License.
+specificationVersion: "0.1"
+plans:
+  - name: Open Source Edition
+    description: >-
+      The free, self-hosted open-source edition of Drone licensed under Apache 2.
+      Suitable for individuals, small teams, and organizations that can self-manage
+      a single-machine deployment. Includes core CI/CD pipeline functionality,
+      Docker container isolation, YAML pipeline configuration, and integration
+      with GitHub, Bitbucket, and GitLab.
+    url: https://github.com/harness/drone
+    price: 0
+    currency: USD
+    billingCycle: free
+    features:
+      - Single-machine deployment
+      - Embedded SQLite database
+      - Docker container isolation
+      - YAML pipeline as code
+      - GitHub, GitHub Enterprise, Bitbucket, GitLab integration
+      - Linux x64, ARM, ARM64, Windows x64 support
+      - Plugin ecosystem access
+      - Community support via Discourse
+    limitations:
+      - No distributed runners
+      - No Kubernetes runner
+      - No organization secrets management
+      - No vault secrets integration
+      - No cron scheduling (enterprise feature)
+      - No extensions support
+      - No autoscaling
+      - No commercial support
+
+  - name: Enterprise Edition (Free Tier)
+    description: >-
+      The Drone Enterprise Edition provided free of charge to qualifying
+      organizations with annual gross revenue under $1 million USD. Includes
+      all enterprise features such as distributed runners, Kubernetes support,
+      organization secrets, vault integration, cron scheduling, and autoscaling.
+      A free trial is available for up to 5,000 builds.
+    url: https://docs.drone.io/enterprise/
+    price: 0
+    currency: USD
+    billingCycle: free
+    qualifications:
+      - Annual gross revenue under $1,000,000 USD
+      - Eligible: individuals, students, startups, small businesses, nonprofits
+    features:
+      - All Open Source Edition features
+      - Distributed runners
+      - Kubernetes runner
+      - Organization secrets management
+      - Vault secrets integration
+      - Cron scheduling
+      - PostgreSQL and MySQL database support
+      - S3-compatible storage support
+      - Autoscaling support
+      - Extensions support
+      - Source-available license (Polyform Small Business)
+
+  - name: Enterprise Edition (Paid)
+    description: >-
+      The full paid Drone Enterprise Edition for organizations with annual gross
+      revenue exceeding $1 million USD. Includes all enterprise features with
+      commercial support and licensing. Entry-level plans start at $299 per month.
+      Pricing scales based on organizational needs and build volume.
+    url: https://docs.drone.io/enterprise/
+    price: 299
+    currency: USD
+    billingCycle: monthly
+    features:
+      - All Enterprise Edition features
+      - Commercial support
+      - Distributed runners
+      - Kubernetes runner
+      - Organization secrets management
+      - Vault secrets integration
+      - Cron scheduling
+      - PostgreSQL, MySQL, and S3 storage support
+      - Autoscaling
+      - Extensions support
+      - Commercial license

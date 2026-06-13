@@ -1,0 +1,79 @@
+aid: drone
+name: Drone
+description: >-
+  Drone is an open-source, container-native continuous integration and continuous
+  delivery platform that automates software build, testing, and deployment pipelines
+  entirely through Docker containers. Acquired by Harness in 2021, Drone enables
+  development teams to define pipelines as code using simple YAML configuration
+  files committed alongside their source code. The platform provides a comprehensive
+  REST API for managing builds, repositories, secrets, cron jobs, templates, and
+  user accounts in both self-hosted and cloud deployments. Drone supports multiple
+  source control providers including GitHub, GitHub Enterprise, Bitbucket, and
+  GitLab, and is available as a free open-source edition (Apache 2 license) or a
+  paid enterprise edition for larger organizations.
+type: Index
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+url: https://raw.githubusercontent.com/api-evangelist/drone/refs/heads/main/apis.yml
+created: "2026-06-12"
+modified: "2026-06-12"
+specificationVersion: "0.19"
+tags:
+  - CI/CD
+  - Continuous Integration
+  - Continuous Delivery
+  - DevOps
+  - Containers
+  - Docker
+  - Build Automation
+  - Open Source
+  - Self-Hosted
+apis:
+  - aid: drone:drone-api
+    name: Drone REST API
+    description: >-
+      The Drone REST API provides programmatic access to the Drone CI/CD platform,
+      enabling management of builds, repositories, secrets, cron jobs, templates,
+      and user accounts. Authentication is performed using bearer tokens retrieved
+      from the Drone user interface profile page. The API supports operations across
+      seven resource categories including builds (approve, create, decline, list,
+      logs, promote, restart, stop), cron jobs, repositories, secrets, templates,
+      individual user profile, and administrative user management.
+    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    humanURL: https://docs.drone.io/api/overview/
+    baseURL: https://your-drone-server/api
+    tags:
+      - Builds
+      - Repositories
+      - Secrets
+      - Cron Jobs
+      - Templates
+      - Users
+    properties:
+      - type: Documentation
+        url: https://docs.drone.io/api/overview/
+      - type: Authentication
+        url: https://docs.drone.io/api/overview/
+common:
+  - type: Website
+    url: https://www.drone.io/
+  - type: Documentation
+    url: https://docs.drone.io/
+  - type: GitHubOrg
+    url: https://github.com/drone
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/drone-io
+  - type: Blog
+    url: https://blog.drone.io
+  - type: Pricing
+    url: https://docs.drone.io/enterprise/
+  - type: X
+    url: https://twitter.com/droneio
+  - type: Plans
+    url: plans/drone-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/drone-rate-limits.yml
+  - type: FinOps
+    url: finops/drone-finops.yml
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

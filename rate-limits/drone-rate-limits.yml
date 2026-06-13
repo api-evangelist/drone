@@ -1,0 +1,50 @@
+name: Drone Rate Limits
+description: >-
+  Drone CI/CD REST API does not publicly document specific rate limiting policies
+  in its official documentation. As a self-hosted platform, rate limiting behavior
+  is primarily determined by the infrastructure and configuration of the individual
+  Drone server deployment rather than centrally enforced limits. The Drone Cloud
+  hosted offering may have implicit limits based on resource availability and fair
+  use policies. Enterprise customers should consult Harness support for specific
+  rate limit guidance.
+specificationVersion: "0.1"
+rateLimits:
+  - name: API Authentication
+    description: >-
+      The Drone REST API uses bearer token authentication. Tokens are personal
+      access tokens retrieved from the Drone user interface. There are no
+      documented per-minute or per-hour request limits on API calls in the
+      official documentation. Limits are subject to the underlying server
+      infrastructure capacity.
+    type: authentication
+    documented: false
+    notes: >-
+      Self-hosted deployments inherit rate limits from the underlying server
+      infrastructure. No specific thresholds are published in Drone documentation.
+
+  - name: Self-Hosted Deployment Limits
+    description: >-
+      For self-hosted Drone instances, rate limiting is not enforced at the
+      application level by default. Operators can configure reverse proxies
+      (such as nginx or Caddy) in front of the Drone server to impose custom
+      rate limits appropriate to their environment and team size.
+    type: infrastructure
+    documented: false
+    enforcement: operator-configured
+    notes: >-
+      Recommended practice is to configure reverse proxy rate limiting for
+      production deployments to prevent abuse.
+
+  - name: Drone Cloud Fair Use
+    description: >-
+      The Drone Cloud hosted service at cloud.drone.io is operated as a
+      community service for open-source projects. Usage is subject to fair
+      use policies. Build concurrency and queue depth may be limited based
+      on available infrastructure resources. No specific numeric thresholds
+      are published.
+    type: fair-use
+    url: https://cloud.drone.io/welcome
+    documented: false
+    notes: >-
+      Drone Cloud is primarily intended for open-source repositories. Teams
+      requiring dedicated capacity should use the self-hosted or enterprise edition.

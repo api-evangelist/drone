@@ -1,0 +1,106 @@
+name: Drone FinOps
+description: >-
+  FinOps Framework 1.0 FOCUS-aligned cost management guidance for Drone CI/CD
+  platform deployments. Drone's pricing model spans free open-source self-hosted
+  deployments, free enterprise editions for qualifying organizations, and paid
+  enterprise licenses starting at $299/month. Total cost of ownership for
+  self-hosted deployments includes infrastructure, compute, storage, and
+  operational overhead in addition to any license fees.
+specificationVersion: "1.0"
+provider: drone
+currency: USD
+costModel: hybrid
+billingModels:
+  - type: free-open-source
+    description: Apache 2 licensed open-source edition at no cost; infrastructure costs are user-responsible
+    price: 0
+    currency: USD
+
+  - type: enterprise-free-tier
+    description: Free enterprise license for organizations under $1M annual revenue
+    price: 0
+    currency: USD
+    qualification: Annual gross revenue under $1,000,000 USD
+
+  - type: enterprise-paid
+    description: Paid enterprise license for organizations over $1M annual revenue
+    startingPrice: 299
+    currency: USD
+    billingCycle: monthly
+
+costCategories:
+  - name: License Cost
+    description: Software license fee for Drone Enterprise Edition
+    tiers:
+      - name: Open Source
+        cost: 0
+        notes: Apache 2 license, free forever
+      - name: Enterprise Free
+        cost: 0
+        notes: Free for organizations under $1M annual revenue
+      - name: Enterprise Paid
+        startingCost: 299
+        billingCycle: monthly
+        notes: Contact Harness sales for volume pricing
+
+  - name: Infrastructure Cost
+    description: >-
+      For self-hosted deployments, organizations bear the cost of compute,
+      storage, and networking resources to run the Drone server and build runners.
+      Cloud provider costs vary by build volume, runner type, and region.
+    type: variable
+    drivers:
+      - Build concurrency (number of parallel build runners)
+      - Build duration and frequency
+      - Storage for build artifacts and logs
+      - Network egress for container image pulls
+      - Database hosting (SQLite embedded, PostgreSQL, or MySQL for enterprise)
+
+  - name: Compute Cost (Runners)
+    description: >-
+      Drone runners execute builds in isolated Docker containers. Each concurrent
+      build requires a dedicated runner instance. Autoscaling (enterprise feature)
+      can optimize compute costs by spinning up runners on demand and terminating
+      them when idle.
+    type: variable
+    optimization:
+      - Use autoscaling to avoid idle runner costs
+      - Select appropriately sized compute instances for typical build workloads
+      - Use spot/preemptible instances for non-critical build pipelines
+      - Cache Docker layers and dependencies to reduce build duration
+
+  - name: Storage Cost
+    description: >-
+      Build logs, artifacts, and container images consumed storage resources.
+      Enterprise edition supports S3-compatible object storage for cost-effective
+      artifact retention.
+    type: variable
+    optimization:
+      - Configure log retention policies to purge old build logs
+      - Use S3-compatible storage (enterprise) for cost-effective artifact storage
+      - Implement artifact lifecycle policies to expire old builds
+
+costOptimization:
+  strategies:
+    - name: Autoscaling Runners
+      description: Use Drone's autoscaler to add runners during peak build periods and remove them during quiet periods, eliminating idle compute costs
+      applicableTo: Enterprise Edition
+      url: https://docs.drone.io/runner/overview/
+
+    - name: Build Caching
+      description: Cache Docker images, package manager dependencies, and build artifacts between pipeline runs to reduce build times and compute costs
+
+    - name: Concurrent Build Limits
+      description: Configure maximum concurrency on runners to prevent runaway compute costs from parallel build spikes
+
+    - name: Open Source for Eligible Orgs
+      description: Organizations under $1M annual revenue qualify for the free Enterprise Edition, avoiding all license costs while accessing full enterprise features
+
+    - name: Self-Hosted vs Cloud
+      description: Evaluate total cost of ownership for self-hosted (infrastructure + ops overhead) versus managed cloud alternatives based on team build volume and ops maturity
+
+tagging:
+  recommendations:
+    - Tag compute resources with project, team, and environment labels for cost attribution
+    - Use Drone repository and organization names as cost allocation dimensions
+    - Track build minutes per repository to identify high-cost pipelines for optimization
