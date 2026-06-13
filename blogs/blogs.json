@@ -1,0 +1,8 @@
+{
+  "name": "Drone Blog",
+  "description": "Official Drone CI/CD blog covering product updates, integrations, and CI/CD best practices.",
+  "url": "https://blog.drone.io",
+  "rss": "https://blog.drone.io/index.xml",
+  "type": "rss",
+  "last_fetched": "2026-06-12"
+}

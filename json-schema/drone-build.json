@@ -1,0 +1,125 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://api-evangelist.github.io/drone/json-schema/drone-build.json",
+  "title": "Build",
+  "description": "A Drone CI/CD build execution.",
+  "type": "object",
+  "properties": {
+    "id": { "type": "integer", "description": "Unique build identifier." },
+    "repo_id": { "type": "integer", "description": "The parent repository identifier." },
+    "trigger": { "type": "string", "description": "What triggered the build (user login, hook event, or cron name)." },
+    "number": { "type": "integer", "description": "The sequential build number within the repository." },
+    "parent": { "type": "integer", "description": "The parent build number (for promoted/rolled-back builds)." },
+    "status": {
+      "type": "string",
+      "enum": ["pending", "running", "passing", "failing", "killed", "error", "skipped", "blocked", "declined", "waiting_on_dependencies"],
+      "description": "Current build status."
+    },
+    "error": { "type": "string", "description": "Error message if the build errored." },
+    "event": {
+      "type": "string",
+      "enum": ["push", "pull_request", "tag", "promote", "rollback", "cron", "custom"],
+      "description": "The SCM event that triggered the build."
+    },
+    "action": { "type": "string", "description": "The action associated with the event (e.g. opened, synchronize)." },
+    "link": { "type": "string", "format": "uri", "description": "URL to the build in the Drone UI." },
+    "timestamp": { "type": "integer", "description": "Unix timestamp of the triggering event." },
+    "title": { "type": "string", "description": "Title (for PR-triggered builds)." },
+    "message": { "type": "string", "description": "Commit message." },
+    "before": { "type": "string", "description": "Commit SHA before the change." },
+    "after": { "type": "string", "description": "Commit SHA after the change." },
+    "ref": { "type": "string", "description": "Git ref (e.g. refs/heads/main)." },
+    "source_repo": { "type": "string", "description": "Source fork repository slug (for PRs from forks)." },
+    "source": { "type": "string", "description": "Source branch or ref." },
+    "target": { "type": "string", "description": "Target branch." },
+    "author_login": { "type": "string", "description": "Author's SCM login." },
+    "author_name": { "type": "string", "description": "Author's display name." },
+    "author_email": { "type": "string", "format": "email", "description": "Author's email address." },
+    "author_avatar": { "type": "string", "format": "uri", "description": "Author's avatar URL." },
+    "sender": { "type": "string", "description": "Login of the user who triggered the build." },
+    "params": {
+      "type": "object",
+      "additionalProperties": { "type": "string" },
+      "description": "Custom build parameters passed at trigger time."
+    },
+    "cron": { "type": "string", "description": "Cron job name (for cron-triggered builds)." },
+    "deploy_to": { "type": "string", "description": "Deployment target environment." },
+    "deploy_id": { "type": "integer", "description": "Deployment identifier." },
+    "debug": { "type": "boolean", "description": "Whether debug mode is enabled." },
+    "started": { "type": "integer", "description": "Unix timestamp when the build started." },
+    "finished": { "type": "integer", "description": "Unix timestamp when the build finished." },
+    "created": { "type": "integer", "description": "Unix timestamp when the build was created." },
+    "updated": { "type": "integer", "description": "Unix timestamp when the build was last updated." },
+    "version": { "type": "integer", "description": "Optimistic concurrency version." },
+    "stages": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/Stage" },
+      "description": "The build stages."
+    }
+  },
+  "definitions": {
+    "Stage": {
+      "type": "object",
+      "description": "A stage of build execution.",
+      "properties": {
+        "id": { "type": "integer" },
+        "build_id": { "type": "integer" },
+        "number": { "type": "integer" },
+        "name": { "type": "string" },
+        "kind": { "type": "string" },
+        "type": { "type": "string" },
+        "status": {
+          "type": "string",
+          "enum": ["pending", "running", "passing", "failing", "killed", "error", "skipped", "blocked", "declined", "waiting_on_dependencies"]
+        },
+        "error": { "type": "string" },
+        "errignore": { "type": "boolean" },
+        "exit_code": { "type": "integer" },
+        "machine": { "type": "string" },
+        "os": { "type": "string" },
+        "arch": { "type": "string" },
+        "variant": { "type": "string" },
+        "kernel": { "type": "string" },
+        "limit": { "type": "integer" },
+        "throttle": { "type": "integer" },
+        "started": { "type": "integer" },
+        "stopped": { "type": "integer" },
+        "created": { "type": "integer" },
+        "updated": { "type": "integer" },
+        "version": { "type": "integer" },
+        "on_success": { "type": "boolean" },
+        "on_failure": { "type": "boolean" },
+        "depends_on": { "type": "array", "items": { "type": "string" } },
+        "labels": { "type": "object", "additionalProperties": { "type": "string" } },
+        "steps": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/Step" }
+        }
+      }
+    },
+    "Step": {
+      "type": "object",
+      "description": "An individual step within a stage.",
+      "properties": {
+        "id": { "type": "integer" },
+        "step_id": { "type": "integer" },
+        "number": { "type": "integer" },
+        "name": { "type": "string" },
+        "status": {
+          "type": "string",
+          "enum": ["pending", "running", "passing", "failing", "killed", "error", "skipped"]
+        },
+        "error": { "type": "string" },
+        "errignore": { "type": "boolean" },
+        "exit_code": { "type": "integer" },
+        "started": { "type": "integer" },
+        "stopped": { "type": "integer" },
+        "version": { "type": "integer" },
+        "depends_on": { "type": "array", "items": { "type": "string" } },
+        "image": { "type": "string" },
+        "detached": { "type": "boolean" },
+        "schema": { "type": "string" }
+      }
+    }
+  }
+}

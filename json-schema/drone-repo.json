@@ -1,0 +1,43 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://api-evangelist.github.io/drone/json-schema/drone-repo.json",
+  "title": "Repository",
+  "description": "A source code repository registered with Drone CI/CD.",
+  "type": "object",
+  "properties": {
+    "id": { "type": "integer", "description": "Unique repository identifier." },
+    "uid": { "type": "string", "description": "SCM provider unique identifier." },
+    "user_id": { "type": "integer", "description": "The owner user identifier." },
+    "namespace": { "type": "string", "description": "The repository owner or organization." },
+    "name": { "type": "string", "description": "The repository name." },
+    "slug": { "type": "string", "description": "The repository slug (namespace/name)." },
+    "scm": { "type": "string", "description": "The SCM provider type (e.g. github, gitlab, bitbucket)." },
+    "git_http_url": { "type": "string", "format": "uri", "description": "HTTPS clone URL." },
+    "git_ssh_url": { "type": "string", "description": "SSH clone URL." },
+    "link": { "type": "string", "format": "uri", "description": "URL to the repository on the SCM provider." },
+    "default_branch": { "type": "string", "description": "The default branch name." },
+    "private": { "type": "boolean", "description": "Whether the repository is private on the SCM provider." },
+    "visibility": {
+      "type": "string",
+      "enum": ["public", "private", "internal"],
+      "description": "Drone visibility setting controlling who can view builds."
+    },
+    "active": { "type": "boolean", "description": "Whether the repository is active (has a webhook registered)." },
+    "config_path": { "type": "string", "description": "Path to the Drone configuration file within the repository.", "default": ".drone.yml" },
+    "trusted": { "type": "boolean", "description": "Whether the repository is trusted (allows privileged containers)." },
+    "protected": { "type": "boolean", "description": "Whether the repository requires manual build approval for PRs from forks." },
+    "ignore_forks": { "type": "boolean", "description": "Whether to ignore builds triggered from forked repositories." },
+    "ignore_pull_requests": { "type": "boolean", "description": "Whether to ignore pull request events." },
+    "auto_cancel_pull_requests": { "type": "boolean", "description": "Whether to auto-cancel pending PR builds when a new commit is pushed." },
+    "auto_cancel_pushes": { "type": "boolean", "description": "Whether to auto-cancel pending push builds when a new commit is pushed." },
+    "auto_cancel_running": { "type": "boolean", "description": "Whether to auto-cancel running builds when a new commit is pushed." },
+    "throttle": { "type": "integer", "description": "Maximum number of concurrent builds across the entire repository." },
+    "timeout": { "type": "integer", "description": "Build timeout in minutes." },
+    "counter": { "type": "integer", "description": "The current build counter (used to set the next build number)." },
+    "synced": { "type": "integer", "description": "Unix timestamp of the last repository sync from the SCM provider." },
+    "created": { "type": "integer", "description": "Unix timestamp when the repository was registered with Drone." },
+    "updated": { "type": "integer", "description": "Unix timestamp when the repository was last updated." },
+    "version": { "type": "integer", "description": "Optimistic concurrency version." }
+  },
+  "required": ["namespace", "name"]
+}

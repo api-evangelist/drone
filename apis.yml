@@ -53,6 +53,8 @@ apis:
         url: https://docs.drone.io/api/overview/
       - type: Authentication
         url: https://docs.drone.io/api/overview/
+      - type: OpenAPI
+        url: openapi/drone-api-openapi.yml
 common:
   - type: Website
     url: https://www.drone.io/
@@ -74,6 +76,12 @@ common:
     url: rate-limits/drone-rate-limits.yml
   - type: FinOps
     url: finops/drone-finops.yml
+  - type: BlogRSS
+    url: https://blog.drone.io/index.xml
+  - type: Vocabulary
+    url: vocabulary/drone-vocabulary.yml
+  - type: JSONLDContext
+    url: json-ld/drone-context.jsonld
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

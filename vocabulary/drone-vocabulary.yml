@@ -1,0 +1,220 @@
+vocabulary:
+  name: Drone CI/CD Vocabulary
+  description: >-
+    Domain vocabulary for the Drone CI/CD platform REST API, covering builds,
+    repositories, secrets, cron jobs, templates, nodes, and users.
+  baseURL: https://docs.drone.io/api/
+  version: 1.0.0
+
+concepts:
+  - id: Build
+    label: Build
+    definition: >-
+      A build represents a single execution of the CI/CD pipeline for a
+      repository. Builds are triggered by SCM events (push, pull request, tag),
+      cron schedules, or manual API calls. Each build contains one or more
+      stages.
+    properties:
+      - number
+      - status
+      - event
+      - trigger
+      - ref
+      - source
+      - target
+      - message
+      - author_login
+      - started
+      - finished
+      - stages
+
+  - id: Stage
+    label: Stage
+    definition: >-
+      A stage is a logical grouping of steps within a build, typically executed
+      on a specific runner. Stages can be parallelized and may depend on other
+      stages. Each stage runs in a dedicated environment (Docker, VM, or machine).
+    properties:
+      - number
+      - name
+      - status
+      - os
+      - arch
+      - machine
+      - started
+      - stopped
+      - steps
+
+  - id: Step
+    label: Step
+    definition: >-
+      A step is an individual unit of work within a stage, usually corresponding
+      to a Docker container execution. Steps run sequentially within a stage
+      unless configured for parallelism.
+    properties:
+      - number
+      - name
+      - status
+      - image
+      - exit_code
+      - started
+      - stopped
+
+  - id: Repo
+    label: Repository
+    definition: >-
+      A repository represents a source code repository registered with Drone for
+      CI/CD processing. Repositories can be activated (enabled) to receive
+      webhook events and trigger builds.
+    properties:
+      - namespace
+      - name
+      - slug
+      - scm
+      - default_branch
+      - visibility
+      - active
+      - trusted
+      - protected
+      - timeout
+
+  - id: Secret
+    label: Secret
+    definition: >-
+      A secret is an encrypted key-value pair used to store sensitive information
+      such as passwords, tokens, and API keys. Secrets can be scoped to a
+      repository or shared across an organization namespace.
+    properties:
+      - name
+      - data
+      - namespace
+      - pull_request
+      - pull_request_push
+
+  - id: Cron
+    label: Cron Job
+    definition: >-
+      A cron job schedules automatic build triggers for a repository based on
+      a cron expression. Cron jobs run at the specified interval and can target
+      a specific branch and deploy environment.
+    properties:
+      - name
+      - expr
+      - branch
+      - event
+      - target
+      - disabled
+      - next
+      - prev
+
+  - id: Template
+    label: Pipeline Template
+    definition: >-
+      A pipeline template is a reusable, parameterized Drone pipeline definition
+      stored centrally and referenced from repository pipeline configuration files.
+      Templates support both YAML and Jsonnet formats.
+    properties:
+      - name
+      - data
+
+  - id: Node
+    label: Runner Node
+    definition: >-
+      A node (runner) is a compute resource registered with the Drone server to
+      execute pipeline stages. Nodes can be physical machines, VMs, or cloud
+      instances. Nodes are characterized by OS, architecture, and capacity.
+    properties:
+      - name
+      - provider
+      - state
+      - os
+      - arch
+      - image
+      - region
+      - size
+      - address
+      - capacity
+      - labels
+      - filters
+      - paused
+      - protected
+
+  - id: User
+    label: User
+    definition: >-
+      A user is an account registered with the Drone server, authenticated via
+      an SCM provider (GitHub, GitLab, Bitbucket). Users can have admin
+      privileges and generate machine tokens for automation.
+    properties:
+      - login
+      - email
+      - avatar_url
+      - active
+      - admin
+      - machine
+      - token
+
+  - id: Line
+    label: Log Line
+    definition: >-
+      A log line represents a single output line from a step execution, including
+      the message text, line number, and timestamp.
+    properties:
+      - pos
+      - out
+      - time
+
+statuses:
+  build:
+    - value: pending
+      label: Pending
+      definition: The build is queued and waiting for a runner.
+    - value: running
+      label: Running
+      definition: The build is currently executing.
+    - value: passing
+      label: Passing
+      definition: The build completed successfully.
+    - value: failing
+      label: Failing
+      definition: The build completed with one or more failed steps.
+    - value: killed
+      label: Killed
+      definition: The build was manually cancelled.
+    - value: error
+      label: Error
+      definition: The build encountered an infrastructure or configuration error.
+    - value: skipped
+      label: Skipped
+      definition: The build was skipped (e.g. due to a commit message directive).
+    - value: blocked
+      label: Blocked
+      definition: The build is awaiting manual approval.
+    - value: declined
+      label: Declined
+      definition: The build was manually declined during an approval step.
+    - value: waiting_on_dependencies
+      label: Waiting on Dependencies
+      definition: The stage is waiting for a dependency stage to complete.
+
+events:
+  - push
+  - pull_request
+  - tag
+  - promote
+  - rollback
+  - cron
+  - custom
+
+visibility:
+  - public
+  - private
+  - internal
+
+authentication:
+  type: Bearer Token
+  description: >-
+    Bearer tokens are generated from the Drone user interface profile page.
+    Tokens are passed in the Authorization header as "Bearer <token>".
+  header: Authorization
+  format: "Bearer {token}"
