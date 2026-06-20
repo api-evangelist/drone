@@ -12,7 +12,7 @@ description: >-
   GitLab, and is available as a free open-source edition (Apache 2 license) or a
   paid enterprise edition for larger organizations.
 type: Index
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 url: https://raw.githubusercontent.com/api-evangelist/drone/refs/heads/main/apis.yml
 created: "2026-06-12"
 modified: "2026-06-12"
@@ -38,7 +38,7 @@ apis:
       seven resource categories including builds (approve, create, decline, list,
       logs, promote, restart, stop), cron jobs, repositories, secrets, templates,
       individual user profile, and administrative user management.
-    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://docs.drone.io/api/overview/
     baseURL: https://your-drone-server/api
     tags:
