@@ -1,17 +1,22 @@
 {
-  "name": "Drone Blog",
-  "description": "Official Drone CI/CD blog covering product updates, integrations, and CI/CD best practices.",
-  "url": "https://blog.drone.io",
-  "rss": "https://blog.drone.io/index.xml",
-  "type": "rss",
-  "last_fetched": "2026-06-12",
   "repo": "drone",
   "feeds": [
     {
+      "source": "https://blog.drone.io/index.xml",
+      "feed_url": "https://blog.drone.io/index.xml",
+      "title": "",
+      "saved": 0,
+      "method": "feed"
+    },
+    {
       "source": "https://www.linkedin.com/company/drone-io",
-      "error": "HTTPError"
+      "feed_url": "https://www.linkedin.com/company/drone-io",
+      "title": "",
+      "saved": 0,
+      "method": "none"
     }
   ],
+  "fetched": "2026-06-27T12:03:07Z",
   "post_count": 0,
-  "fetched": "2026-06-14T20:42:17Z"
+  "note": "Feed dormant; newest post dated 2020-08-05, all older than prior fetched cutoff (2026-06-14). No new posts."
 }
