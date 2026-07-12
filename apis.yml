@@ -56,6 +56,10 @@ apis:
       - type: OpenAPI
         url: openapi/drone-api-openapi.yml
 common:
+  - type: DomainSecurity
+    url: security/drone-domain-security.yml
+  - type: Authentication
+    url: authentication/drone-authentication.yml
   - type: Website
     url: https://www.drone.io/
   - type: Documentation
