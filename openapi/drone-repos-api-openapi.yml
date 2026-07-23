@@ -1,0 +1,323 @@
+openapi: 3.0.3
+info:
+  title: Drone REST Builds Repos API
+  description: The Drone REST API provides programmatic access to the Drone CI/CD platform, enabling management of builds, repositories, secrets, cron jobs, templates, and user accounts. Authentication is performed using bearer tokens retrieved from the Drone user interface profile page.
+  version: 1.0.0
+  contact:
+    name: Drone Support
+    url: https://docs.drone.io/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+- url: https://your-drone-server
+  description: Your self-hosted Drone server
+security:
+- BearerAuth: []
+tags:
+- name: Repos
+  description: Repository activation and management.
+paths:
+  /api/repos:
+    get:
+      operationId: listAllRepos
+      summary: List all repositories
+      description: Returns a paginated list of all repositories in the database. Requires admin privileges.
+      tags:
+      - Repos
+      parameters:
+      - name: page
+        in: query
+        schema:
+          type: integer
+          default: 1
+      - name: per_page
+        in: query
+        schema:
+          type: integer
+          default: 25
+      responses:
+        '200':
+          description: List of all repositories.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Repo'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /api/repos/{namespace}/{name}:
+    parameters:
+    - name: namespace
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The repository owner/namespace.
+    - name: name
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The repository name.
+    get:
+      operationId: getRepo
+      summary: Get a repository
+      description: Returns a repository by namespace and name.
+      tags:
+      - Repos
+      responses:
+        '200':
+          description: Repository details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Repo'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: enableRepo
+      summary: Enable a repository
+      description: Activates (enables) a repository for CI/CD in Drone.
+      tags:
+      - Repos
+      responses:
+        '200':
+          description: Activated repository.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Repo'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    patch:
+      operationId: updateRepo
+      summary: Update a repository
+      description: Updates repository configuration settings.
+      tags:
+      - Repos
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RepoPatch'
+      responses:
+        '200':
+          description: Updated repository.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Repo'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    delete:
+      operationId: disableRepo
+      summary: Disable or delete a repository
+      description: Disables a repository (or permanently deletes it when remove=true is passed).
+      tags:
+      - Repos
+      parameters:
+      - name: remove
+        in: query
+        schema:
+          type: boolean
+        description: Set to true to permanently delete the repository.
+      responses:
+        '204':
+          description: Repository disabled/deleted.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /api/repos/{namespace}/{name}/chown:
+    parameters:
+    - name: namespace
+      in: path
+      required: true
+      schema:
+        type: string
+    - name: name
+      in: path
+      required: true
+      schema:
+        type: string
+    post:
+      operationId: chownRepo
+      summary: Update repository owner
+      description: Transfers repository ownership to the currently authenticated user.
+      tags:
+      - Repos
+      responses:
+        '200':
+          description: Updated repository.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Repo'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /api/repos/{namespace}/{name}/repair:
+    parameters:
+    - name: namespace
+      in: path
+      required: true
+      schema:
+        type: string
+    - name: name
+      in: path
+      required: true
+      schema:
+        type: string
+    post:
+      operationId: repairRepo
+      summary: Repair repository hooks
+      description: Repairs the repository webhook hooks with the SCM provider.
+      tags:
+      - Repos
+      responses:
+        '204':
+          description: Repository repaired.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  schemas:
+    RepoPatch:
+      type: object
+      description: Patch request for a repository.
+      properties:
+        config_path:
+          type: string
+        protected:
+          type: boolean
+        trusted:
+          type: boolean
+        throttle:
+          type: integer
+          format: int64
+        timeout:
+          type: integer
+          format: int64
+        visibility:
+          type: string
+          enum:
+          - public
+          - private
+          - internal
+        ignore_forks:
+          type: boolean
+        ignore_pull_requests:
+          type: boolean
+        auto_cancel_pull_requests:
+          type: boolean
+        auto_cancel_pushes:
+          type: boolean
+        auto_cancel_running:
+          type: boolean
+        counter:
+          type: integer
+          format: int64
+    Error:
+      type: object
+      description: API error response.
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+    Repo:
+      type: object
+      description: Represents a repository registered with Drone.
+      properties:
+        id:
+          type: integer
+          format: int64
+        uid:
+          type: string
+        user_id:
+          type: integer
+          format: int64
+        namespace:
+          type: string
+        name:
+          type: string
+        slug:
+          type: string
+        scm:
+          type: string
+        git_http_url:
+          type: string
+          format: uri
+        git_ssh_url:
+          type: string
+        link:
+          type: string
+          format: uri
+        default_branch:
+          type: string
+        private:
+          type: boolean
+        visibility:
+          type: string
+          enum:
+          - public
+          - private
+          - internal
+        active:
+          type: boolean
+        config_path:
+          type: string
+        trusted:
+          type: boolean
+        protected:
+          type: boolean
+        ignore_forks:
+          type: boolean
+        ignore_pull_requests:
+          type: boolean
+        auto_cancel_pull_requests:
+          type: boolean
+        auto_cancel_pushes:
+          type: boolean
+        auto_cancel_running:
+          type: boolean
+        throttle:
+          type: integer
+          format: int64
+        timeout:
+          type: integer
+          format: int64
+        counter:
+          type: integer
+          format: int64
+        synced:
+          type: integer
+          format: int64
+        created:
+          type: integer
+          format: int64
+        updated:
+          type: integer
+          format: int64
+        version:
+          type: integer
+          format: int64
+  responses:
+    Unauthorized:
+      description: Authentication credentials missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: Bearer token retrieved from the Drone user interface profile page.

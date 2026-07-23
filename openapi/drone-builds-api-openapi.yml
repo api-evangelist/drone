@@ -1,0 +1,774 @@
+openapi: 3.0.3
+info:
+  title: Drone REST Builds API
+  description: The Drone REST API provides programmatic access to the Drone CI/CD platform, enabling management of builds, repositories, secrets, cron jobs, templates, and user accounts. Authentication is performed using bearer tokens retrieved from the Drone user interface profile page.
+  version: 1.0.0
+  contact:
+    name: Drone Support
+    url: https://docs.drone.io/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+- url: https://your-drone-server
+  description: Your self-hosted Drone server
+security:
+- BearerAuth: []
+tags:
+- name: Builds
+  description: Build creation, management, and log access.
+paths:
+  /api/repos/{namespace}/{name}/builds:
+    parameters:
+    - name: namespace
+      in: path
+      required: true
+      schema:
+        type: string
+    - name: name
+      in: path
+      required: true
+      schema:
+        type: string
+    get:
+      operationId: listBuilds
+      summary: List builds
+      description: Returns a list of recent builds for the specified repository.
+      tags:
+      - Builds
+      parameters:
+      - name: page
+        in: query
+        schema:
+          type: integer
+          default: 1
+      - name: per_page
+        in: query
+        schema:
+          type: integer
+          default: 25
+      - name: branch
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: List of builds.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Build'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createBuild
+      summary: Create a build
+      description: Creates (triggers) a new build by branch or commit.
+      tags:
+      - Builds
+      parameters:
+      - name: branch
+        in: query
+        schema:
+          type: string
+        description: Branch to build.
+      - name: commit
+        in: query
+        schema:
+          type: string
+        description: Commit SHA to build.
+      responses:
+        '200':
+          description: Created build.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Build'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    delete:
+      operationId: purgeBuildHistory
+      summary: Purge build history
+      description: Deletes build history older than the specified build number.
+      tags:
+      - Builds
+      parameters:
+      - name: before
+        in: query
+        required: true
+        schema:
+          type: integer
+        description: Delete builds with numbers less than this value.
+      responses:
+        '204':
+          description: Build history purged.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /api/repos/{namespace}/{name}/builds/{build}:
+    parameters:
+    - name: namespace
+      in: path
+      required: true
+      schema:
+        type: string
+    - name: name
+      in: path
+      required: true
+      schema:
+        type: string
+    - name: build
+      in: path
+      required: true
+      schema:
+        type: integer
+      description: The build number. Use "latest" to get the most recent build.
+    get:
+      operationId: getBuild
+      summary: Get a build
+      description: Returns a repository build by build number.
+      tags:
+      - Builds
+      parameters:
+      - name: branch
+        in: query
+        schema:
+          type: string
+        description: When build is "latest", filter by this branch.
+      responses:
+        '200':
+          description: Build details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Build'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: restartBuild
+      summary: Restart a build
+      description: Re-starts a stopped or completed build.
+      tags:
+      - Builds
+      responses:
+        '200':
+          description: Restarted build.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Build'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    delete:
+      operationId: cancelBuild
+      summary: Cancel a build
+      description: Cancels a running build.
+      tags:
+      - Builds
+      responses:
+        '204':
+          description: Build cancelled.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /api/repos/{namespace}/{name}/builds/{build}/approve/{stage}:
+    parameters:
+    - name: namespace
+      in: path
+      required: true
+      schema:
+        type: string
+    - name: name
+      in: path
+      required: true
+      schema:
+        type: string
+    - name: build
+      in: path
+      required: true
+      schema:
+        type: integer
+    - name: stage
+      in: path
+      required: true
+      schema:
+        type: integer
+      description: The stage number to approve.
+    post:
+      operationId: approveBuild
+      summary: Approve a build stage
+      description: Approves a blocked build stage awaiting manual approval.
+      tags:
+      - Builds
+      responses:
+        '204':
+          description: Build stage approved.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /api/repos/{namespace}/{name}/builds/{build}/decline/{stage}:
+    parameters:
+    - name: namespace
+      in: path
+      required: true
+      schema:
+        type: string
+    - name: name
+      in: path
+      required: true
+      schema:
+        type: string
+    - name: build
+      in: path
+      required: true
+      schema:
+        type: integer
+    - name: stage
+      in: path
+      required: true
+      schema:
+        type: integer
+      description: The stage number to decline.
+    post:
+      operationId: declineBuild
+      summary: Decline a build stage
+      description: Declines a blocked build stage awaiting manual approval.
+      tags:
+      - Builds
+      responses:
+        '204':
+          description: Build stage declined.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /api/repos/{namespace}/{name}/builds/{build}/promote:
+    parameters:
+    - name: namespace
+      in: path
+      required: true
+      schema:
+        type: string
+    - name: name
+      in: path
+      required: true
+      schema:
+        type: string
+    - name: build
+      in: path
+      required: true
+      schema:
+        type: integer
+    post:
+      operationId: promoteBuild
+      summary: Promote a build
+      description: Promotes a build to a target deployment environment.
+      tags:
+      - Builds
+      parameters:
+      - name: target
+        in: query
+        required: true
+        schema:
+          type: string
+        description: The target environment to promote to (e.g. "production").
+      responses:
+        '200':
+          description: Promoted build.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Build'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /api/repos/{namespace}/{name}/builds/{build}/rollback:
+    parameters:
+    - name: namespace
+      in: path
+      required: true
+      schema:
+        type: string
+    - name: name
+      in: path
+      required: true
+      schema:
+        type: string
+    - name: build
+      in: path
+      required: true
+      schema:
+        type: integer
+    post:
+      operationId: rollbackBuild
+      summary: Rollback a build
+      description: Rolls back the target environment to a previous build.
+      tags:
+      - Builds
+      parameters:
+      - name: target
+        in: query
+        required: true
+        schema:
+          type: string
+        description: The target environment to roll back.
+      responses:
+        '200':
+          description: Rolled-back build.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Build'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /api/repos/{namespace}/{name}/builds/{build}/logs/{stage}/{step}:
+    parameters:
+    - name: namespace
+      in: path
+      required: true
+      schema:
+        type: string
+    - name: name
+      in: path
+      required: true
+      schema:
+        type: string
+    - name: build
+      in: path
+      required: true
+      schema:
+        type: integer
+    - name: stage
+      in: path
+      required: true
+      schema:
+        type: integer
+    - name: step
+      in: path
+      required: true
+      schema:
+        type: integer
+    get:
+      operationId: getBuildLogs
+      summary: Get build step logs
+      description: Returns the log lines for the specified build stage step.
+      tags:
+      - Builds
+      responses:
+        '200':
+          description: Log lines.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Line'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    delete:
+      operationId: purgeBuildLogs
+      summary: Purge build step logs
+      description: Deletes the log lines for the specified build stage step.
+      tags:
+      - Builds
+      responses:
+        '204':
+          description: Logs purged.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /api/builds/incomplete:
+    get:
+      operationId: listIncompleteBuilds
+      summary: List incomplete builds
+      description: Returns a list of repositories with incomplete (running/pending) builds.
+      tags:
+      - Builds
+      responses:
+        '200':
+          description: List of repositories with incomplete builds.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Repo'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /api/builds/incomplete/v2:
+    get:
+      operationId: listIncompleteBuildsV2
+      summary: List incomplete builds (v2)
+      description: Returns a list of builds, repos and stages that are running or pending.
+      tags:
+      - Builds
+      responses:
+        '200':
+          description: List of running/pending build stages with repo and build context.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  description: Build stage with repository and build context.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  schemas:
+    Step:
+      type: object
+      description: Represents an individual step within a stage.
+      properties:
+        id:
+          type: integer
+          format: int64
+        step_id:
+          type: integer
+          format: int64
+        number:
+          type: integer
+        name:
+          type: string
+        status:
+          type: string
+          enum:
+          - pending
+          - running
+          - passing
+          - failing
+          - killed
+          - error
+          - skipped
+        error:
+          type: string
+        errignore:
+          type: boolean
+        exit_code:
+          type: integer
+        started:
+          type: integer
+          format: int64
+        stopped:
+          type: integer
+          format: int64
+        version:
+          type: integer
+          format: int64
+        depends_on:
+          type: array
+          items:
+            type: string
+        image:
+          type: string
+        detached:
+          type: boolean
+        schema:
+          type: string
+    Error:
+      type: object
+      description: API error response.
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+    Line:
+      type: object
+      description: Represents a single line of container/step log output.
+      properties:
+        pos:
+          type: integer
+          description: Line number.
+        out:
+          type: string
+          description: Log message.
+        time:
+          type: integer
+          format: int64
+          description: Unix timestamp of the log line.
+    Build:
+      type: object
+      description: Represents a Drone build execution.
+      properties:
+        id:
+          type: integer
+          format: int64
+        repo_id:
+          type: integer
+          format: int64
+        trigger:
+          type: string
+        number:
+          type: integer
+          format: int64
+        parent:
+          type: integer
+          format: int64
+        status:
+          type: string
+          enum:
+          - pending
+          - running
+          - passing
+          - failing
+          - killed
+          - error
+          - skipped
+          - blocked
+          - declined
+          - waiting_on_dependencies
+        error:
+          type: string
+        event:
+          type: string
+          enum:
+          - push
+          - pull_request
+          - tag
+          - promote
+          - rollback
+          - cron
+          - custom
+        action:
+          type: string
+        link:
+          type: string
+          format: uri
+        timestamp:
+          type: integer
+          format: int64
+        title:
+          type: string
+        message:
+          type: string
+        before:
+          type: string
+        after:
+          type: string
+        ref:
+          type: string
+        source_repo:
+          type: string
+        source:
+          type: string
+        target:
+          type: string
+        author_login:
+          type: string
+        author_name:
+          type: string
+        author_email:
+          type: string
+          format: email
+        author_avatar:
+          type: string
+          format: uri
+        sender:
+          type: string
+        params:
+          type: object
+          additionalProperties:
+            type: string
+        cron:
+          type: string
+        deploy_to:
+          type: string
+        deploy_id:
+          type: integer
+          format: int64
+        debug:
+          type: boolean
+        started:
+          type: integer
+          format: int64
+        finished:
+          type: integer
+          format: int64
+        created:
+          type: integer
+          format: int64
+        updated:
+          type: integer
+          format: int64
+        version:
+          type: integer
+          format: int64
+        stages:
+          type: array
+          items:
+            $ref: '#/components/schemas/Stage'
+    Stage:
+      type: object
+      description: Represents a stage of build execution.
+      properties:
+        id:
+          type: integer
+          format: int64
+        build_id:
+          type: integer
+          format: int64
+        number:
+          type: integer
+        name:
+          type: string
+        kind:
+          type: string
+        type:
+          type: string
+        status:
+          type: string
+          enum:
+          - pending
+          - running
+          - passing
+          - failing
+          - killed
+          - error
+          - skipped
+          - blocked
+          - declined
+          - waiting_on_dependencies
+        error:
+          type: string
+        errignore:
+          type: boolean
+        exit_code:
+          type: integer
+        machine:
+          type: string
+        os:
+          type: string
+        arch:
+          type: string
+        variant:
+          type: string
+        kernel:
+          type: string
+        limit:
+          type: integer
+        throttle:
+          type: integer
+        started:
+          type: integer
+          format: int64
+        stopped:
+          type: integer
+          format: int64
+        created:
+          type: integer
+          format: int64
+        updated:
+          type: integer
+          format: int64
+        version:
+          type: integer
+          format: int64
+        on_success:
+          type: boolean
+        on_failure:
+          type: boolean
+        depends_on:
+          type: array
+          items:
+            type: string
+        labels:
+          type: object
+          additionalProperties:
+            type: string
+        steps:
+          type: array
+          items:
+            $ref: '#/components/schemas/Step'
+    Repo:
+      type: object
+      description: Represents a repository registered with Drone.
+      properties:
+        id:
+          type: integer
+          format: int64
+        uid:
+          type: string
+        user_id:
+          type: integer
+          format: int64
+        namespace:
+          type: string
+        name:
+          type: string
+        slug:
+          type: string
+        scm:
+          type: string
+        git_http_url:
+          type: string
+          format: uri
+        git_ssh_url:
+          type: string
+        link:
+          type: string
+          format: uri
+        default_branch:
+          type: string
+        private:
+          type: boolean
+        visibility:
+          type: string
+          enum:
+          - public
+          - private
+          - internal
+        active:
+          type: boolean
+        config_path:
+          type: string
+        trusted:
+          type: boolean
+        protected:
+          type: boolean
+        ignore_forks:
+          type: boolean
+        ignore_pull_requests:
+          type: boolean
+        auto_cancel_pull_requests:
+          type: boolean
+        auto_cancel_pushes:
+          type: boolean
+        auto_cancel_running:
+          type: boolean
+        throttle:
+          type: integer
+          format: int64
+        timeout:
+          type: integer
+          format: int64
+        counter:
+          type: integer
+          format: int64
+        synced:
+          type: integer
+          format: int64
+        created:
+          type: integer
+          format: int64
+        updated:
+          type: integer
+          format: int64
+        version:
+          type: integer
+          format: int64
+  responses:
+    Unauthorized:
+      description: Authentication credentials missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: Bearer token retrieved from the Drone user interface profile page.

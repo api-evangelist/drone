@@ -1,0 +1,207 @@
+openapi: 3.0.3
+info:
+  title: Drone REST Builds User API
+  description: The Drone REST API provides programmatic access to the Drone CI/CD platform, enabling management of builds, repositories, secrets, cron jobs, templates, and user accounts. Authentication is performed using bearer tokens retrieved from the Drone user interface profile page.
+  version: 1.0.0
+  contact:
+    name: Drone Support
+    url: https://docs.drone.io/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+- url: https://your-drone-server
+  description: Your self-hosted Drone server
+security:
+- BearerAuth: []
+tags:
+- name: User
+  description: Current authenticated user operations.
+paths:
+  /api/user:
+    get:
+      operationId: getCurrentUser
+      summary: Get current user
+      description: Returns the currently authenticated user.
+      tags:
+      - User
+      responses:
+        '200':
+          description: Current user information.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /api/user/repos:
+    get:
+      operationId: listUserRepos
+      summary: List user repositories
+      description: Returns a list of all repositories to which the user has explicit access.
+      tags:
+      - User
+      responses:
+        '200':
+          description: List of repositories.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Repo'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: syncUserRepos
+      summary: Sync user repositories
+      description: Triggers a sync and returns the updated list of repositories.
+      tags:
+      - User
+      responses:
+        '200':
+          description: Synced list of repositories.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Repo'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  schemas:
+    Repo:
+      type: object
+      description: Represents a repository registered with Drone.
+      properties:
+        id:
+          type: integer
+          format: int64
+        uid:
+          type: string
+        user_id:
+          type: integer
+          format: int64
+        namespace:
+          type: string
+        name:
+          type: string
+        slug:
+          type: string
+        scm:
+          type: string
+        git_http_url:
+          type: string
+          format: uri
+        git_ssh_url:
+          type: string
+        link:
+          type: string
+          format: uri
+        default_branch:
+          type: string
+        private:
+          type: boolean
+        visibility:
+          type: string
+          enum:
+          - public
+          - private
+          - internal
+        active:
+          type: boolean
+        config_path:
+          type: string
+        trusted:
+          type: boolean
+        protected:
+          type: boolean
+        ignore_forks:
+          type: boolean
+        ignore_pull_requests:
+          type: boolean
+        auto_cancel_pull_requests:
+          type: boolean
+        auto_cancel_pushes:
+          type: boolean
+        auto_cancel_running:
+          type: boolean
+        throttle:
+          type: integer
+          format: int64
+        timeout:
+          type: integer
+          format: int64
+        counter:
+          type: integer
+          format: int64
+        synced:
+          type: integer
+          format: int64
+        created:
+          type: integer
+          format: int64
+        updated:
+          type: integer
+          format: int64
+        version:
+          type: integer
+          format: int64
+    User:
+      type: object
+      description: Represents a Drone user account.
+      properties:
+        id:
+          type: integer
+          format: int64
+        login:
+          type: string
+        email:
+          type: string
+          format: email
+        avatar_url:
+          type: string
+          format: uri
+        active:
+          type: boolean
+        admin:
+          type: boolean
+        machine:
+          type: boolean
+        syncing:
+          type: boolean
+        synced:
+          type: integer
+          format: int64
+        created:
+          type: integer
+          format: int64
+        updated:
+          type: integer
+          format: int64
+        last_login:
+          type: integer
+          format: int64
+        token:
+          type: string
+    Error:
+      type: object
+      description: API error response.
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+  responses:
+    Unauthorized:
+      description: Authentication credentials missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: Bearer token retrieved from the Drone user interface profile page.

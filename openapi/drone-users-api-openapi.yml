@@ -1,0 +1,204 @@
+openapi: 3.0.3
+info:
+  title: Drone REST Builds Users API
+  description: The Drone REST API provides programmatic access to the Drone CI/CD platform, enabling management of builds, repositories, secrets, cron jobs, templates, and user accounts. Authentication is performed using bearer tokens retrieved from the Drone user interface profile page.
+  version: 1.0.0
+  contact:
+    name: Drone Support
+    url: https://docs.drone.io/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+- url: https://your-drone-server
+  description: Your self-hosted Drone server
+security:
+- BearerAuth: []
+tags:
+- name: Users
+  description: User account management (admin).
+paths:
+  /api/users:
+    get:
+      operationId: listUsers
+      summary: List all users
+      description: Returns a list of all registered users. Requires admin privileges.
+      tags:
+      - Users
+      parameters:
+      - name: page
+        in: query
+        schema:
+          type: integer
+          default: 1
+      - name: per_page
+        in: query
+        schema:
+          type: integer
+          default: 25
+      responses:
+        '200':
+          description: List of users.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createUser
+      summary: Create a user
+      description: Creates a new user account. Requires admin privileges.
+      tags:
+      - Users
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '200':
+          description: Created user.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /api/users/{login}:
+    parameters:
+    - name: login
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The user login/username.
+    get:
+      operationId: getUser
+      summary: Get a user
+      description: Returns a user by their login name.
+      tags:
+      - Users
+      responses:
+        '200':
+          description: User information.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    patch:
+      operationId: updateUser
+      summary: Update a user
+      description: Updates a user account. Requires admin privileges.
+      tags:
+      - Users
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserPatch'
+      responses:
+        '200':
+          description: Updated user.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    delete:
+      operationId: deleteUser
+      summary: Delete a user
+      description: Permanently deletes a user account. Requires admin privileges.
+      tags:
+      - Users
+      responses:
+        '204':
+          description: User deleted successfully.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  schemas:
+    UserPatch:
+      type: object
+      description: Patch request for a user account.
+      properties:
+        active:
+          type: boolean
+        admin:
+          type: boolean
+        machine:
+          type: boolean
+        token:
+          type: string
+    Error:
+      type: object
+      description: API error response.
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+    User:
+      type: object
+      description: Represents a Drone user account.
+      properties:
+        id:
+          type: integer
+          format: int64
+        login:
+          type: string
+        email:
+          type: string
+          format: email
+        avatar_url:
+          type: string
+          format: uri
+        active:
+          type: boolean
+        admin:
+          type: boolean
+        machine:
+          type: boolean
+        syncing:
+          type: boolean
+        synced:
+          type: integer
+          format: int64
+        created:
+          type: integer
+          format: int64
+        updated:
+          type: integer
+          format: int64
+        last_login:
+          type: integer
+          format: int64
+        token:
+          type: string
+  responses:
+    Unauthorized:
+      description: Authentication credentials missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: Bearer token retrieved from the Drone user interface profile page.

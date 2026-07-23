@@ -1,0 +1,183 @@
+openapi: 3.0.3
+info:
+  title: Drone REST Builds Templates API
+  description: The Drone REST API provides programmatic access to the Drone CI/CD platform, enabling management of builds, repositories, secrets, cron jobs, templates, and user accounts. Authentication is performed using bearer tokens retrieved from the Drone user interface profile page.
+  version: 1.0.0
+  contact:
+    name: Drone Support
+    url: https://docs.drone.io/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+- url: https://your-drone-server
+  description: Your self-hosted Drone server
+security:
+- BearerAuth: []
+tags:
+- name: Templates
+  description: Reusable pipeline template management.
+paths:
+  /api/templates:
+    get:
+      operationId: listAllTemplates
+      summary: List all templates
+      description: Returns a list of all pipeline templates. Requires admin privileges.
+      tags:
+      - Templates
+      responses:
+        '200':
+          description: List of templates.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Template'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /api/templates/{namespace}:
+    parameters:
+    - name: namespace
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The template namespace/organization.
+    get:
+      operationId: listNamespaceTemplates
+      summary: List templates by namespace
+      description: Returns a list of pipeline templates for the specified namespace.
+      tags:
+      - Templates
+      responses:
+        '200':
+          description: List of templates.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Template'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createTemplate
+      summary: Create a template
+      description: Creates a new pipeline template in the specified namespace.
+      tags:
+      - Templates
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Template'
+      responses:
+        '200':
+          description: Created template.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Template'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /api/templates/{namespace}/{name}:
+    parameters:
+    - name: namespace
+      in: path
+      required: true
+      schema:
+        type: string
+    - name: name
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The template name.
+    get:
+      operationId: getTemplate
+      summary: Get a template
+      description: Returns a pipeline template by namespace and name.
+      tags:
+      - Templates
+      responses:
+        '200':
+          description: Template details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Template'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    patch:
+      operationId: updateTemplate
+      summary: Update a template
+      description: Updates an existing pipeline template.
+      tags:
+      - Templates
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Template'
+      responses:
+        '200':
+          description: Updated template.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Template'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    delete:
+      operationId: deleteTemplate
+      summary: Delete a template
+      description: Deletes a pipeline template.
+      tags:
+      - Templates
+      responses:
+        '204':
+          description: Template deleted.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  schemas:
+    Template:
+      type: object
+      description: Represents a pipeline template stored in Drone.
+      properties:
+        name:
+          type: string
+        data:
+          type: string
+          description: Template content (YAML/Jsonnet).
+    Error:
+      type: object
+      description: API error response.
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+  responses:
+    NotFound:
+      description: Resource not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication credentials missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: Bearer token retrieved from the Drone user interface profile page.

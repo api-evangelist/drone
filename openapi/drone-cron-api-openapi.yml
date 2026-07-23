@@ -1,0 +1,228 @@
+openapi: 3.0.3
+info:
+  title: Drone REST Builds Cron API
+  description: The Drone REST API provides programmatic access to the Drone CI/CD platform, enabling management of builds, repositories, secrets, cron jobs, templates, and user accounts. Authentication is performed using bearer tokens retrieved from the Drone user interface profile page.
+  version: 1.0.0
+  contact:
+    name: Drone Support
+    url: https://docs.drone.io/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+- url: https://your-drone-server
+  description: Your self-hosted Drone server
+security:
+- BearerAuth: []
+tags:
+- name: Cron
+  description: Cron job scheduling for automated builds.
+paths:
+  /api/repos/{namespace}/{name}/cron:
+    parameters:
+    - name: namespace
+      in: path
+      required: true
+      schema:
+        type: string
+    - name: name
+      in: path
+      required: true
+      schema:
+        type: string
+    get:
+      operationId: listCronJobs
+      summary: List cron jobs
+      description: Returns a list of all cron jobs for the specified repository.
+      tags:
+      - Cron
+      responses:
+        '200':
+          description: List of cron jobs.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Cron'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createCronJob
+      summary: Create a cron job
+      description: Creates a new cron job for the specified repository.
+      tags:
+      - Cron
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Cron'
+      responses:
+        '200':
+          description: Created cron job.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cron'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /api/repos/{namespace}/{name}/cron/{cron}:
+    parameters:
+    - name: namespace
+      in: path
+      required: true
+      schema:
+        type: string
+    - name: name
+      in: path
+      required: true
+      schema:
+        type: string
+    - name: cron
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The cron job name.
+    get:
+      operationId: getCronJob
+      summary: Get a cron job
+      description: Returns a cron job by name for the specified repository.
+      tags:
+      - Cron
+      responses:
+        '200':
+          description: Cron job details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cron'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: triggerCronJob
+      summary: Trigger a cron job
+      description: Executes a cron job immediately.
+      tags:
+      - Cron
+      responses:
+        '204':
+          description: Cron job triggered.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    patch:
+      operationId: updateCronJob
+      summary: Update a cron job
+      description: Updates an existing cron job for the specified repository.
+      tags:
+      - Cron
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CronPatch'
+      responses:
+        '200':
+          description: Updated cron job.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cron'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    delete:
+      operationId: deleteCronJob
+      summary: Delete a cron job
+      description: Deletes a cron job from the specified repository.
+      tags:
+      - Cron
+      responses:
+        '204':
+          description: Cron job deleted.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  schemas:
+    Error:
+      type: object
+      description: API error response.
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+    CronPatch:
+      type: object
+      description: Patch request for a cron job.
+      properties:
+        event:
+          type: string
+        branch:
+          type: string
+        target:
+          type: string
+        disabled:
+          type: boolean
+    Cron:
+      type: object
+      description: Represents a cron job for a repository.
+      properties:
+        id:
+          type: integer
+          format: int64
+        repo_id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        expr:
+          type: string
+          description: Cron expression (e.g. "0 0 * * *").
+        next:
+          type: integer
+          format: int64
+        prev:
+          type: integer
+          format: int64
+        event:
+          type: string
+          enum:
+          - push
+          - tag
+          - promote
+          - rollback
+        branch:
+          type: string
+        target:
+          type: string
+        disabled:
+          type: boolean
+        created:
+          type: integer
+          format: int64
+        updated:
+          type: integer
+          format: int64
+  responses:
+    Unauthorized:
+      description: Authentication credentials missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: Bearer token retrieved from the Drone user interface profile page.

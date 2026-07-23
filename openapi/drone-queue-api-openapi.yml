@@ -1,0 +1,213 @@
+openapi: 3.0.3
+info:
+  title: Drone REST Builds Queue API
+  description: The Drone REST API provides programmatic access to the Drone CI/CD platform, enabling management of builds, repositories, secrets, cron jobs, templates, and user accounts. Authentication is performed using bearer tokens retrieved from the Drone user interface profile page.
+  version: 1.0.0
+  contact:
+    name: Drone Support
+    url: https://docs.drone.io/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+- url: https://your-drone-server
+  description: Your self-hosted Drone server
+security:
+- BearerAuth: []
+tags:
+- name: Queue
+  description: Build queue management.
+paths:
+  /api/queue:
+    get:
+      operationId: getQueue
+      summary: Get build queue
+      description: Returns a list of stages currently enqueued for execution.
+      tags:
+      - Queue
+      responses:
+        '200':
+          description: List of queued stages.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Stage'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: resumeQueue
+      summary: Resume queue
+      description: Resumes the build queue after a pause.
+      tags:
+      - Queue
+      responses:
+        '204':
+          description: Queue resumed.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    delete:
+      operationId: pauseQueue
+      summary: Pause queue
+      description: Pauses the build queue, preventing new builds from starting.
+      tags:
+      - Queue
+      responses:
+        '204':
+          description: Queue paused.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  schemas:
+    Stage:
+      type: object
+      description: Represents a stage of build execution.
+      properties:
+        id:
+          type: integer
+          format: int64
+        build_id:
+          type: integer
+          format: int64
+        number:
+          type: integer
+        name:
+          type: string
+        kind:
+          type: string
+        type:
+          type: string
+        status:
+          type: string
+          enum:
+          - pending
+          - running
+          - passing
+          - failing
+          - killed
+          - error
+          - skipped
+          - blocked
+          - declined
+          - waiting_on_dependencies
+        error:
+          type: string
+        errignore:
+          type: boolean
+        exit_code:
+          type: integer
+        machine:
+          type: string
+        os:
+          type: string
+        arch:
+          type: string
+        variant:
+          type: string
+        kernel:
+          type: string
+        limit:
+          type: integer
+        throttle:
+          type: integer
+        started:
+          type: integer
+          format: int64
+        stopped:
+          type: integer
+          format: int64
+        created:
+          type: integer
+          format: int64
+        updated:
+          type: integer
+          format: int64
+        version:
+          type: integer
+          format: int64
+        on_success:
+          type: boolean
+        on_failure:
+          type: boolean
+        depends_on:
+          type: array
+          items:
+            type: string
+        labels:
+          type: object
+          additionalProperties:
+            type: string
+        steps:
+          type: array
+          items:
+            $ref: '#/components/schemas/Step'
+    Step:
+      type: object
+      description: Represents an individual step within a stage.
+      properties:
+        id:
+          type: integer
+          format: int64
+        step_id:
+          type: integer
+          format: int64
+        number:
+          type: integer
+        name:
+          type: string
+        status:
+          type: string
+          enum:
+          - pending
+          - running
+          - passing
+          - failing
+          - killed
+          - error
+          - skipped
+        error:
+          type: string
+        errignore:
+          type: boolean
+        exit_code:
+          type: integer
+        started:
+          type: integer
+          format: int64
+        stopped:
+          type: integer
+          format: int64
+        version:
+          type: integer
+          format: int64
+        depends_on:
+          type: array
+          items:
+            type: string
+        image:
+          type: string
+        detached:
+          type: boolean
+        schema:
+          type: string
+    Error:
+      type: object
+      description: API error response.
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+  responses:
+    Unauthorized:
+      description: Authentication credentials missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: Bearer token retrieved from the Drone user interface profile page.

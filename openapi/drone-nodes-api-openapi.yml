@@ -1,0 +1,231 @@
+openapi: 3.0.3
+info:
+  title: Drone REST Builds Nodes API
+  description: The Drone REST API provides programmatic access to the Drone CI/CD platform, enabling management of builds, repositories, secrets, cron jobs, templates, and user accounts. Authentication is performed using bearer tokens retrieved from the Drone user interface profile page.
+  version: 1.0.0
+  contact:
+    name: Drone Support
+    url: https://docs.drone.io/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+- url: https://your-drone-server
+  description: Your self-hosted Drone server
+security:
+- BearerAuth: []
+tags:
+- name: Nodes
+  description: Runner node management.
+paths:
+  /api/nodes:
+    get:
+      operationId: listNodes
+      summary: List nodes
+      description: Returns a list of all runner nodes registered with Drone. Requires admin privileges.
+      tags:
+      - Nodes
+      responses:
+        '200':
+          description: List of nodes.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Node'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createNode
+      summary: Create a node
+      description: Registers a new runner node with Drone. Requires admin privileges.
+      tags:
+      - Nodes
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Node'
+      responses:
+        '200':
+          description: Created node.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Node'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /api/nodes/{name}:
+    parameters:
+    - name: name
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The node name/identifier.
+    get:
+      operationId: getNode
+      summary: Get a node
+      description: Returns a runner node by name.
+      tags:
+      - Nodes
+      responses:
+        '200':
+          description: Node details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Node'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    patch:
+      operationId: updateNode
+      summary: Update a node
+      description: Updates a runner node registration.
+      tags:
+      - Nodes
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NodePatch'
+      responses:
+        '200':
+          description: Updated node.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Node'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    delete:
+      operationId: deleteNode
+      summary: Delete a node
+      description: Removes a runner node from Drone.
+      tags:
+      - Nodes
+      responses:
+        '204':
+          description: Node deleted.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  schemas:
+    Error:
+      type: object
+      description: API error response.
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+    Node:
+      type: object
+      description: Represents a runner/agent node registered with Drone.
+      properties:
+        id:
+          type: integer
+          format: int64
+        uid:
+          type: string
+        provider:
+          type: string
+        state:
+          type: string
+        name:
+          type: string
+        image:
+          type: string
+        region:
+          type: string
+        size:
+          type: string
+        os:
+          type: string
+        arch:
+          type: string
+        kernel:
+          type: string
+        variant:
+          type: string
+        address:
+          type: string
+        capacity:
+          type: integer
+        filters:
+          type: array
+          items:
+            type: string
+        labels:
+          type: object
+          additionalProperties:
+            type: string
+        error:
+          type: string
+        paused:
+          type: boolean
+        protected:
+          type: boolean
+        created:
+          type: integer
+          format: int64
+        updated:
+          type: integer
+          format: int64
+    NodePatch:
+      type: object
+      description: Patch request for a node.
+      properties:
+        uid:
+          type: string
+        provider:
+          type: string
+        state:
+          type: string
+        image:
+          type: string
+        region:
+          type: string
+        size:
+          type: string
+        address:
+          type: string
+        capacity:
+          type: integer
+        filters:
+          type: array
+          items:
+            type: string
+        labels:
+          type: object
+          additionalProperties:
+            type: string
+        error:
+          type: string
+        paused:
+          type: boolean
+        protected:
+          type: boolean
+  responses:
+    Unauthorized:
+      description: Authentication credentials missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: Bearer token retrieved from the Drone user interface profile page.
