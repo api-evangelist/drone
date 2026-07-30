@@ -12,7 +12,20 @@ description: >-
   GitLab, and is available as a free open-source edition (Apache 2 license) or a
   paid enterprise edition for larger organizations.
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: true
+  try_now: true
+  public: false
+  label: Freemium (free trial) · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/drone.png
 url: https://raw.githubusercontent.com/api-evangelist/drone/refs/heads/main/apis.yml
 created: "2026-06-12"
 modified: "2026-06-12"
@@ -28,33 +41,146 @@ tags:
   - Open Source
   - Self-Hosted
 apis:
-  - aid: drone:drone-api
-    name: Drone REST API
-    description: >-
-      The Drone REST API provides programmatic access to the Drone CI/CD platform,
-      enabling management of builds, repositories, secrets, cron jobs, templates,
-      and user accounts. Authentication is performed using bearer tokens retrieved
-      from the Drone user interface profile page. The API supports operations across
-      seven resource categories including builds (approve, create, decline, list,
-      logs, promote, restart, stop), cron jobs, repositories, secrets, templates,
-      individual user profile, and administrative user management.
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    humanURL: https://docs.drone.io/api/overview/
-    baseURL: https://your-drone-server/api
-    tags:
-      - Builds
-      - Repositories
-      - Secrets
-      - Cron Jobs
-      - Templates
-      - Users
-    properties:
-      - type: Documentation
-        url: https://docs.drone.io/api/overview/
-      - type: Authentication
-        url: https://docs.drone.io/api/overview/
-      - type: OpenAPI
-        url: openapi/drone-api-openapi.yml
+- aid: drone:drone-builds-api
+  name: Drone Builds API
+  description: Build creation, management, and log access.
+  humanURL: https://docs.drone.io/api/overview/
+  baseURL: https://your-drone-server/api
+  tags:
+  - Builds
+  properties:
+  - type: OpenAPI
+    url: openapi/drone-builds-api-openapi.yml
+  - type: Documentation
+    url: https://docs.drone.io/api/overview/
+  - type: Authentication
+    url: https://docs.drone.io/api/overview/
+- aid: drone:drone-cron-api
+  name: Drone Cron API
+  description: Cron job scheduling for automated builds.
+  humanURL: https://docs.drone.io/api/overview/
+  baseURL: https://your-drone-server/api
+  tags:
+  - Cron
+  properties:
+  - type: OpenAPI
+    url: openapi/drone-cron-api-openapi.yml
+  - type: Documentation
+    url: https://docs.drone.io/api/overview/
+  - type: Authentication
+    url: https://docs.drone.io/api/overview/
+- aid: drone:drone-nodes-api
+  name: Drone Nodes API
+  description: Runner node management.
+  humanURL: https://docs.drone.io/api/overview/
+  baseURL: https://your-drone-server/api
+  tags:
+  - Nodes
+  properties:
+  - type: OpenAPI
+    url: openapi/drone-nodes-api-openapi.yml
+  - type: Documentation
+    url: https://docs.drone.io/api/overview/
+  - type: Authentication
+    url: https://docs.drone.io/api/overview/
+- aid: drone:drone-queue-api
+  name: Drone Queue API
+  description: Build queue management.
+  humanURL: https://docs.drone.io/api/overview/
+  baseURL: https://your-drone-server/api
+  tags:
+  - Queue
+  properties:
+  - type: OpenAPI
+    url: openapi/drone-queue-api-openapi.yml
+  - type: Documentation
+    url: https://docs.drone.io/api/overview/
+  - type: Authentication
+    url: https://docs.drone.io/api/overview/
+- aid: drone:drone-repos-api
+  name: Drone Repos API
+  description: Repository activation and management.
+  humanURL: https://docs.drone.io/api/overview/
+  baseURL: https://your-drone-server/api
+  tags:
+  - Repos
+  properties:
+  - type: OpenAPI
+    url: openapi/drone-repos-api-openapi.yml
+  - type: Documentation
+    url: https://docs.drone.io/api/overview/
+  - type: Authentication
+    url: https://docs.drone.io/api/overview/
+- aid: drone:drone-secrets-api
+  name: Drone Secrets API
+  description: Secret variable management for repos and organizations.
+  humanURL: https://docs.drone.io/api/overview/
+  baseURL: https://your-drone-server/api
+  tags:
+  - Secrets
+  properties:
+  - type: OpenAPI
+    url: openapi/drone-secrets-api-openapi.yml
+  - type: Documentation
+    url: https://docs.drone.io/api/overview/
+  - type: Authentication
+    url: https://docs.drone.io/api/overview/
+- aid: drone:drone-system-api
+  name: Drone System API
+  description: System information.
+  humanURL: https://docs.drone.io/api/overview/
+  baseURL: https://your-drone-server/api
+  tags:
+  - System
+  properties:
+  - type: OpenAPI
+    url: openapi/drone-system-api-openapi.yml
+  - type: Documentation
+    url: https://docs.drone.io/api/overview/
+  - type: Authentication
+    url: https://docs.drone.io/api/overview/
+- aid: drone:drone-templates-api
+  name: Drone Templates API
+  description: Reusable pipeline template management.
+  humanURL: https://docs.drone.io/api/overview/
+  baseURL: https://your-drone-server/api
+  tags:
+  - Templates
+  properties:
+  - type: OpenAPI
+    url: openapi/drone-templates-api-openapi.yml
+  - type: Documentation
+    url: https://docs.drone.io/api/overview/
+  - type: Authentication
+    url: https://docs.drone.io/api/overview/
+- aid: drone:drone-user-api
+  name: Drone User API
+  description: Current authenticated user operations.
+  humanURL: https://docs.drone.io/api/overview/
+  baseURL: https://your-drone-server/api
+  tags:
+  - User
+  properties:
+  - type: OpenAPI
+    url: openapi/drone-user-api-openapi.yml
+  - type: Documentation
+    url: https://docs.drone.io/api/overview/
+  - type: Authentication
+    url: https://docs.drone.io/api/overview/
+- aid: drone:drone-users-api
+  name: Drone Users API
+  description: User account management (admin).
+  humanURL: https://docs.drone.io/api/overview/
+  baseURL: https://your-drone-server/api
+  tags:
+  - Users
+  properties:
+  - type: OpenAPI
+    url: openapi/drone-users-api-openapi.yml
+  - type: Documentation
+    url: https://docs.drone.io/api/overview/
+  - type: Authentication
+    url: https://docs.drone.io/api/overview/
 common:
   - type: AgenticAccess
     url: agentic-access/drone-agentic-access.yml
