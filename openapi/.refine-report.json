@@ -1,0 +1,32 @@
+{
+  "provider": "drone",
+  "sources": [
+    "drone-builds-api-openapi.yml",
+    "drone-cron-api-openapi.yml",
+    "drone-nodes-api-openapi.yml",
+    "drone-queue-api-openapi.yml",
+    "drone-repos-api-openapi.yml",
+    "drone-secrets-api-openapi.yml",
+    "drone-system-api-openapi.yml",
+    "drone-templates-api-openapi.yml",
+    "drone-user-api-openapi.yml",
+    "drone-users-api-openapi.yml"
+  ],
+  "outputs": [
+    "drone-builds-api-openapi.yml",
+    "drone-cron-api-openapi.yml",
+    "drone-nodes-api-openapi.yml",
+    "drone-queue-api-openapi.yml",
+    "drone-repos-api-openapi.yml",
+    "drone-secrets-api-openapi.yml",
+    "drone-system-api-openapi.yml",
+    "drone-templates-api-openapi.yml",
+    "drone-user-api-openapi.yml",
+    "drone-users-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

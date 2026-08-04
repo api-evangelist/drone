@@ -1,0 +1,1965 @@
+openapi: 3.0.3
+info:
+  title: Drone REST API
+  description: >-
+    The Drone REST API provides programmatic access to the Drone CI/CD platform,
+    enabling management of builds, repositories, secrets, cron jobs, templates,
+    and user accounts. Authentication is performed using bearer tokens retrieved
+    from the Drone user interface profile page.
+  version: 1.0.0
+  contact:
+    name: Drone Support
+    url: https://docs.drone.io/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+
+servers:
+  - url: https://your-drone-server
+    description: Your self-hosted Drone server
+
+security:
+  - BearerAuth: []
+
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: Bearer token retrieved from the Drone user interface profile page.
+
+  schemas:
+    User:
+      type: object
+      description: Represents a Drone user account.
+      properties:
+        id:
+          type: integer
+          format: int64
+        login:
+          type: string
+        email:
+          type: string
+          format: email
+        avatar_url:
+          type: string
+          format: uri
+        active:
+          type: boolean
+        admin:
+          type: boolean
+        machine:
+          type: boolean
+        syncing:
+          type: boolean
+        synced:
+          type: integer
+          format: int64
+        created:
+          type: integer
+          format: int64
+        updated:
+          type: integer
+          format: int64
+        last_login:
+          type: integer
+          format: int64
+        token:
+          type: string
+
+    UserPatch:
+      type: object
+      description: Patch request for a user account.
+      properties:
+        active:
+          type: boolean
+        admin:
+          type: boolean
+        machine:
+          type: boolean
+        token:
+          type: string
+
+    Repo:
+      type: object
+      description: Represents a repository registered with Drone.
+      properties:
+        id:
+          type: integer
+          format: int64
+        uid:
+          type: string
+        user_id:
+          type: integer
+          format: int64
+        namespace:
+          type: string
+        name:
+          type: string
+        slug:
+          type: string
+        scm:
+          type: string
+        git_http_url:
+          type: string
+          format: uri
+        git_ssh_url:
+          type: string
+        link:
+          type: string
+          format: uri
+        default_branch:
+          type: string
+        private:
+          type: boolean
+        visibility:
+          type: string
+          enum: [public, private, internal]
+        active:
+          type: boolean
+        config_path:
+          type: string
+        trusted:
+          type: boolean
+        protected:
+          type: boolean
+        ignore_forks:
+          type: boolean
+        ignore_pull_requests:
+          type: boolean
+        auto_cancel_pull_requests:
+          type: boolean
+        auto_cancel_pushes:
+          type: boolean
+        auto_cancel_running:
+          type: boolean
+        throttle:
+          type: integer
+          format: int64
+        timeout:
+          type: integer
+          format: int64
+        counter:
+          type: integer
+          format: int64
+        synced:
+          type: integer
+          format: int64
+        created:
+          type: integer
+          format: int64
+        updated:
+          type: integer
+          format: int64
+        version:
+          type: integer
+          format: int64
+
+    RepoPatch:
+      type: object
+      description: Patch request for a repository.
+      properties:
+        config_path:
+          type: string
+        protected:
+          type: boolean
+        trusted:
+          type: boolean
+        throttle:
+          type: integer
+          format: int64
+        timeout:
+          type: integer
+          format: int64
+        visibility:
+          type: string
+          enum: [public, private, internal]
+        ignore_forks:
+          type: boolean
+        ignore_pull_requests:
+          type: boolean
+        auto_cancel_pull_requests:
+          type: boolean
+        auto_cancel_pushes:
+          type: boolean
+        auto_cancel_running:
+          type: boolean
+        counter:
+          type: integer
+          format: int64
+
+    Build:
+      type: object
+      description: Represents a Drone build execution.
+      properties:
+        id:
+          type: integer
+          format: int64
+        repo_id:
+          type: integer
+          format: int64
+        trigger:
+          type: string
+        number:
+          type: integer
+          format: int64
+        parent:
+          type: integer
+          format: int64
+        status:
+          type: string
+          enum: [pending, running, passing, failing, killed, error, skipped, blocked, declined, waiting_on_dependencies]
+        error:
+          type: string
+        event:
+          type: string
+          enum: [push, pull_request, tag, promote, rollback, cron, custom]
+        action:
+          type: string
+        link:
+          type: string
+          format: uri
+        timestamp:
+          type: integer
+          format: int64
+        title:
+          type: string
+        message:
+          type: string
+        before:
+          type: string
+        after:
+          type: string
+        ref:
+          type: string
+        source_repo:
+          type: string
+        source:
+          type: string
+        target:
+          type: string
+        author_login:
+          type: string
+        author_name:
+          type: string
+        author_email:
+          type: string
+          format: email
+        author_avatar:
+          type: string
+          format: uri
+        sender:
+          type: string
+        params:
+          type: object
+          additionalProperties:
+            type: string
+        cron:
+          type: string
+        deploy_to:
+          type: string
+        deploy_id:
+          type: integer
+          format: int64
+        debug:
+          type: boolean
+        started:
+          type: integer
+          format: int64
+        finished:
+          type: integer
+          format: int64
+        created:
+          type: integer
+          format: int64
+        updated:
+          type: integer
+          format: int64
+        version:
+          type: integer
+          format: int64
+        stages:
+          type: array
+          items:
+            $ref: '#/components/schemas/Stage'
+
+    Stage:
+      type: object
+      description: Represents a stage of build execution.
+      properties:
+        id:
+          type: integer
+          format: int64
+        build_id:
+          type: integer
+          format: int64
+        number:
+          type: integer
+        name:
+          type: string
+        kind:
+          type: string
+        type:
+          type: string
+        status:
+          type: string
+          enum: [pending, running, passing, failing, killed, error, skipped, blocked, declined, waiting_on_dependencies]
+        error:
+          type: string
+        errignore:
+          type: boolean
+        exit_code:
+          type: integer
+        machine:
+          type: string
+        os:
+          type: string
+        arch:
+          type: string
+        variant:
+          type: string
+        kernel:
+          type: string
+        limit:
+          type: integer
+        throttle:
+          type: integer
+        started:
+          type: integer
+          format: int64
+        stopped:
+          type: integer
+          format: int64
+        created:
+          type: integer
+          format: int64
+        updated:
+          type: integer
+          format: int64
+        version:
+          type: integer
+          format: int64
+        on_success:
+          type: boolean
+        on_failure:
+          type: boolean
+        depends_on:
+          type: array
+          items:
+            type: string
+        labels:
+          type: object
+          additionalProperties:
+            type: string
+        steps:
+          type: array
+          items:
+            $ref: '#/components/schemas/Step'
+
+    Step:
+      type: object
+      description: Represents an individual step within a stage.
+      properties:
+        id:
+          type: integer
+          format: int64
+        step_id:
+          type: integer
+          format: int64
+        number:
+          type: integer
+        name:
+          type: string
+        status:
+          type: string
+          enum: [pending, running, passing, failing, killed, error, skipped]
+        error:
+          type: string
+        errignore:
+          type: boolean
+        exit_code:
+          type: integer
+        started:
+          type: integer
+          format: int64
+        stopped:
+          type: integer
+          format: int64
+        version:
+          type: integer
+          format: int64
+        depends_on:
+          type: array
+          items:
+            type: string
+        image:
+          type: string
+        detached:
+          type: boolean
+        schema:
+          type: string
+
+    Line:
+      type: object
+      description: Represents a single line of container/step log output.
+      properties:
+        pos:
+          type: integer
+          description: Line number.
+        out:
+          type: string
+          description: Log message.
+        time:
+          type: integer
+          format: int64
+          description: Unix timestamp of the log line.
+
+    Secret:
+      type: object
+      description: Represents a secret variable stored in Drone.
+      properties:
+        namespace:
+          type: string
+        name:
+          type: string
+        data:
+          type: string
+        pull_request:
+          type: boolean
+        pull_request_push:
+          type: boolean
+
+    Cron:
+      type: object
+      description: Represents a cron job for a repository.
+      properties:
+        id:
+          type: integer
+          format: int64
+        repo_id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        expr:
+          type: string
+          description: Cron expression (e.g. "0 0 * * *").
+        next:
+          type: integer
+          format: int64
+        prev:
+          type: integer
+          format: int64
+        event:
+          type: string
+          enum: [push, tag, promote, rollback]
+        branch:
+          type: string
+        target:
+          type: string
+        disabled:
+          type: boolean
+        created:
+          type: integer
+          format: int64
+        updated:
+          type: integer
+          format: int64
+
+    CronPatch:
+      type: object
+      description: Patch request for a cron job.
+      properties:
+        event:
+          type: string
+        branch:
+          type: string
+        target:
+          type: string
+        disabled:
+          type: boolean
+
+    Template:
+      type: object
+      description: Represents a pipeline template stored in Drone.
+      properties:
+        name:
+          type: string
+        data:
+          type: string
+          description: Template content (YAML/Jsonnet).
+
+    Node:
+      type: object
+      description: Represents a runner/agent node registered with Drone.
+      properties:
+        id:
+          type: integer
+          format: int64
+        uid:
+          type: string
+        provider:
+          type: string
+        state:
+          type: string
+        name:
+          type: string
+        image:
+          type: string
+        region:
+          type: string
+        size:
+          type: string
+        os:
+          type: string
+        arch:
+          type: string
+        kernel:
+          type: string
+        variant:
+          type: string
+        address:
+          type: string
+        capacity:
+          type: integer
+        filters:
+          type: array
+          items:
+            type: string
+        labels:
+          type: object
+          additionalProperties:
+            type: string
+        error:
+          type: string
+        paused:
+          type: boolean
+        protected:
+          type: boolean
+        created:
+          type: integer
+          format: int64
+        updated:
+          type: integer
+          format: int64
+
+    NodePatch:
+      type: object
+      description: Patch request for a node.
+      properties:
+        uid:
+          type: string
+        provider:
+          type: string
+        state:
+          type: string
+        image:
+          type: string
+        region:
+          type: string
+        size:
+          type: string
+        address:
+          type: string
+        capacity:
+          type: integer
+        filters:
+          type: array
+          items:
+            type: string
+        labels:
+          type: object
+          additionalProperties:
+            type: string
+        error:
+          type: string
+        paused:
+          type: boolean
+        protected:
+          type: boolean
+
+    Version:
+      type: object
+      description: System version information.
+      properties:
+        source:
+          type: string
+        version:
+          type: string
+        commit:
+          type: string
+
+    Error:
+      type: object
+      description: API error response.
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+
+  responses:
+    Unauthorized:
+      description: Authentication credentials missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+
+paths:
+  /api/user:
+    get:
+      operationId: getCurrentUser
+      summary: Get current user
+      description: Returns the currently authenticated user.
+      tags: [User]
+      responses:
+        '200':
+          description: Current user information.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /api/user/repos:
+    get:
+      operationId: listUserRepos
+      summary: List user repositories
+      description: Returns a list of all repositories to which the user has explicit access.
+      tags: [User]
+      responses:
+        '200':
+          description: List of repositories.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Repo'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: syncUserRepos
+      summary: Sync user repositories
+      description: Triggers a sync and returns the updated list of repositories.
+      tags: [User]
+      responses:
+        '200':
+          description: Synced list of repositories.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Repo'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /api/users:
+    get:
+      operationId: listUsers
+      summary: List all users
+      description: Returns a list of all registered users. Requires admin privileges.
+      tags: [Users]
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: integer
+            default: 1
+        - name: per_page
+          in: query
+          schema:
+            type: integer
+            default: 25
+      responses:
+        '200':
+          description: List of users.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createUser
+      summary: Create a user
+      description: Creates a new user account. Requires admin privileges.
+      tags: [Users]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '200':
+          description: Created user.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /api/users/{login}:
+    parameters:
+      - name: login
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The user login/username.
+    get:
+      operationId: getUser
+      summary: Get a user
+      description: Returns a user by their login name.
+      tags: [Users]
+      responses:
+        '200':
+          description: User information.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    patch:
+      operationId: updateUser
+      summary: Update a user
+      description: Updates a user account. Requires admin privileges.
+      tags: [Users]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserPatch'
+      responses:
+        '200':
+          description: Updated user.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    delete:
+      operationId: deleteUser
+      summary: Delete a user
+      description: Permanently deletes a user account. Requires admin privileges.
+      tags: [Users]
+      responses:
+        '204':
+          description: User deleted successfully.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /api/repos:
+    get:
+      operationId: listAllRepos
+      summary: List all repositories
+      description: Returns a paginated list of all repositories in the database. Requires admin privileges.
+      tags: [Repos]
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: integer
+            default: 1
+        - name: per_page
+          in: query
+          schema:
+            type: integer
+            default: 25
+      responses:
+        '200':
+          description: List of all repositories.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Repo'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /api/repos/{namespace}/{name}:
+    parameters:
+      - name: namespace
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The repository owner/namespace.
+      - name: name
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The repository name.
+    get:
+      operationId: getRepo
+      summary: Get a repository
+      description: Returns a repository by namespace and name.
+      tags: [Repos]
+      responses:
+        '200':
+          description: Repository details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Repo'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: enableRepo
+      summary: Enable a repository
+      description: Activates (enables) a repository for CI/CD in Drone.
+      tags: [Repos]
+      responses:
+        '200':
+          description: Activated repository.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Repo'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    patch:
+      operationId: updateRepo
+      summary: Update a repository
+      description: Updates repository configuration settings.
+      tags: [Repos]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RepoPatch'
+      responses:
+        '200':
+          description: Updated repository.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Repo'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    delete:
+      operationId: disableRepo
+      summary: Disable or delete a repository
+      description: Disables a repository (or permanently deletes it when remove=true is passed).
+      tags: [Repos]
+      parameters:
+        - name: remove
+          in: query
+          schema:
+            type: boolean
+          description: Set to true to permanently delete the repository.
+      responses:
+        '204':
+          description: Repository disabled/deleted.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /api/repos/{namespace}/{name}/chown:
+    parameters:
+      - name: namespace
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: name
+        in: path
+        required: true
+        schema:
+          type: string
+    post:
+      operationId: chownRepo
+      summary: Update repository owner
+      description: Transfers repository ownership to the currently authenticated user.
+      tags: [Repos]
+      responses:
+        '200':
+          description: Updated repository.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Repo'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /api/repos/{namespace}/{name}/repair:
+    parameters:
+      - name: namespace
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: name
+        in: path
+        required: true
+        schema:
+          type: string
+    post:
+      operationId: repairRepo
+      summary: Repair repository hooks
+      description: Repairs the repository webhook hooks with the SCM provider.
+      tags: [Repos]
+      responses:
+        '204':
+          description: Repository repaired.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /api/repos/{namespace}/{name}/builds:
+    parameters:
+      - name: namespace
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: name
+        in: path
+        required: true
+        schema:
+          type: string
+    get:
+      operationId: listBuilds
+      summary: List builds
+      description: Returns a list of recent builds for the specified repository.
+      tags: [Builds]
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: integer
+            default: 1
+        - name: per_page
+          in: query
+          schema:
+            type: integer
+            default: 25
+        - name: branch
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List of builds.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Build'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createBuild
+      summary: Create a build
+      description: Creates (triggers) a new build by branch or commit.
+      tags: [Builds]
+      parameters:
+        - name: branch
+          in: query
+          schema:
+            type: string
+          description: Branch to build.
+        - name: commit
+          in: query
+          schema:
+            type: string
+          description: Commit SHA to build.
+      responses:
+        '200':
+          description: Created build.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Build'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    delete:
+      operationId: purgeBuildHistory
+      summary: Purge build history
+      description: Deletes build history older than the specified build number.
+      tags: [Builds]
+      parameters:
+        - name: before
+          in: query
+          required: true
+          schema:
+            type: integer
+          description: Delete builds with numbers less than this value.
+      responses:
+        '204':
+          description: Build history purged.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /api/repos/{namespace}/{name}/builds/{build}:
+    parameters:
+      - name: namespace
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: name
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: build
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The build number. Use "latest" to get the most recent build.
+    get:
+      operationId: getBuild
+      summary: Get a build
+      description: Returns a repository build by build number.
+      tags: [Builds]
+      parameters:
+        - name: branch
+          in: query
+          schema:
+            type: string
+          description: When build is "latest", filter by this branch.
+      responses:
+        '200':
+          description: Build details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Build'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: restartBuild
+      summary: Restart a build
+      description: Re-starts a stopped or completed build.
+      tags: [Builds]
+      responses:
+        '200':
+          description: Restarted build.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Build'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    delete:
+      operationId: cancelBuild
+      summary: Cancel a build
+      description: Cancels a running build.
+      tags: [Builds]
+      responses:
+        '204':
+          description: Build cancelled.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /api/repos/{namespace}/{name}/builds/{build}/approve/{stage}:
+    parameters:
+      - name: namespace
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: name
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: build
+        in: path
+        required: true
+        schema:
+          type: integer
+      - name: stage
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The stage number to approve.
+    post:
+      operationId: approveBuild
+      summary: Approve a build stage
+      description: Approves a blocked build stage awaiting manual approval.
+      tags: [Builds]
+      responses:
+        '204':
+          description: Build stage approved.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /api/repos/{namespace}/{name}/builds/{build}/decline/{stage}:
+    parameters:
+      - name: namespace
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: name
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: build
+        in: path
+        required: true
+        schema:
+          type: integer
+      - name: stage
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The stage number to decline.
+    post:
+      operationId: declineBuild
+      summary: Decline a build stage
+      description: Declines a blocked build stage awaiting manual approval.
+      tags: [Builds]
+      responses:
+        '204':
+          description: Build stage declined.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /api/repos/{namespace}/{name}/builds/{build}/promote:
+    parameters:
+      - name: namespace
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: name
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: build
+        in: path
+        required: true
+        schema:
+          type: integer
+    post:
+      operationId: promoteBuild
+      summary: Promote a build
+      description: Promotes a build to a target deployment environment.
+      tags: [Builds]
+      parameters:
+        - name: target
+          in: query
+          required: true
+          schema:
+            type: string
+          description: The target environment to promote to (e.g. "production").
+      responses:
+        '200':
+          description: Promoted build.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Build'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /api/repos/{namespace}/{name}/builds/{build}/rollback:
+    parameters:
+      - name: namespace
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: name
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: build
+        in: path
+        required: true
+        schema:
+          type: integer
+    post:
+      operationId: rollbackBuild
+      summary: Rollback a build
+      description: Rolls back the target environment to a previous build.
+      tags: [Builds]
+      parameters:
+        - name: target
+          in: query
+          required: true
+          schema:
+            type: string
+          description: The target environment to roll back.
+      responses:
+        '200':
+          description: Rolled-back build.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Build'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /api/repos/{namespace}/{name}/builds/{build}/logs/{stage}/{step}:
+    parameters:
+      - name: namespace
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: name
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: build
+        in: path
+        required: true
+        schema:
+          type: integer
+      - name: stage
+        in: path
+        required: true
+        schema:
+          type: integer
+      - name: step
+        in: path
+        required: true
+        schema:
+          type: integer
+    get:
+      operationId: getBuildLogs
+      summary: Get build step logs
+      description: Returns the log lines for the specified build stage step.
+      tags: [Builds]
+      responses:
+        '200':
+          description: Log lines.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Line'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    delete:
+      operationId: purgeBuildLogs
+      summary: Purge build step logs
+      description: Deletes the log lines for the specified build stage step.
+      tags: [Builds]
+      responses:
+        '204':
+          description: Logs purged.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /api/repos/{namespace}/{name}/secrets:
+    parameters:
+      - name: namespace
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: name
+        in: path
+        required: true
+        schema:
+          type: string
+    get:
+      operationId: listRepoSecrets
+      summary: List repository secrets
+      description: Returns a list of all secrets for the specified repository.
+      tags: [Secrets]
+      responses:
+        '200':
+          description: List of secrets.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Secret'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createRepoSecret
+      summary: Create a repository secret
+      description: Creates a new secret for the specified repository.
+      tags: [Secrets]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Secret'
+      responses:
+        '200':
+          description: Created secret.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Secret'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /api/repos/{namespace}/{name}/secrets/{secret}:
+    parameters:
+      - name: namespace
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: name
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: secret
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The secret name.
+    get:
+      operationId: getRepoSecret
+      summary: Get a repository secret
+      description: Returns a secret by name for the specified repository.
+      tags: [Secrets]
+      responses:
+        '200':
+          description: Secret details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Secret'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    patch:
+      operationId: updateRepoSecret
+      summary: Update a repository secret
+      description: Updates an existing secret for the specified repository.
+      tags: [Secrets]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Secret'
+      responses:
+        '200':
+          description: Updated secret.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Secret'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    delete:
+      operationId: deleteRepoSecret
+      summary: Delete a repository secret
+      description: Deletes a secret from the specified repository.
+      tags: [Secrets]
+      responses:
+        '204':
+          description: Secret deleted.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /api/secrets:
+    get:
+      operationId: listOrgSecrets
+      summary: List all organization secrets
+      description: Returns a list of all organization-level secrets. Requires admin privileges.
+      tags: [Secrets]
+      responses:
+        '200':
+          description: List of secrets.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Secret'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /api/secrets/{namespace}:
+    parameters:
+      - name: namespace
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The organization namespace.
+    get:
+      operationId: listNamespaceSecrets
+      summary: List namespace secrets
+      description: Returns a list of all secrets for the specified namespace/organization.
+      tags: [Secrets]
+      responses:
+        '200':
+          description: List of secrets.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Secret'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createNamespaceSecret
+      summary: Create a namespace secret
+      description: Creates a new secret for the specified namespace/organization.
+      tags: [Secrets]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Secret'
+      responses:
+        '200':
+          description: Created secret.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Secret'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /api/secrets/{namespace}/{secret}:
+    parameters:
+      - name: namespace
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: secret
+        in: path
+        required: true
+        schema:
+          type: string
+    get:
+      operationId: getNamespaceSecret
+      summary: Get a namespace secret
+      description: Returns a secret by name from the specified namespace.
+      tags: [Secrets]
+      responses:
+        '200':
+          description: Secret details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Secret'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    patch:
+      operationId: updateNamespaceSecret
+      summary: Update a namespace secret
+      description: Updates a secret in the specified namespace.
+      tags: [Secrets]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Secret'
+      responses:
+        '200':
+          description: Updated secret.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Secret'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    delete:
+      operationId: deleteNamespaceSecret
+      summary: Delete a namespace secret
+      description: Deletes a secret from the specified namespace.
+      tags: [Secrets]
+      responses:
+        '204':
+          description: Secret deleted.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /api/repos/{namespace}/{name}/cron:
+    parameters:
+      - name: namespace
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: name
+        in: path
+        required: true
+        schema:
+          type: string
+    get:
+      operationId: listCronJobs
+      summary: List cron jobs
+      description: Returns a list of all cron jobs for the specified repository.
+      tags: [Cron]
+      responses:
+        '200':
+          description: List of cron jobs.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Cron'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createCronJob
+      summary: Create a cron job
+      description: Creates a new cron job for the specified repository.
+      tags: [Cron]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Cron'
+      responses:
+        '200':
+          description: Created cron job.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cron'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /api/repos/{namespace}/{name}/cron/{cron}:
+    parameters:
+      - name: namespace
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: name
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: cron
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The cron job name.
+    get:
+      operationId: getCronJob
+      summary: Get a cron job
+      description: Returns a cron job by name for the specified repository.
+      tags: [Cron]
+      responses:
+        '200':
+          description: Cron job details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cron'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: triggerCronJob
+      summary: Trigger a cron job
+      description: Executes a cron job immediately.
+      tags: [Cron]
+      responses:
+        '204':
+          description: Cron job triggered.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    patch:
+      operationId: updateCronJob
+      summary: Update a cron job
+      description: Updates an existing cron job for the specified repository.
+      tags: [Cron]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CronPatch'
+      responses:
+        '200':
+          description: Updated cron job.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cron'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    delete:
+      operationId: deleteCronJob
+      summary: Delete a cron job
+      description: Deletes a cron job from the specified repository.
+      tags: [Cron]
+      responses:
+        '204':
+          description: Cron job deleted.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /api/templates:
+    get:
+      operationId: listAllTemplates
+      summary: List all templates
+      description: Returns a list of all pipeline templates. Requires admin privileges.
+      tags: [Templates]
+      responses:
+        '200':
+          description: List of templates.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Template'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /api/templates/{namespace}:
+    parameters:
+      - name: namespace
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The template namespace/organization.
+    get:
+      operationId: listNamespaceTemplates
+      summary: List templates by namespace
+      description: Returns a list of pipeline templates for the specified namespace.
+      tags: [Templates]
+      responses:
+        '200':
+          description: List of templates.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Template'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createTemplate
+      summary: Create a template
+      description: Creates a new pipeline template in the specified namespace.
+      tags: [Templates]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Template'
+      responses:
+        '200':
+          description: Created template.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Template'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /api/templates/{namespace}/{name}:
+    parameters:
+      - name: namespace
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: name
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The template name.
+    get:
+      operationId: getTemplate
+      summary: Get a template
+      description: Returns a pipeline template by namespace and name.
+      tags: [Templates]
+      responses:
+        '200':
+          description: Template details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Template'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    patch:
+      operationId: updateTemplate
+      summary: Update a template
+      description: Updates an existing pipeline template.
+      tags: [Templates]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Template'
+      responses:
+        '200':
+          description: Updated template.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Template'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    delete:
+      operationId: deleteTemplate
+      summary: Delete a template
+      description: Deletes a pipeline template.
+      tags: [Templates]
+      responses:
+        '204':
+          description: Template deleted.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /api/queue:
+    get:
+      operationId: getQueue
+      summary: Get build queue
+      description: Returns a list of stages currently enqueued for execution.
+      tags: [Queue]
+      responses:
+        '200':
+          description: List of queued stages.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Stage'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: resumeQueue
+      summary: Resume queue
+      description: Resumes the build queue after a pause.
+      tags: [Queue]
+      responses:
+        '204':
+          description: Queue resumed.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    delete:
+      operationId: pauseQueue
+      summary: Pause queue
+      description: Pauses the build queue, preventing new builds from starting.
+      tags: [Queue]
+      responses:
+        '204':
+          description: Queue paused.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /api/nodes:
+    get:
+      operationId: listNodes
+      summary: List nodes
+      description: Returns a list of all runner nodes registered with Drone. Requires admin privileges.
+      tags: [Nodes]
+      responses:
+        '200':
+          description: List of nodes.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Node'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createNode
+      summary: Create a node
+      description: Registers a new runner node with Drone. Requires admin privileges.
+      tags: [Nodes]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Node'
+      responses:
+        '200':
+          description: Created node.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Node'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /api/nodes/{name}:
+    parameters:
+      - name: name
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The node name/identifier.
+    get:
+      operationId: getNode
+      summary: Get a node
+      description: Returns a runner node by name.
+      tags: [Nodes]
+      responses:
+        '200':
+          description: Node details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Node'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    patch:
+      operationId: updateNode
+      summary: Update a node
+      description: Updates a runner node registration.
+      tags: [Nodes]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NodePatch'
+      responses:
+        '200':
+          description: Updated node.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Node'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    delete:
+      operationId: deleteNode
+      summary: Delete a node
+      description: Removes a runner node from Drone.
+      tags: [Nodes]
+      responses:
+        '204':
+          description: Node deleted.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /api/builds/incomplete:
+    get:
+      operationId: listIncompleteBuilds
+      summary: List incomplete builds
+      description: Returns a list of repositories with incomplete (running/pending) builds.
+      tags: [Builds]
+      responses:
+        '200':
+          description: List of repositories with incomplete builds.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Repo'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /api/builds/incomplete/v2:
+    get:
+      operationId: listIncompleteBuildsV2
+      summary: List incomplete builds (v2)
+      description: Returns a list of builds, repos and stages that are running or pending.
+      tags: [Builds]
+      responses:
+        '200':
+          description: List of running/pending build stages with repo and build context.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  description: Build stage with repository and build context.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /version:
+    get:
+      operationId: getVersion
+      summary: Get system version
+      description: Returns Drone server version information.
+      tags: [System]
+      security: []
+      responses:
+        '200':
+          description: Version information.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Version'
+
+tags:
+  - name: User
+    description: Current authenticated user operations.
+  - name: Users
+    description: User account management (admin).
+  - name: Repos
+    description: Repository activation and management.
+  - name: Builds
+    description: Build creation, management, and log access.
+  - name: Secrets
+    description: Secret variable management for repos and organizations.
+  - name: Cron
+    description: Cron job scheduling for automated builds.
+  - name: Templates
+    description: Reusable pipeline template management.
+  - name: Queue
+    description: Build queue management.
+  - name: Nodes
+    description: Runner node management.
+  - name: System
+    description: System information.
