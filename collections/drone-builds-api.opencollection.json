@@ -1,0 +1,453 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Drone REST Builds API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Builds",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List builds",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://your-drone-server/api/repos/:namespace/:name/builds",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "branch",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns a list of recent builds for the specified repository."
+        },
+        {
+          "info": {
+            "name": "Create a build",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://your-drone-server/api/repos/:namespace/:name/builds",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "branch",
+                "value": "",
+                "type": "query",
+                "description": "Branch to build."
+              },
+              {
+                "name": "commit",
+                "value": "",
+                "type": "query",
+                "description": "Commit SHA to build."
+              }
+            ]
+          },
+          "docs": "Creates (triggers) a new build by branch or commit."
+        },
+        {
+          "info": {
+            "name": "Purge build history",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://your-drone-server/api/repos/:namespace/:name/builds",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "before",
+                "value": "",
+                "type": "query",
+                "description": "Delete builds with numbers less than this value."
+              }
+            ]
+          },
+          "docs": "Deletes build history older than the specified build number."
+        },
+        {
+          "info": {
+            "name": "Get a build",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://your-drone-server/api/repos/:namespace/:name/builds/:build",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "build",
+                "value": "",
+                "type": "path",
+                "description": "The build number. Use \"latest\" to get the most recent build."
+              },
+              {
+                "name": "branch",
+                "value": "",
+                "type": "query",
+                "description": "When build is \"latest\", filter by this branch."
+              }
+            ]
+          },
+          "docs": "Returns a repository build by build number."
+        },
+        {
+          "info": {
+            "name": "Restart a build",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://your-drone-server/api/repos/:namespace/:name/builds/:build",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "build",
+                "value": "",
+                "type": "path",
+                "description": "The build number. Use \"latest\" to get the most recent build."
+              }
+            ]
+          },
+          "docs": "Re-starts a stopped or completed build."
+        },
+        {
+          "info": {
+            "name": "Cancel a build",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://your-drone-server/api/repos/:namespace/:name/builds/:build",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "build",
+                "value": "",
+                "type": "path",
+                "description": "The build number. Use \"latest\" to get the most recent build."
+              }
+            ]
+          },
+          "docs": "Cancels a running build."
+        },
+        {
+          "info": {
+            "name": "Approve a build stage",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://your-drone-server/api/repos/:namespace/:name/builds/:build/approve/:stage",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "build",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "stage",
+                "value": "",
+                "type": "path",
+                "description": "The stage number to approve."
+              }
+            ]
+          },
+          "docs": "Approves a blocked build stage awaiting manual approval."
+        },
+        {
+          "info": {
+            "name": "Decline a build stage",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://your-drone-server/api/repos/:namespace/:name/builds/:build/decline/:stage",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "build",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "stage",
+                "value": "",
+                "type": "path",
+                "description": "The stage number to decline."
+              }
+            ]
+          },
+          "docs": "Declines a blocked build stage awaiting manual approval."
+        },
+        {
+          "info": {
+            "name": "Promote a build",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://your-drone-server/api/repos/:namespace/:name/builds/:build/promote",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "build",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "target",
+                "value": "",
+                "type": "query",
+                "description": "The target environment to promote to (e.g. \"production\")."
+              }
+            ]
+          },
+          "docs": "Promotes a build to a target deployment environment."
+        },
+        {
+          "info": {
+            "name": "Rollback a build",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://your-drone-server/api/repos/:namespace/:name/builds/:build/rollback",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "build",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "target",
+                "value": "",
+                "type": "query",
+                "description": "The target environment to roll back."
+              }
+            ]
+          },
+          "docs": "Rolls back the target environment to a previous build."
+        },
+        {
+          "info": {
+            "name": "Get build step logs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://your-drone-server/api/repos/:namespace/:name/builds/:build/logs/:stage/:step",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "build",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "stage",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "step",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns the log lines for the specified build stage step."
+        },
+        {
+          "info": {
+            "name": "Purge build step logs",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://your-drone-server/api/repos/:namespace/:name/builds/:build/logs/:stage/:step",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "build",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "stage",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "step",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Deletes the log lines for the specified build stage step."
+        },
+        {
+          "info": {
+            "name": "List incomplete builds",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://your-drone-server/api/builds/incomplete"
+          },
+          "docs": "Returns a list of repositories with incomplete (running/pending) builds."
+        },
+        {
+          "info": {
+            "name": "List incomplete builds (v2)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://your-drone-server/api/builds/incomplete/v2"
+          },
+          "docs": "Returns a list of builds, repos and stages that are running or pending."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

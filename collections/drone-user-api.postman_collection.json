@@ -1,0 +1,419 @@
+{
+  "item": [
+    {
+      "id": "656f80f8-90b4-4032-ab6a-cf2949d76905",
+      "name": "User",
+      "description": {
+        "content": "Current authenticated user operations.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "72f767e1-83fb-44f4-a419-8ac4d013d732",
+          "name": "Get current user",
+          "request": {
+            "name": "Get current user",
+            "description": {
+              "content": "Returns the currently authenticated user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "user"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "22312721-7ef0-4967-aa43-8cf545753590",
+              "name": "Current user information.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "user"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 1114,\n  \"login\": \"string\",\n  \"email\": \"VkZgLZK@a.xwga\",\n  \"avatar_url\": \"https://vAhPgKZqxLReqMFnDgvC.axyu4oYGT0+xjn4OjbU8ZwbUbE0PITqD,+hNMyJR\",\n  \"active\": true,\n  \"admin\": true,\n  \"machine\": false,\n  \"syncing\": true,\n  \"synced\": 4043,\n  \"created\": 6251,\n  \"updated\": 5551,\n  \"last_login\": 3557,\n  \"token\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7f22f746-1487-4edb-a59b-0a7e41570a19",
+              "name": "Authentication credentials missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "user"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 6823,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "15b29f84-28b9-4b15-a380-0778f0e9ef79",
+          "name": "List user repositories",
+          "request": {
+            "name": "List user repositories",
+            "description": {
+              "content": "Returns a list of all repositories to which the user has explicit access.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "user",
+                "repos"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c1c00a1d-7734-4f35-8406-f08143d8d18c",
+              "name": "List of repositories.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "user",
+                    "repos"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 8146,\n    \"uid\": \"string\",\n    \"user_id\": 6824,\n    \"namespace\": \"string\",\n    \"name\": \"string\",\n    \"slug\": \"string\",\n    \"scm\": \"string\",\n    \"git_http_url\": \"https://LFRgEtRlRqHzZl.bpnrbRgHmBAEY-kCe4gnDAnt0BJXZehfQpqx4kbuipOLo+v8uo96DueQ,\",\n    \"git_ssh_url\": \"string\",\n    \"link\": \"http://PZdsb.vjz,f4KyDUb4YAkFnBRyUXlKqNTx0r+2gIZ0jui,ol5EoMisp2yGYENk6itbM\",\n    \"default_branch\": \"string\",\n    \"private\": true,\n    \"visibility\": \"internal\",\n    \"active\": true,\n    \"config_path\": \"string\",\n    \"trusted\": false,\n    \"protected\": true,\n    \"ignore_forks\": false,\n    \"ignore_pull_requests\": false,\n    \"auto_cancel_pull_requests\": true,\n    \"auto_cancel_pushes\": true,\n    \"auto_cancel_running\": true,\n    \"throttle\": 407,\n    \"timeout\": 5371,\n    \"counter\": 2549,\n    \"synced\": 398,\n    \"created\": 9570,\n    \"updated\": 1517,\n    \"version\": 2724\n  },\n  {\n    \"id\": 4905,\n    \"uid\": \"string\",\n    \"user_id\": 3739,\n    \"namespace\": \"string\",\n    \"name\": \"string\",\n    \"slug\": \"string\",\n    \"scm\": \"string\",\n    \"git_http_url\": \"https://IDPEUjBNRk.xsstO-K9g8aqXhdWHVz,RVCyDEJ5l3gO1833ZlN\",\n    \"git_ssh_url\": \"string\",\n    \"link\": \"https://FGGYEZaeoowfebDSpXOgXNQxNGAzsbATJ.qhboj86zDaWw97rQHhDnaexPCqRyR0-s10NSSOKJI+\",\n    \"default_branch\": \"string\",\n    \"private\": false,\n    \"visibility\": \"internal\",\n    \"active\": true,\n    \"config_path\": \"string\",\n    \"trusted\": true,\n    \"protected\": false,\n    \"ignore_forks\": false,\n    \"ignore_pull_requests\": false,\n    \"auto_cancel_pull_requests\": true,\n    \"auto_cancel_pushes\": true,\n    \"auto_cancel_running\": true,\n    \"throttle\": 1921,\n    \"timeout\": 5395,\n    \"counter\": 8059,\n    \"synced\": 474,\n    \"created\": 8975,\n    \"updated\": 6199,\n    \"version\": 6903\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "864cf401-803e-4501-bbbb-8190838ebaa7",
+              "name": "Authentication credentials missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "user",
+                    "repos"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 6823,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ccc49455-4181-4ae5-9aaf-546597a0408f",
+          "name": "Sync user repositories",
+          "request": {
+            "name": "Sync user repositories",
+            "description": {
+              "content": "Triggers a sync and returns the updated list of repositories.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "user",
+                "repos"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "47b0ce6a-02ec-4260-8bbb-a541bbc36d92",
+              "name": "Synced list of repositories.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "user",
+                    "repos"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 8146,\n    \"uid\": \"string\",\n    \"user_id\": 6824,\n    \"namespace\": \"string\",\n    \"name\": \"string\",\n    \"slug\": \"string\",\n    \"scm\": \"string\",\n    \"git_http_url\": \"https://LFRgEtRlRqHzZl.bpnrbRgHmBAEY-kCe4gnDAnt0BJXZehfQpqx4kbuipOLo+v8uo96DueQ,\",\n    \"git_ssh_url\": \"string\",\n    \"link\": \"http://PZdsb.vjz,f4KyDUb4YAkFnBRyUXlKqNTx0r+2gIZ0jui,ol5EoMisp2yGYENk6itbM\",\n    \"default_branch\": \"string\",\n    \"private\": true,\n    \"visibility\": \"internal\",\n    \"active\": true,\n    \"config_path\": \"string\",\n    \"trusted\": false,\n    \"protected\": true,\n    \"ignore_forks\": false,\n    \"ignore_pull_requests\": false,\n    \"auto_cancel_pull_requests\": true,\n    \"auto_cancel_pushes\": true,\n    \"auto_cancel_running\": true,\n    \"throttle\": 407,\n    \"timeout\": 5371,\n    \"counter\": 2549,\n    \"synced\": 398,\n    \"created\": 9570,\n    \"updated\": 1517,\n    \"version\": 2724\n  },\n  {\n    \"id\": 4905,\n    \"uid\": \"string\",\n    \"user_id\": 3739,\n    \"namespace\": \"string\",\n    \"name\": \"string\",\n    \"slug\": \"string\",\n    \"scm\": \"string\",\n    \"git_http_url\": \"https://IDPEUjBNRk.xsstO-K9g8aqXhdWHVz,RVCyDEJ5l3gO1833ZlN\",\n    \"git_ssh_url\": \"string\",\n    \"link\": \"https://FGGYEZaeoowfebDSpXOgXNQxNGAzsbATJ.qhboj86zDaWw97rQHhDnaexPCqRyR0-s10NSSOKJI+\",\n    \"default_branch\": \"string\",\n    \"private\": false,\n    \"visibility\": \"internal\",\n    \"active\": true,\n    \"config_path\": \"string\",\n    \"trusted\": true,\n    \"protected\": false,\n    \"ignore_forks\": false,\n    \"ignore_pull_requests\": false,\n    \"auto_cancel_pull_requests\": true,\n    \"auto_cancel_pushes\": true,\n    \"auto_cancel_running\": true,\n    \"throttle\": 1921,\n    \"timeout\": 5395,\n    \"counter\": 8059,\n    \"synced\": 474,\n    \"created\": 8975,\n    \"updated\": 6199,\n    \"version\": 6903\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1481b1c2-db19-4e87-9290-55f94867353d",
+              "name": "Authentication credentials missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "user",
+                    "repos"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 6823,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://your-drone-server",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "efe0dda4-d3c0-4612-b64b-949117ab212f",
+    "name": "Drone REST Builds User API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Drone REST API provides programmatic access to the Drone CI/CD platform, enabling management of builds, repositories, secrets, cron jobs, templates, and user accounts. Authentication is performed using bearer tokens retrieved from the Drone user interface profile page.\n\nContact Support:\n Name: Drone Support",
+      "type": "text/plain"
+    }
+  }
+}

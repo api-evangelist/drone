@@ -1,0 +1,203 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Drone REST Builds Repos API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Repos",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all repositories",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://your-drone-server/api/repos",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of all repositories in the database. Requires admin privileges."
+        },
+        {
+          "info": {
+            "name": "Get a repository",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://your-drone-server/api/repos/:namespace/:name",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "The repository owner/namespace."
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The repository name."
+              }
+            ]
+          },
+          "docs": "Returns a repository by namespace and name."
+        },
+        {
+          "info": {
+            "name": "Enable a repository",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://your-drone-server/api/repos/:namespace/:name",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "The repository owner/namespace."
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The repository name."
+              }
+            ]
+          },
+          "docs": "Activates (enables) a repository for CI/CD in Drone."
+        },
+        {
+          "info": {
+            "name": "Update a repository",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://your-drone-server/api/repos/:namespace/:name",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "The repository owner/namespace."
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The repository name."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates repository configuration settings."
+        },
+        {
+          "info": {
+            "name": "Disable or delete a repository",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://your-drone-server/api/repos/:namespace/:name",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "The repository owner/namespace."
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The repository name."
+              },
+              {
+                "name": "remove",
+                "value": "",
+                "type": "query",
+                "description": "Set to true to permanently delete the repository."
+              }
+            ]
+          },
+          "docs": "Disables a repository (or permanently deletes it when remove=true is passed)."
+        },
+        {
+          "info": {
+            "name": "Update repository owner",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://your-drone-server/api/repos/:namespace/:name/chown",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Transfers repository ownership to the currently authenticated user."
+        },
+        {
+          "info": {
+            "name": "Repair repository hooks",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://your-drone-server/api/repos/:namespace/:name/repair",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Repairs the repository webhook hooks with the SCM provider."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

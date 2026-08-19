@@ -1,0 +1,194 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Drone REST Builds Cron API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Cron",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List cron jobs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://your-drone-server/api/repos/:namespace/:name/cron",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns a list of all cron jobs for the specified repository."
+        },
+        {
+          "info": {
+            "name": "Create a cron job",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://your-drone-server/api/repos/:namespace/:name/cron",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new cron job for the specified repository."
+        },
+        {
+          "info": {
+            "name": "Get a cron job",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://your-drone-server/api/repos/:namespace/:name/cron/:cron",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "cron",
+                "value": "",
+                "type": "path",
+                "description": "The cron job name."
+              }
+            ]
+          },
+          "docs": "Returns a cron job by name for the specified repository."
+        },
+        {
+          "info": {
+            "name": "Trigger a cron job",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://your-drone-server/api/repos/:namespace/:name/cron/:cron",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "cron",
+                "value": "",
+                "type": "path",
+                "description": "The cron job name."
+              }
+            ]
+          },
+          "docs": "Executes a cron job immediately."
+        },
+        {
+          "info": {
+            "name": "Update a cron job",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://your-drone-server/api/repos/:namespace/:name/cron/:cron",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "cron",
+                "value": "",
+                "type": "path",
+                "description": "The cron job name."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing cron job for the specified repository."
+        },
+        {
+          "info": {
+            "name": "Delete a cron job",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://your-drone-server/api/repos/:namespace/:name/cron/:cron",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "cron",
+                "value": "",
+                "type": "path",
+                "description": "The cron job name."
+              }
+            ]
+          },
+          "docs": "Deletes a cron job from the specified repository."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,153 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Drone REST Builds Templates API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Templates",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all templates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://your-drone-server/api/templates"
+          },
+          "docs": "Returns a list of all pipeline templates. Requires admin privileges."
+        },
+        {
+          "info": {
+            "name": "List templates by namespace",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://your-drone-server/api/templates/:namespace",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "The template namespace/organization."
+              }
+            ]
+          },
+          "docs": "Returns a list of pipeline templates for the specified namespace."
+        },
+        {
+          "info": {
+            "name": "Create a template",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://your-drone-server/api/templates/:namespace",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "The template namespace/organization."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new pipeline template in the specified namespace."
+        },
+        {
+          "info": {
+            "name": "Get a template",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://your-drone-server/api/templates/:namespace/:name",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The template name."
+              }
+            ]
+          },
+          "docs": "Returns a pipeline template by namespace and name."
+        },
+        {
+          "info": {
+            "name": "Update a template",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://your-drone-server/api/templates/:namespace/:name",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The template name."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing pipeline template."
+        },
+        {
+          "info": {
+            "name": "Delete a template",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://your-drone-server/api/templates/:namespace/:name",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The template name."
+              }
+            ]
+          },
+          "docs": "Deletes a pipeline template."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

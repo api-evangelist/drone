@@ -1,0 +1,1349 @@
+{
+  "item": [
+    {
+      "id": "0d097986-b067-44c0-8a33-a40164c1c925",
+      "name": "Repos",
+      "description": {
+        "content": "Repository activation and management.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8c09454e-1a07-42f5-9dce-b563dd9eba75",
+          "name": "List all repositories",
+          "request": {
+            "name": "List all repositories",
+            "description": {
+              "content": "Returns a paginated list of all repositories in the database. Requires admin privileges.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "repos"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "25"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cc6b6e82-18b5-4c4a-b088-ffedd6eb2798",
+              "name": "List of all repositories.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "repos"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "25"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 9435,\n    \"uid\": \"string\",\n    \"user_id\": 5311,\n    \"namespace\": \"string\",\n    \"name\": \"string\",\n    \"slug\": \"string\",\n    \"scm\": \"string\",\n    \"git_http_url\": \"http://ASnldWPGBi.ryggqSr3gZJ9m.CGlWDA15XmeF\",\n    \"git_ssh_url\": \"string\",\n    \"link\": \"https://nYcalpVaWXPoBhitHaYOjThKvK.qdtdqy-QI9Pn5UbOgnF-y3tHj3\",\n    \"default_branch\": \"string\",\n    \"private\": true,\n    \"visibility\": \"public\",\n    \"active\": true,\n    \"config_path\": \"string\",\n    \"trusted\": false,\n    \"protected\": true,\n    \"ignore_forks\": true,\n    \"ignore_pull_requests\": true,\n    \"auto_cancel_pull_requests\": true,\n    \"auto_cancel_pushes\": true,\n    \"auto_cancel_running\": false,\n    \"throttle\": 2390,\n    \"timeout\": 5080,\n    \"counter\": 5654,\n    \"synced\": 7647,\n    \"created\": 7918,\n    \"updated\": 3136,\n    \"version\": 6877\n  },\n  {\n    \"id\": 1300,\n    \"uid\": \"string\",\n    \"user_id\": 726,\n    \"namespace\": \"string\",\n    \"name\": \"string\",\n    \"slug\": \"string\",\n    \"scm\": \"string\",\n    \"git_http_url\": \"https://rOXxJqcIiuwILmdNLSdupSZF.nxfumsEOi7WLeOml7iE7EhlOGFGITxfKcZ0nvQR8scvXfBJERk.P1uvk\",\n    \"git_ssh_url\": \"string\",\n    \"link\": \"https://fsSu.wyrcHdLLXQ5Cizbf\",\n    \"default_branch\": \"string\",\n    \"private\": true,\n    \"visibility\": \"private\",\n    \"active\": false,\n    \"config_path\": \"string\",\n    \"trusted\": true,\n    \"protected\": true,\n    \"ignore_forks\": false,\n    \"ignore_pull_requests\": true,\n    \"auto_cancel_pull_requests\": true,\n    \"auto_cancel_pushes\": false,\n    \"auto_cancel_running\": false,\n    \"throttle\": 7007,\n    \"timeout\": 5650,\n    \"counter\": 6168,\n    \"synced\": 827,\n    \"created\": 3306,\n    \"updated\": 6741,\n    \"version\": 3315\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2c598666-10d8-4c97-bb28-3ad5b9c2e522",
+              "name": "Authentication credentials missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "repos"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "25"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 9210,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3276da1a-8aac-4ec2-941b-ab5f80c1cc08",
+          "name": "Get a repository",
+          "request": {
+            "name": "Get a repository",
+            "description": {
+              "content": "Returns a repository by namespace and name.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "repos",
+                ":namespace",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "namespace",
+                  "description": "(Required) The repository owner/namespace."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) The repository name."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c065926f-1590-4702-a08e-8e0de06c936a",
+              "name": "Repository details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "repos",
+                    ":namespace",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The repository owner/namespace."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The repository name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 9180,\n  \"uid\": \"string\",\n  \"user_id\": 8936,\n  \"namespace\": \"string\",\n  \"name\": \"string\",\n  \"slug\": \"string\",\n  \"scm\": \"string\",\n  \"git_http_url\": \"https://IXfKIQml.aggeM5,9LfNDu0sRpEfJoiAU\",\n  \"git_ssh_url\": \"string\",\n  \"link\": \"http://ymvmIrYYfth.epVBje9OejOagDTaYnQ2rjdKKZrw5LZTxGyyM71fXuWyKEwfSeKDZJBLDNjMODMtD-IT67V+sYQE7IP.kz.q+jKJxoJWKb\",\n  \"default_branch\": \"string\",\n  \"private\": true,\n  \"visibility\": \"private\",\n  \"active\": false,\n  \"config_path\": \"string\",\n  \"trusted\": false,\n  \"protected\": true,\n  \"ignore_forks\": true,\n  \"ignore_pull_requests\": true,\n  \"auto_cancel_pull_requests\": true,\n  \"auto_cancel_pushes\": false,\n  \"auto_cancel_running\": true,\n  \"throttle\": 2829,\n  \"timeout\": 2693,\n  \"counter\": 525,\n  \"synced\": 7978,\n  \"created\": 3484,\n  \"updated\": 1021,\n  \"version\": 7191\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bdc36f32-75ef-4d52-b788-33ea98045b65",
+              "name": "Authentication credentials missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "repos",
+                    ":namespace",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The repository owner/namespace."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The repository name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 9210,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "def759c3-cbc9-4ec0-86d6-463906d81ebe",
+              "name": "Resource not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "repos",
+                    ":namespace",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The repository owner/namespace."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The repository name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 9210,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "771caf5b-fd39-443c-aacd-fbc9008995ff",
+          "name": "Enable a repository",
+          "request": {
+            "name": "Enable a repository",
+            "description": {
+              "content": "Activates (enables) a repository for CI/CD in Drone.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "repos",
+                ":namespace",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "namespace",
+                  "description": "(Required) The repository owner/namespace."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) The repository name."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6c623f14-7889-4da2-92ee-ef1e8d7f811a",
+              "name": "Activated repository.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "repos",
+                    ":namespace",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The repository owner/namespace."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The repository name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 9180,\n  \"uid\": \"string\",\n  \"user_id\": 8936,\n  \"namespace\": \"string\",\n  \"name\": \"string\",\n  \"slug\": \"string\",\n  \"scm\": \"string\",\n  \"git_http_url\": \"https://IXfKIQml.aggeM5,9LfNDu0sRpEfJoiAU\",\n  \"git_ssh_url\": \"string\",\n  \"link\": \"http://ymvmIrYYfth.epVBje9OejOagDTaYnQ2rjdKKZrw5LZTxGyyM71fXuWyKEwfSeKDZJBLDNjMODMtD-IT67V+sYQE7IP.kz.q+jKJxoJWKb\",\n  \"default_branch\": \"string\",\n  \"private\": true,\n  \"visibility\": \"private\",\n  \"active\": false,\n  \"config_path\": \"string\",\n  \"trusted\": false,\n  \"protected\": true,\n  \"ignore_forks\": true,\n  \"ignore_pull_requests\": true,\n  \"auto_cancel_pull_requests\": true,\n  \"auto_cancel_pushes\": false,\n  \"auto_cancel_running\": true,\n  \"throttle\": 2829,\n  \"timeout\": 2693,\n  \"counter\": 525,\n  \"synced\": 7978,\n  \"created\": 3484,\n  \"updated\": 1021,\n  \"version\": 7191\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "39ef7b79-c3d4-4fb8-bd2a-1be310fb26c4",
+              "name": "Authentication credentials missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "repos",
+                    ":namespace",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The repository owner/namespace."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The repository name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 9210,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "79b3eae1-b249-4872-b52c-a3bb11e69b23",
+          "name": "Update a repository",
+          "request": {
+            "name": "Update a repository",
+            "description": {
+              "content": "Updates repository configuration settings.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "repos",
+                ":namespace",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "namespace",
+                  "description": "(Required) The repository owner/namespace."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) The repository name."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"config_path\": \"<string>\",\n  \"protected\": \"<boolean>\",\n  \"trusted\": \"<boolean>\",\n  \"throttle\": \"<long>\",\n  \"timeout\": \"<long>\",\n  \"visibility\": \"<string>\",\n  \"ignore_forks\": \"<boolean>\",\n  \"ignore_pull_requests\": \"<boolean>\",\n  \"auto_cancel_pull_requests\": \"<boolean>\",\n  \"auto_cancel_pushes\": \"<boolean>\",\n  \"auto_cancel_running\": \"<boolean>\",\n  \"counter\": \"<long>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5b9c89ed-ceb3-4db9-93c2-fa5ee475b573",
+              "name": "Updated repository.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "repos",
+                    ":namespace",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The repository owner/namespace."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The repository name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"config_path\": \"<string>\",\n  \"protected\": \"<boolean>\",\n  \"trusted\": \"<boolean>\",\n  \"throttle\": \"<long>\",\n  \"timeout\": \"<long>\",\n  \"visibility\": \"<string>\",\n  \"ignore_forks\": \"<boolean>\",\n  \"ignore_pull_requests\": \"<boolean>\",\n  \"auto_cancel_pull_requests\": \"<boolean>\",\n  \"auto_cancel_pushes\": \"<boolean>\",\n  \"auto_cancel_running\": \"<boolean>\",\n  \"counter\": \"<long>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 9180,\n  \"uid\": \"string\",\n  \"user_id\": 8936,\n  \"namespace\": \"string\",\n  \"name\": \"string\",\n  \"slug\": \"string\",\n  \"scm\": \"string\",\n  \"git_http_url\": \"https://IXfKIQml.aggeM5,9LfNDu0sRpEfJoiAU\",\n  \"git_ssh_url\": \"string\",\n  \"link\": \"http://ymvmIrYYfth.epVBje9OejOagDTaYnQ2rjdKKZrw5LZTxGyyM71fXuWyKEwfSeKDZJBLDNjMODMtD-IT67V+sYQE7IP.kz.q+jKJxoJWKb\",\n  \"default_branch\": \"string\",\n  \"private\": true,\n  \"visibility\": \"private\",\n  \"active\": false,\n  \"config_path\": \"string\",\n  \"trusted\": false,\n  \"protected\": true,\n  \"ignore_forks\": true,\n  \"ignore_pull_requests\": true,\n  \"auto_cancel_pull_requests\": true,\n  \"auto_cancel_pushes\": false,\n  \"auto_cancel_running\": true,\n  \"throttle\": 2829,\n  \"timeout\": 2693,\n  \"counter\": 525,\n  \"synced\": 7978,\n  \"created\": 3484,\n  \"updated\": 1021,\n  \"version\": 7191\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "909a0b83-74e1-4ef5-808b-719bf45d3fa6",
+              "name": "Authentication credentials missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "repos",
+                    ":namespace",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The repository owner/namespace."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The repository name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"config_path\": \"<string>\",\n  \"protected\": \"<boolean>\",\n  \"trusted\": \"<boolean>\",\n  \"throttle\": \"<long>\",\n  \"timeout\": \"<long>\",\n  \"visibility\": \"<string>\",\n  \"ignore_forks\": \"<boolean>\",\n  \"ignore_pull_requests\": \"<boolean>\",\n  \"auto_cancel_pull_requests\": \"<boolean>\",\n  \"auto_cancel_pushes\": \"<boolean>\",\n  \"auto_cancel_running\": \"<boolean>\",\n  \"counter\": \"<long>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 9210,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "db05f200-b06c-43e5-a744-7c045923e04a",
+          "name": "Disable or delete a repository",
+          "request": {
+            "name": "Disable or delete a repository",
+            "description": {
+              "content": "Disables a repository (or permanently deletes it when remove=true is passed).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "repos",
+                ":namespace",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "remove",
+                  "value": "<boolean>",
+                  "description": "Set to true to permanently delete the repository."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "namespace",
+                  "description": "(Required) The repository owner/namespace."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) The repository name."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2db49550-2c9c-463a-b8e4-20781c339f6d",
+              "name": "Repository disabled/deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "repos",
+                    ":namespace",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "remove",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The repository owner/namespace."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The repository name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b3b9a659-7cba-4bb1-bc93-2ce7f632747e",
+              "name": "Authentication credentials missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "repos",
+                    ":namespace",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "remove",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The repository owner/namespace."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The repository name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 9210,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ccf4c6f1-7775-4fd8-928c-d337d724bf3f",
+          "name": "Update repository owner",
+          "request": {
+            "name": "Update repository owner",
+            "description": {
+              "content": "Transfers repository ownership to the currently authenticated user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "repos",
+                ":namespace",
+                ":name",
+                "chown"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "namespace",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6987f279-8f47-4166-bf33-bf4cbbece711",
+              "name": "Updated repository.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "repos",
+                    ":namespace",
+                    ":name",
+                    "chown"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 9180,\n  \"uid\": \"string\",\n  \"user_id\": 8936,\n  \"namespace\": \"string\",\n  \"name\": \"string\",\n  \"slug\": \"string\",\n  \"scm\": \"string\",\n  \"git_http_url\": \"https://IXfKIQml.aggeM5,9LfNDu0sRpEfJoiAU\",\n  \"git_ssh_url\": \"string\",\n  \"link\": \"http://ymvmIrYYfth.epVBje9OejOagDTaYnQ2rjdKKZrw5LZTxGyyM71fXuWyKEwfSeKDZJBLDNjMODMtD-IT67V+sYQE7IP.kz.q+jKJxoJWKb\",\n  \"default_branch\": \"string\",\n  \"private\": true,\n  \"visibility\": \"private\",\n  \"active\": false,\n  \"config_path\": \"string\",\n  \"trusted\": false,\n  \"protected\": true,\n  \"ignore_forks\": true,\n  \"ignore_pull_requests\": true,\n  \"auto_cancel_pull_requests\": true,\n  \"auto_cancel_pushes\": false,\n  \"auto_cancel_running\": true,\n  \"throttle\": 2829,\n  \"timeout\": 2693,\n  \"counter\": 525,\n  \"synced\": 7978,\n  \"created\": 3484,\n  \"updated\": 1021,\n  \"version\": 7191\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "754cb32f-917b-4734-80e8-d5dcbed1bd92",
+              "name": "Authentication credentials missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "repos",
+                    ":namespace",
+                    ":name",
+                    "chown"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 9210,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "23ccce21-6c1d-414c-bd9a-f8cf49c358ff",
+          "name": "Repair repository hooks",
+          "request": {
+            "name": "Repair repository hooks",
+            "description": {
+              "content": "Repairs the repository webhook hooks with the SCM provider.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "repos",
+                ":namespace",
+                ":name",
+                "repair"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "namespace",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "dd4e7fff-d47a-4d7d-80dd-ec1400c90ddc",
+              "name": "Repository repaired.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "repos",
+                    ":namespace",
+                    ":name",
+                    "repair"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3d935f20-ea98-45d2-829a-f0fe6c06cb75",
+              "name": "Authentication credentials missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "repos",
+                    ":namespace",
+                    ":name",
+                    "repair"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 9210,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://your-drone-server",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "420cd661-e404-41dc-9a87-8cbd59a40ab5",
+    "name": "Drone REST Builds Repos API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Drone REST API provides programmatic access to the Drone CI/CD platform, enabling management of builds, repositories, secrets, cron jobs, templates, and user accounts. Authentication is performed using bearer tokens retrieved from the Drone user interface profile page.\n\nContact Support:\n Name: Drone Support",
+      "type": "text/plain"
+    }
+  }
+}

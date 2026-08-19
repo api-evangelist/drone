@@ -1,0 +1,405 @@
+{
+  "item": [
+    {
+      "id": "2201e95f-8ed4-414a-9ff9-9f4cf765537e",
+      "name": "Queue",
+      "description": {
+        "content": "Build queue management.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c883bea2-0fed-41ac-a550-d378912b4414",
+          "name": "Get build queue",
+          "request": {
+            "name": "Get build queue",
+            "description": {
+              "content": "Returns a list of stages currently enqueued for execution.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "queue"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3cedb8fd-3521-423a-bfb5-08f3be7d1210",
+              "name": "List of queued stages.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "queue"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 4351,\n    \"build_id\": 93,\n    \"number\": 9862,\n    \"name\": \"string\",\n    \"kind\": \"string\",\n    \"type\": \"string\",\n    \"status\": \"killed\",\n    \"error\": \"string\",\n    \"errignore\": false,\n    \"exit_code\": 2751,\n    \"machine\": \"string\",\n    \"os\": \"string\",\n    \"arch\": \"string\",\n    \"variant\": \"string\",\n    \"kernel\": \"string\",\n    \"limit\": 841,\n    \"throttle\": 8583,\n    \"started\": 5787,\n    \"stopped\": 9110,\n    \"created\": 2099,\n    \"updated\": 4116,\n    \"version\": 6494,\n    \"on_success\": false,\n    \"on_failure\": false,\n    \"depends_on\": [\n      \"string\",\n      \"string\"\n    ],\n    \"labels\": {\n      \"key_0\": \"string\"\n    },\n    \"steps\": [\n      {\n        \"id\": 1190,\n        \"step_id\": 2653,\n        \"number\": 2617,\n        \"name\": \"string\",\n        \"status\": \"error\",\n        \"error\": \"string\",\n        \"errignore\": false,\n        \"exit_code\": 3675,\n        \"started\": 5593,\n        \"stopped\": 8837,\n        \"version\": 6301,\n        \"depends_on\": [\n          \"string\",\n          \"string\"\n        ],\n        \"image\": \"string\",\n        \"detached\": false,\n        \"schema\": \"string\"\n      },\n      {\n        \"id\": 6048,\n        \"step_id\": 7593,\n        \"number\": 5565,\n        \"name\": \"string\",\n        \"status\": \"error\",\n        \"error\": \"string\",\n        \"errignore\": false,\n        \"exit_code\": 228,\n        \"started\": 2069,\n        \"stopped\": 955,\n        \"version\": 8816,\n        \"depends_on\": [\n          \"string\",\n          \"string\"\n        ],\n        \"image\": \"string\",\n        \"detached\": true,\n        \"schema\": \"string\"\n      }\n    ]\n  },\n  {\n    \"id\": 5394,\n    \"build_id\": 1874,\n    \"number\": 2276,\n    \"name\": \"string\",\n    \"kind\": \"string\",\n    \"type\": \"string\",\n    \"status\": \"killed\",\n    \"error\": \"string\",\n    \"errignore\": true,\n    \"exit_code\": 9594,\n    \"machine\": \"string\",\n    \"os\": \"string\",\n    \"arch\": \"string\",\n    \"variant\": \"string\",\n    \"kernel\": \"string\",\n    \"limit\": 6339,\n    \"throttle\": 2932,\n    \"started\": 1730,\n    \"stopped\": 2410,\n    \"created\": 3080,\n    \"updated\": 6090,\n    \"version\": 6172,\n    \"on_success\": true,\n    \"on_failure\": false,\n    \"depends_on\": [\n      \"string\",\n      \"string\"\n    ],\n    \"labels\": {\n      \"key_0\": \"string\"\n    },\n    \"steps\": [\n      {\n        \"id\": 3975,\n        \"step_id\": 4303,\n        \"number\": 9758,\n        \"name\": \"string\",\n        \"status\": \"failing\",\n        \"error\": \"string\",\n        \"errignore\": false,\n        \"exit_code\": 3296,\n        \"started\": 7437,\n        \"stopped\": 3023,\n        \"version\": 5596,\n        \"depends_on\": [\n          \"string\",\n          \"string\"\n        ],\n        \"image\": \"string\",\n        \"detached\": true,\n        \"schema\": \"string\"\n      },\n      {\n        \"id\": 2732,\n        \"step_id\": 6840,\n        \"number\": 9009,\n        \"name\": \"string\",\n        \"status\": \"killed\",\n        \"error\": \"string\",\n        \"errignore\": true,\n        \"exit_code\": 8940,\n        \"started\": 9957,\n        \"stopped\": 4115,\n        \"version\": 718,\n        \"depends_on\": [\n          \"string\",\n          \"string\"\n        ],\n        \"image\": \"string\",\n        \"detached\": true,\n        \"schema\": \"string\"\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e1fd87e2-34e6-4745-93c7-8eab914a6f8c",
+              "name": "Authentication credentials missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "queue"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 1916,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cfdf28e0-ab52-45cb-83e4-9b04f5e1b247",
+          "name": "Resume queue",
+          "request": {
+            "name": "Resume queue",
+            "description": {
+              "content": "Resumes the build queue after a pause.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "queue"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1e32ccf0-58f7-41ae-a702-159ac5a10abd",
+              "name": "Queue resumed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "queue"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d50449d0-962c-40e8-9e4b-64d07bef72c5",
+              "name": "Authentication credentials missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "queue"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 1916,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a46f6828-fb12-4833-8ce9-043249f3c492",
+          "name": "Pause queue",
+          "request": {
+            "name": "Pause queue",
+            "description": {
+              "content": "Pauses the build queue, preventing new builds from starting.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "queue"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ef5c777c-4b2f-4f03-ad5d-8e0777f86bf8",
+              "name": "Queue paused.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "queue"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e2dc4b84-0d0d-4eda-81bc-25a656f11f6c",
+              "name": "Authentication credentials missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "queue"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 1916,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://your-drone-server",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "de0253a4-ef6b-4f03-a534-b62ecc9ee0f3",
+    "name": "Drone REST Builds Queue API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Drone REST API provides programmatic access to the Drone CI/CD platform, enabling management of builds, repositories, secrets, cron jobs, templates, and user accounts. Authentication is performed using bearer tokens retrieved from the Drone user interface profile page.\n\nContact Support:\n Name: Drone Support",
+      "type": "text/plain"
+    }
+  }
+}

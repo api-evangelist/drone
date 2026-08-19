@@ -1,0 +1,57 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Drone REST Builds User API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "User",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get current user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://your-drone-server/api/user"
+          },
+          "docs": "Returns the currently authenticated user."
+        },
+        {
+          "info": {
+            "name": "List user repositories",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://your-drone-server/api/user/repos"
+          },
+          "docs": "Returns a list of all repositories to which the user has explicit access."
+        },
+        {
+          "info": {
+            "name": "Sync user repositories",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://your-drone-server/api/user/repos"
+          },
+          "docs": "Triggers a sync and returns the updated list of repositories."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

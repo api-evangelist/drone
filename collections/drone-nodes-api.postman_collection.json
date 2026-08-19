@@ -1,0 +1,849 @@
+{
+  "item": [
+    {
+      "id": "f8bbd1fe-d9ce-4161-b81e-746eccede416",
+      "name": "Nodes",
+      "description": {
+        "content": "Runner node management.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "cc41f349-4247-4da5-a77e-230f416aad4b",
+          "name": "List nodes",
+          "request": {
+            "name": "List nodes",
+            "description": {
+              "content": "Returns a list of all runner nodes registered with Drone. Requires admin privileges.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "nodes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9dc805c8-0dd5-4d56-a696-9a1099664b5d",
+              "name": "List of nodes.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "nodes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 1085,\n    \"uid\": \"string\",\n    \"provider\": \"string\",\n    \"state\": \"string\",\n    \"name\": \"string\",\n    \"image\": \"string\",\n    \"region\": \"string\",\n    \"size\": \"string\",\n    \"os\": \"string\",\n    \"arch\": \"string\",\n    \"kernel\": \"string\",\n    \"variant\": \"string\",\n    \"address\": \"string\",\n    \"capacity\": 7188,\n    \"filters\": [\n      \"string\",\n      \"string\"\n    ],\n    \"labels\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\",\n      \"key_2\": \"string\",\n      \"key_3\": \"string\",\n      \"key_4\": \"string\"\n    },\n    \"error\": \"string\",\n    \"paused\": true,\n    \"protected\": false,\n    \"created\": 684,\n    \"updated\": 7471\n  },\n  {\n    \"id\": 2901,\n    \"uid\": \"string\",\n    \"provider\": \"string\",\n    \"state\": \"string\",\n    \"name\": \"string\",\n    \"image\": \"string\",\n    \"region\": \"string\",\n    \"size\": \"string\",\n    \"os\": \"string\",\n    \"arch\": \"string\",\n    \"kernel\": \"string\",\n    \"variant\": \"string\",\n    \"address\": \"string\",\n    \"capacity\": 1616,\n    \"filters\": [\n      \"string\",\n      \"string\"\n    ],\n    \"labels\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"error\": \"string\",\n    \"paused\": true,\n    \"protected\": false,\n    \"created\": 4893,\n    \"updated\": 8623\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a1c65aed-6f72-4d33-b446-f10c254b694b",
+              "name": "Authentication credentials missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "nodes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 3254,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cfccfc75-4ec5-4606-9292-39b6a5dd1d2d",
+          "name": "Create a node",
+          "request": {
+            "name": "Create a node",
+            "description": {
+              "content": "Registers a new runner node with Drone. Requires admin privileges.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "nodes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<long>\",\n  \"uid\": \"<string>\",\n  \"provider\": \"<string>\",\n  \"state\": \"<string>\",\n  \"name\": \"<string>\",\n  \"image\": \"<string>\",\n  \"region\": \"<string>\",\n  \"size\": \"<string>\",\n  \"os\": \"<string>\",\n  \"arch\": \"<string>\",\n  \"kernel\": \"<string>\",\n  \"variant\": \"<string>\",\n  \"address\": \"<string>\",\n  \"capacity\": \"<integer>\",\n  \"filters\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"labels\": {\n    \"key_0\": \"<string>\"\n  },\n  \"error\": \"<string>\",\n  \"paused\": \"<boolean>\",\n  \"protected\": \"<boolean>\",\n  \"created\": \"<long>\",\n  \"updated\": \"<long>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "eade3dd9-1f42-4bee-bf1f-f123b78ae74c",
+              "name": "Created node.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "nodes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<long>\",\n  \"uid\": \"<string>\",\n  \"provider\": \"<string>\",\n  \"state\": \"<string>\",\n  \"name\": \"<string>\",\n  \"image\": \"<string>\",\n  \"region\": \"<string>\",\n  \"size\": \"<string>\",\n  \"os\": \"<string>\",\n  \"arch\": \"<string>\",\n  \"kernel\": \"<string>\",\n  \"variant\": \"<string>\",\n  \"address\": \"<string>\",\n  \"capacity\": \"<integer>\",\n  \"filters\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"labels\": {\n    \"key_0\": \"<string>\"\n  },\n  \"error\": \"<string>\",\n  \"paused\": \"<boolean>\",\n  \"protected\": \"<boolean>\",\n  \"created\": \"<long>\",\n  \"updated\": \"<long>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"<long>\",\n  \"uid\": \"<string>\",\n  \"provider\": \"<string>\",\n  \"state\": \"<string>\",\n  \"name\": \"<string>\",\n  \"image\": \"<string>\",\n  \"region\": \"<string>\",\n  \"size\": \"<string>\",\n  \"os\": \"<string>\",\n  \"arch\": \"<string>\",\n  \"kernel\": \"<string>\",\n  \"variant\": \"<string>\",\n  \"address\": \"<string>\",\n  \"capacity\": \"<integer>\",\n  \"filters\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"labels\": {\n    \"key_0\": \"<string>\"\n  },\n  \"error\": \"<string>\",\n  \"paused\": \"<boolean>\",\n  \"protected\": \"<boolean>\",\n  \"created\": \"<long>\",\n  \"updated\": \"<long>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "67ce7b45-9afd-4ecb-98e0-d341e79927fe",
+              "name": "Authentication credentials missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "nodes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<long>\",\n  \"uid\": \"<string>\",\n  \"provider\": \"<string>\",\n  \"state\": \"<string>\",\n  \"name\": \"<string>\",\n  \"image\": \"<string>\",\n  \"region\": \"<string>\",\n  \"size\": \"<string>\",\n  \"os\": \"<string>\",\n  \"arch\": \"<string>\",\n  \"kernel\": \"<string>\",\n  \"variant\": \"<string>\",\n  \"address\": \"<string>\",\n  \"capacity\": \"<integer>\",\n  \"filters\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"labels\": {\n    \"key_0\": \"<string>\"\n  },\n  \"error\": \"<string>\",\n  \"paused\": \"<boolean>\",\n  \"protected\": \"<boolean>\",\n  \"created\": \"<long>\",\n  \"updated\": \"<long>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 3254,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ff9344c5-bada-445e-84aa-441205c1b0c1",
+          "name": "Get a node",
+          "request": {
+            "name": "Get a node",
+            "description": {
+              "content": "Returns a runner node by name.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "nodes",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) The node name/identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3ef6d126-9990-48a2-b70b-c7dccf024518",
+              "name": "Node details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "nodes",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The node name/identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"<long>\",\n  \"uid\": \"<string>\",\n  \"provider\": \"<string>\",\n  \"state\": \"<string>\",\n  \"name\": \"<string>\",\n  \"image\": \"<string>\",\n  \"region\": \"<string>\",\n  \"size\": \"<string>\",\n  \"os\": \"<string>\",\n  \"arch\": \"<string>\",\n  \"kernel\": \"<string>\",\n  \"variant\": \"<string>\",\n  \"address\": \"<string>\",\n  \"capacity\": \"<integer>\",\n  \"filters\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"labels\": {\n    \"key_0\": \"<string>\"\n  },\n  \"error\": \"<string>\",\n  \"paused\": \"<boolean>\",\n  \"protected\": \"<boolean>\",\n  \"created\": \"<long>\",\n  \"updated\": \"<long>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bedd8b6a-f125-437e-8497-9d898b7b8828",
+              "name": "Authentication credentials missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "nodes",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The node name/identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 3254,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6a3485c8-d826-4e33-85cb-b56d4d16639d",
+              "name": "Resource not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "nodes",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The node name/identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 3254,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e68463a2-7650-40b0-91cd-576a121b03ff",
+          "name": "Update a node",
+          "request": {
+            "name": "Update a node",
+            "description": {
+              "content": "Updates a runner node registration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "nodes",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) The node name/identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"uid\": \"<string>\",\n  \"provider\": \"<string>\",\n  \"state\": \"<string>\",\n  \"image\": \"<string>\",\n  \"region\": \"<string>\",\n  \"size\": \"<string>\",\n  \"address\": \"<string>\",\n  \"capacity\": \"<integer>\",\n  \"filters\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"labels\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"error\": \"<string>\",\n  \"paused\": \"<boolean>\",\n  \"protected\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "cb459f28-7a4e-4150-928e-91e2b3b62a0e",
+              "name": "Updated node.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "nodes",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The node name/identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"uid\": \"<string>\",\n  \"provider\": \"<string>\",\n  \"state\": \"<string>\",\n  \"image\": \"<string>\",\n  \"region\": \"<string>\",\n  \"size\": \"<string>\",\n  \"address\": \"<string>\",\n  \"capacity\": \"<integer>\",\n  \"filters\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"labels\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"error\": \"<string>\",\n  \"paused\": \"<boolean>\",\n  \"protected\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"<long>\",\n  \"uid\": \"<string>\",\n  \"provider\": \"<string>\",\n  \"state\": \"<string>\",\n  \"name\": \"<string>\",\n  \"image\": \"<string>\",\n  \"region\": \"<string>\",\n  \"size\": \"<string>\",\n  \"os\": \"<string>\",\n  \"arch\": \"<string>\",\n  \"kernel\": \"<string>\",\n  \"variant\": \"<string>\",\n  \"address\": \"<string>\",\n  \"capacity\": \"<integer>\",\n  \"filters\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"labels\": {\n    \"key_0\": \"<string>\"\n  },\n  \"error\": \"<string>\",\n  \"paused\": \"<boolean>\",\n  \"protected\": \"<boolean>\",\n  \"created\": \"<long>\",\n  \"updated\": \"<long>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "97f27bd0-4c46-4d41-9c43-00f8eb2f7115",
+              "name": "Authentication credentials missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "nodes",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The node name/identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"uid\": \"<string>\",\n  \"provider\": \"<string>\",\n  \"state\": \"<string>\",\n  \"image\": \"<string>\",\n  \"region\": \"<string>\",\n  \"size\": \"<string>\",\n  \"address\": \"<string>\",\n  \"capacity\": \"<integer>\",\n  \"filters\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"labels\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"error\": \"<string>\",\n  \"paused\": \"<boolean>\",\n  \"protected\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 3254,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "af4ed6bf-aea9-41f6-8f4c-7298b03aa38f",
+          "name": "Delete a node",
+          "request": {
+            "name": "Delete a node",
+            "description": {
+              "content": "Removes a runner node from Drone.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "nodes",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) The node name/identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b6354e80-8ab3-469e-a889-21be405fbc14",
+              "name": "Node deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "nodes",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The node name/identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4a0d7a9c-7020-4833-bea3-de8431624470",
+              "name": "Authentication credentials missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "nodes",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The node name/identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 3254,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://your-drone-server",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "41559928-5c33-4a29-ac5e-a6920a044051",
+    "name": "Drone REST Builds Nodes API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Drone REST API provides programmatic access to the Drone CI/CD platform, enabling management of builds, repositories, secrets, cron jobs, templates, and user accounts. Authentication is performed using bearer tokens retrieved from the Drone user interface profile page.\n\nContact Support:\n Name: Drone Support",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Drone REST Builds Queue API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Queue",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get build queue",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://your-drone-server/api/queue"
+          },
+          "docs": "Returns a list of stages currently enqueued for execution."
+        },
+        {
+          "info": {
+            "name": "Resume queue",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://your-drone-server/api/queue"
+          },
+          "docs": "Resumes the build queue after a pause."
+        },
+        {
+          "info": {
+            "name": "Pause queue",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://your-drone-server/api/queue"
+          },
+          "docs": "Pauses the build queue, preventing new builds from starting."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

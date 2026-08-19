@@ -1,0 +1,123 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Drone REST Builds Users API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Users",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all users",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://your-drone-server/api/users",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns a list of all registered users. Requires admin privileges."
+        },
+        {
+          "info": {
+            "name": "Create a user",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://your-drone-server/api/users",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new user account. Requires admin privileges."
+        },
+        {
+          "info": {
+            "name": "Get a user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://your-drone-server/api/users/:login",
+            "params": [
+              {
+                "name": "login",
+                "value": "",
+                "type": "path",
+                "description": "The user login/username."
+              }
+            ]
+          },
+          "docs": "Returns a user by their login name."
+        },
+        {
+          "info": {
+            "name": "Update a user",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://your-drone-server/api/users/:login",
+            "params": [
+              {
+                "name": "login",
+                "value": "",
+                "type": "path",
+                "description": "The user login/username."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a user account. Requires admin privileges."
+        },
+        {
+          "info": {
+            "name": "Delete a user",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://your-drone-server/api/users/:login",
+            "params": [
+              {
+                "name": "login",
+                "value": "",
+                "type": "path",
+                "description": "The user login/username."
+              }
+            ]
+          },
+          "docs": "Permanently deletes a user account. Requires admin privileges."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

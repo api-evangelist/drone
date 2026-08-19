@@ -1,0 +1,111 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Drone REST Builds Nodes API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Nodes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List nodes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://your-drone-server/api/nodes"
+          },
+          "docs": "Returns a list of all runner nodes registered with Drone. Requires admin privileges."
+        },
+        {
+          "info": {
+            "name": "Create a node",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://your-drone-server/api/nodes",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Registers a new runner node with Drone. Requires admin privileges."
+        },
+        {
+          "info": {
+            "name": "Get a node",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://your-drone-server/api/nodes/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The node name/identifier."
+              }
+            ]
+          },
+          "docs": "Returns a runner node by name."
+        },
+        {
+          "info": {
+            "name": "Update a node",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://your-drone-server/api/nodes/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The node name/identifier."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a runner node registration."
+        },
+        {
+          "info": {
+            "name": "Delete a node",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://your-drone-server/api/nodes/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The node name/identifier."
+              }
+            ]
+          },
+          "docs": "Removes a runner node from Drone."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

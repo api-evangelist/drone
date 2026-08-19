@@ -1,0 +1,3008 @@
+{
+  "item": [
+    {
+      "id": "c55cc118-4908-45c9-8a14-a8b62e8982d0",
+      "name": "Builds",
+      "description": {
+        "content": "Build creation, management, and log access.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c674845c-3462-40b1-955e-6eb1ceb3516e",
+          "name": "List builds",
+          "request": {
+            "name": "List builds",
+            "description": {
+              "content": "Returns a list of recent builds for the specified repository.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "repos",
+                ":namespace",
+                ":name",
+                "builds"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "25"
+                },
+                {
+                  "disabled": false,
+                  "key": "branch",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "namespace",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "75700bb4-10eb-41d3-9073-7dbc3305febb",
+              "name": "List of builds.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "repos",
+                    ":namespace",
+                    ":name",
+                    "builds"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "25"
+                    },
+                    {
+                      "key": "branch",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 8952,\n    \"repo_id\": 3666,\n    \"trigger\": \"string\",\n    \"number\": 5962,\n    \"parent\": 2226,\n    \"status\": \"passing\",\n    \"error\": \"string\",\n    \"event\": \"rollback\",\n    \"action\": \"string\",\n    \"link\": \"http://kylCJbsOHpVczBWpDaUtQzZSZKLrz.gqodzdgCEwEDXB11bLPzzglVcY.-nCSsUDAHywW6mHxNHM4KtHYihh8PCnALltwJvOTZ\",\n    \"timestamp\": 5615,\n    \"title\": \"string\",\n    \"message\": \"string\",\n    \"before\": \"string\",\n    \"after\": \"string\",\n    \"ref\": \"string\",\n    \"source_repo\": \"string\",\n    \"source\": \"string\",\n    \"target\": \"string\",\n    \"author_login\": \"string\",\n    \"author_name\": \"string\",\n    \"author_email\": \"WJY67@TCTNh.uec\",\n    \"author_avatar\": \"https://sNjeArrz.julsW6vPd9fdaAmp5QAqdMma9\",\n    \"sender\": \"string\",\n    \"params\": {\n      \"key_0\": \"string\"\n    },\n    \"cron\": \"string\",\n    \"deploy_to\": \"string\",\n    \"deploy_id\": 1064,\n    \"debug\": true,\n    \"started\": 3489,\n    \"finished\": 5855,\n    \"created\": 8897,\n    \"updated\": 9257,\n    \"version\": 6418,\n    \"stages\": [\n      {\n        \"id\": 3775,\n        \"build_id\": 8200,\n        \"number\": 3558,\n        \"name\": \"string\",\n        \"kind\": \"string\",\n        \"type\": \"string\",\n        \"status\": \"killed\",\n        \"error\": \"string\",\n        \"errignore\": true,\n        \"exit_code\": 5775,\n        \"machine\": \"string\",\n        \"os\": \"string\",\n        \"arch\": \"string\",\n        \"variant\": \"string\",\n        \"kernel\": \"string\",\n        \"limit\": 5050,\n        \"throttle\": 5252,\n        \"started\": 76,\n        \"stopped\": 6120,\n        \"created\": 1685,\n        \"updated\": 1379,\n        \"version\": 7827,\n        \"on_success\": false,\n        \"on_failure\": true,\n        \"depends_on\": [\n          \"string\",\n          \"string\"\n        ],\n        \"labels\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\"\n        },\n        \"steps\": [\n          {\n            \"id\": 9588,\n            \"step_id\": 551,\n            \"number\": 456,\n            \"name\": \"string\",\n            \"status\": \"passing\",\n            \"error\": \"string\",\n            \"errignore\": false,\n            \"exit_code\": 8137,\n            \"started\": 785,\n            \"stopped\": 3814,\n            \"version\": 3341,\n            \"depends_on\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"image\": \"string\",\n            \"detached\": true,\n            \"schema\": \"string\"\n          },\n          {\n            \"id\": 1452,\n            \"step_id\": 4121,\n            \"number\": 9970,\n            \"name\": \"string\",\n            \"status\": \"pending\",\n            \"error\": \"string\",\n            \"errignore\": true,\n            \"exit_code\": 4882,\n            \"started\": 8254,\n            \"stopped\": 9407,\n            \"version\": 2166,\n            \"depends_on\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"image\": \"string\",\n            \"detached\": false,\n            \"schema\": \"string\"\n          }\n        ]\n      },\n      {\n        \"id\": 7370,\n        \"build_id\": 7399,\n        \"number\": 8425,\n        \"name\": \"string\",\n        \"kind\": \"string\",\n        \"type\": \"string\",\n        \"status\": \"skipped\",\n        \"error\": \"string\",\n        \"errignore\": true,\n        \"exit_code\": 5201,\n        \"machine\": \"string\",\n        \"os\": \"string\",\n        \"arch\": \"string\",\n        \"variant\": \"string\",\n        \"kernel\": \"string\",\n        \"limit\": 8844,\n        \"throttle\": 5105,\n        \"started\": 906,\n        \"stopped\": 4606,\n        \"created\": 5023,\n        \"updated\": 4782,\n        \"version\": 7207,\n        \"on_success\": true,\n        \"on_failure\": true,\n        \"depends_on\": [\n          \"string\",\n          \"string\"\n        ],\n        \"labels\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\",\n          \"key_2\": \"string\",\n          \"key_3\": \"string\",\n          \"key_4\": \"string\"\n        },\n        \"steps\": [\n          {\n            \"id\": 1255,\n            \"step_id\": 3019,\n            \"number\": 9304,\n            \"name\": \"string\",\n            \"status\": \"failing\",\n            \"error\": \"string\",\n            \"errignore\": true,\n            \"exit_code\": 5933,\n            \"started\": 9773,\n            \"stopped\": 5300,\n            \"version\": 7975,\n            \"depends_on\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"image\": \"string\",\n            \"detached\": false,\n            \"schema\": \"string\"\n          },\n          {\n            \"id\": 2026,\n            \"step_id\": 4168,\n            \"number\": 5727,\n            \"name\": \"string\",\n            \"status\": \"failing\",\n            \"error\": \"string\",\n            \"errignore\": false,\n            \"exit_code\": 2851,\n            \"started\": 9487,\n            \"stopped\": 404,\n            \"version\": 6358,\n            \"depends_on\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"image\": \"string\",\n            \"detached\": false,\n            \"schema\": \"string\"\n          }\n        ]\n      }\n    ]\n  },\n  {\n    \"id\": 8232,\n    \"repo_id\": 4381,\n    \"trigger\": \"string\",\n    \"number\": 9775,\n    \"parent\": 6058,\n    \"status\": \"failing\",\n    \"error\": \"string\",\n    \"event\": \"tag\",\n    \"action\": \"string\",\n    \"link\": \"http://LmyOiEj.uxgpd9N8nAAkwvXqvnqh452qE4dKrU3T38JmD63adXBYrToI4g7dqEE+JH\",\n    \"timestamp\": 9569,\n    \"title\": \"string\",\n    \"message\": \"string\",\n    \"before\": \"string\",\n    \"after\": \"string\",\n    \"ref\": \"string\",\n    \"source_repo\": \"string\",\n    \"source\": \"string\",\n    \"target\": \"string\",\n    \"author_login\": \"string\",\n    \"author_name\": \"string\",\n    \"author_email\": \"lJYBP@DNTPhpRPzQ.ec\",\n    \"author_avatar\": \"http://gqjZwZPWkvUvzxKDXcDQOrJ.myugz.wkKXQ5RBvgK0LsD2SdCzk8q1-x8iPWKkkiMUZ+4hm+5SedXkHtnTIxCmK4hCRhDWh\",\n    \"sender\": \"string\",\n    \"params\": {\n      \"key_0\": \"string\"\n    },\n    \"cron\": \"string\",\n    \"deploy_to\": \"string\",\n    \"deploy_id\": 2264,\n    \"debug\": true,\n    \"started\": 4360,\n    \"finished\": 3120,\n    \"created\": 9850,\n    \"updated\": 5592,\n    \"version\": 9231,\n    \"stages\": [\n      {\n        \"id\": 2290,\n        \"build_id\": 5863,\n        \"number\": 7209,\n        \"name\": \"string\",\n        \"kind\": \"string\",\n        \"type\": \"string\",\n        \"status\": \"pending\",\n        \"error\": \"string\",\n        \"errignore\": false,\n        \"exit_code\": 5873,\n        \"machine\": \"string\",\n        \"os\": \"string\",\n        \"arch\": \"string\",\n        \"variant\": \"string\",\n        \"kernel\": \"string\",\n        \"limit\": 5216,\n        \"throttle\": 2572,\n        \"started\": 7802,\n        \"stopped\": 7132,\n        \"created\": 7256,\n        \"updated\": 4173,\n        \"version\": 8812,\n        \"on_success\": true,\n        \"on_failure\": true,\n        \"depends_on\": [\n          \"string\",\n          \"string\"\n        ],\n        \"labels\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\"\n        },\n        \"steps\": [\n          {\n            \"id\": 2472,\n            \"step_id\": 2259,\n            \"number\": 4198,\n            \"name\": \"string\",\n            \"status\": \"error\",\n            \"error\": \"string\",\n            \"errignore\": true,\n            \"exit_code\": 6021,\n            \"started\": 4450,\n            \"stopped\": 4504,\n            \"version\": 8631,\n            \"depends_on\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"image\": \"string\",\n            \"detached\": false,\n            \"schema\": \"string\"\n          },\n          {\n            \"id\": 6180,\n            \"step_id\": 7797,\n            \"number\": 5324,\n            \"name\": \"string\",\n            \"status\": \"error\",\n            \"error\": \"string\",\n            \"errignore\": false,\n            \"exit_code\": 2791,\n            \"started\": 2588,\n            \"stopped\": 7143,\n            \"version\": 6491,\n            \"depends_on\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"image\": \"string\",\n            \"detached\": false,\n            \"schema\": \"string\"\n          }\n        ]\n      },\n      {\n        \"id\": 9338,\n        \"build_id\": 4853,\n        \"number\": 7688,\n        \"name\": \"string\",\n        \"kind\": \"string\",\n        \"type\": \"string\",\n        \"status\": \"skipped\",\n        \"error\": \"string\",\n        \"errignore\": false,\n        \"exit_code\": 6671,\n        \"machine\": \"string\",\n        \"os\": \"string\",\n        \"arch\": \"string\",\n        \"variant\": \"string\",\n        \"kernel\": \"string\",\n        \"limit\": 9994,\n        \"throttle\": 9366,\n        \"started\": 851,\n        \"stopped\": 4001,\n        \"created\": 1902,\n        \"updated\": 9946,\n        \"version\": 3039,\n        \"on_success\": false,\n        \"on_failure\": true,\n        \"depends_on\": [\n          \"string\",\n          \"string\"\n        ],\n        \"labels\": {\n          \"key_0\": \"string\"\n        },\n        \"steps\": [\n          {\n            \"id\": 1171,\n            \"step_id\": 2544,\n            \"number\": 6557,\n            \"name\": \"string\",\n            \"status\": \"passing\",\n            \"error\": \"string\",\n            \"errignore\": true,\n            \"exit_code\": 9343,\n            \"started\": 784,\n            \"stopped\": 4463,\n            \"version\": 8159,\n            \"depends_on\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"image\": \"string\",\n            \"detached\": false,\n            \"schema\": \"string\"\n          },\n          {\n            \"id\": 2772,\n            \"step_id\": 9928,\n            \"number\": 5737,\n            \"name\": \"string\",\n            \"status\": \"failing\",\n            \"error\": \"string\",\n            \"errignore\": true,\n            \"exit_code\": 5289,\n            \"started\": 2746,\n            \"stopped\": 9616,\n            \"version\": 4408,\n            \"depends_on\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"image\": \"string\",\n            \"detached\": true,\n            \"schema\": \"string\"\n          }\n        ]\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "615c34fc-3920-4b04-9bf9-4a43cea11d95",
+              "name": "Authentication credentials missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "repos",
+                    ":namespace",
+                    ":name",
+                    "builds"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "25"
+                    },
+                    {
+                      "key": "branch",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 9523,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6db88e44-e2d4-48b0-a47d-8b4b2ebfb343",
+          "name": "Create a build",
+          "request": {
+            "name": "Create a build",
+            "description": {
+              "content": "Creates (triggers) a new build by branch or commit.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "repos",
+                ":namespace",
+                ":name",
+                "builds"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "branch",
+                  "value": "<string>",
+                  "description": "Branch to build."
+                },
+                {
+                  "disabled": false,
+                  "key": "commit",
+                  "value": "<string>",
+                  "description": "Commit SHA to build."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "namespace",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fe43dc99-1ba5-4a5e-8ac6-9775dabb1e05",
+              "name": "Created build.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "repos",
+                    ":namespace",
+                    ":name",
+                    "builds"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "branch",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "commit",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 7580,\n  \"repo_id\": 3821,\n  \"trigger\": \"string\",\n  \"number\": 2891,\n  \"parent\": 6732,\n  \"status\": \"skipped\",\n  \"error\": \"string\",\n  \"event\": \"custom\",\n  \"action\": \"string\",\n  \"link\": \"https://gBTJPUcxyUkueBSOGTlSxxVtxjIU.uzwmDKwr+oabiRVfsO+NMZXYuvOH0BT0.jhPtPgGqGpfkMZODxJy+XTRDhyQzXZ637Y0OmhltWHLEJL6THncn--jt4YV\",\n  \"timestamp\": 8613,\n  \"title\": \"string\",\n  \"message\": \"string\",\n  \"before\": \"string\",\n  \"after\": \"string\",\n  \"ref\": \"string\",\n  \"source_repo\": \"string\",\n  \"source\": \"string\",\n  \"target\": \"string\",\n  \"author_login\": \"string\",\n  \"author_name\": \"string\",\n  \"author_email\": \"ePG@aDjmevMFoqMlZTCQ.og\",\n  \"author_avatar\": \"https://gppLmr.oqaquHaH9PnQvrETjcHcxoEp7uJRunZxBWvttiA2O5U6t,LKDD5mX3WOzGCZEm\",\n  \"sender\": \"string\",\n  \"params\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  },\n  \"cron\": \"string\",\n  \"deploy_to\": \"string\",\n  \"deploy_id\": 1203,\n  \"debug\": false,\n  \"started\": 8797,\n  \"finished\": 8851,\n  \"created\": 7266,\n  \"updated\": 5581,\n  \"version\": 8070,\n  \"stages\": [\n    {\n      \"id\": 6409,\n      \"build_id\": 5904,\n      \"number\": 4919,\n      \"name\": \"string\",\n      \"kind\": \"string\",\n      \"type\": \"string\",\n      \"status\": \"waiting_on_dependencies\",\n      \"error\": \"string\",\n      \"errignore\": false,\n      \"exit_code\": 7118,\n      \"machine\": \"string\",\n      \"os\": \"string\",\n      \"arch\": \"string\",\n      \"variant\": \"string\",\n      \"kernel\": \"string\",\n      \"limit\": 2715,\n      \"throttle\": 438,\n      \"started\": 4924,\n      \"stopped\": 419,\n      \"created\": 5182,\n      \"updated\": 8054,\n      \"version\": 3072,\n      \"on_success\": true,\n      \"on_failure\": false,\n      \"depends_on\": [\n        \"string\",\n        \"string\"\n      ],\n      \"labels\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"steps\": [\n        {\n          \"id\": 1977,\n          \"step_id\": 9933,\n          \"number\": 4044,\n          \"name\": \"string\",\n          \"status\": \"running\",\n          \"error\": \"string\",\n          \"errignore\": true,\n          \"exit_code\": 2399,\n          \"started\": 3360,\n          \"stopped\": 1582,\n          \"version\": 7367,\n          \"depends_on\": [\n            \"string\",\n            \"string\"\n          ],\n          \"image\": \"string\",\n          \"detached\": false,\n          \"schema\": \"string\"\n        },\n        {\n          \"id\": 1912,\n          \"step_id\": 6584,\n          \"number\": 3531,\n          \"name\": \"string\",\n          \"status\": \"skipped\",\n          \"error\": \"string\",\n          \"errignore\": false,\n          \"exit_code\": 6541,\n          \"started\": 4073,\n          \"stopped\": 2337,\n          \"version\": 177,\n          \"depends_on\": [\n            \"string\",\n            \"string\"\n          ],\n          \"image\": \"string\",\n          \"detached\": true,\n          \"schema\": \"string\"\n        }\n      ]\n    },\n    {\n      \"id\": 1271,\n      \"build_id\": 6901,\n      \"number\": 7982,\n      \"name\": \"string\",\n      \"kind\": \"string\",\n      \"type\": \"string\",\n      \"status\": \"error\",\n      \"error\": \"string\",\n      \"errignore\": true,\n      \"exit_code\": 7027,\n      \"machine\": \"string\",\n      \"os\": \"string\",\n      \"arch\": \"string\",\n      \"variant\": \"string\",\n      \"kernel\": \"string\",\n      \"limit\": 9914,\n      \"throttle\": 2924,\n      \"started\": 4989,\n      \"stopped\": 3605,\n      \"created\": 4125,\n      \"updated\": 9978,\n      \"version\": 4054,\n      \"on_success\": true,\n      \"on_failure\": false,\n      \"depends_on\": [\n        \"string\",\n        \"string\"\n      ],\n      \"labels\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"steps\": [\n        {\n          \"id\": 7600,\n          \"step_id\": 173,\n          \"number\": 6767,\n          \"name\": \"string\",\n          \"status\": \"passing\",\n          \"error\": \"string\",\n          \"errignore\": false,\n          \"exit_code\": 223,\n          \"started\": 7787,\n          \"stopped\": 5871,\n          \"version\": 8439,\n          \"depends_on\": [\n            \"string\",\n            \"string\"\n          ],\n          \"image\": \"string\",\n          \"detached\": true,\n          \"schema\": \"string\"\n        },\n        {\n          \"id\": 9541,\n          \"step_id\": 7687,\n          \"number\": 6049,\n          \"name\": \"string\",\n          \"status\": \"failing\",\n          \"error\": \"string\",\n          \"errignore\": false,\n          \"exit_code\": 9495,\n          \"started\": 6509,\n          \"stopped\": 266,\n          \"version\": 1122,\n          \"depends_on\": [\n            \"string\",\n            \"string\"\n          ],\n          \"image\": \"string\",\n          \"detached\": true,\n          \"schema\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "94e340e2-5633-4b5d-97f5-27306a41b716",
+              "name": "Authentication credentials missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "repos",
+                    ":namespace",
+                    ":name",
+                    "builds"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "branch",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "commit",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 9523,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "900517ce-bbe7-49ef-9f37-5f4a37419e63",
+          "name": "Purge build history",
+          "request": {
+            "name": "Purge build history",
+            "description": {
+              "content": "Deletes build history older than the specified build number.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "repos",
+                ":namespace",
+                ":name",
+                "builds"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "before",
+                  "value": "<integer>",
+                  "description": "(Required) Delete builds with numbers less than this value."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "namespace",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "daed9831-07b0-4e1a-94ea-e5150b25529c",
+              "name": "Build history purged.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "repos",
+                    ":namespace",
+                    ":name",
+                    "builds"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "before",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ae9d202c-c0ff-47db-a6c1-d26cdc1ae474",
+              "name": "Authentication credentials missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "repos",
+                    ":namespace",
+                    ":name",
+                    "builds"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "before",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 9523,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4c15aa24-404c-4907-88c3-3ad60c535a69",
+          "name": "Get a build",
+          "request": {
+            "name": "Get a build",
+            "description": {
+              "content": "Returns a repository build by build number.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "repos",
+                ":namespace",
+                ":name",
+                "builds",
+                ":build"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "branch",
+                  "value": "<string>",
+                  "description": "When build is \"latest\", filter by this branch."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "namespace",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "build",
+                  "description": "(Required) The build number. Use \"latest\" to get the most recent build."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f7a5952f-c68c-4124-9a00-0b0bd42aab12",
+              "name": "Build details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "repos",
+                    ":namespace",
+                    ":name",
+                    "builds",
+                    ":build"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "branch",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "build",
+                      "description": "(Required) The build number. Use \"latest\" to get the most recent build."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 7580,\n  \"repo_id\": 3821,\n  \"trigger\": \"string\",\n  \"number\": 2891,\n  \"parent\": 6732,\n  \"status\": \"skipped\",\n  \"error\": \"string\",\n  \"event\": \"custom\",\n  \"action\": \"string\",\n  \"link\": \"https://gBTJPUcxyUkueBSOGTlSxxVtxjIU.uzwmDKwr+oabiRVfsO+NMZXYuvOH0BT0.jhPtPgGqGpfkMZODxJy+XTRDhyQzXZ637Y0OmhltWHLEJL6THncn--jt4YV\",\n  \"timestamp\": 8613,\n  \"title\": \"string\",\n  \"message\": \"string\",\n  \"before\": \"string\",\n  \"after\": \"string\",\n  \"ref\": \"string\",\n  \"source_repo\": \"string\",\n  \"source\": \"string\",\n  \"target\": \"string\",\n  \"author_login\": \"string\",\n  \"author_name\": \"string\",\n  \"author_email\": \"ePG@aDjmevMFoqMlZTCQ.og\",\n  \"author_avatar\": \"https://gppLmr.oqaquHaH9PnQvrETjcHcxoEp7uJRunZxBWvttiA2O5U6t,LKDD5mX3WOzGCZEm\",\n  \"sender\": \"string\",\n  \"params\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  },\n  \"cron\": \"string\",\n  \"deploy_to\": \"string\",\n  \"deploy_id\": 1203,\n  \"debug\": false,\n  \"started\": 8797,\n  \"finished\": 8851,\n  \"created\": 7266,\n  \"updated\": 5581,\n  \"version\": 8070,\n  \"stages\": [\n    {\n      \"id\": 6409,\n      \"build_id\": 5904,\n      \"number\": 4919,\n      \"name\": \"string\",\n      \"kind\": \"string\",\n      \"type\": \"string\",\n      \"status\": \"waiting_on_dependencies\",\n      \"error\": \"string\",\n      \"errignore\": false,\n      \"exit_code\": 7118,\n      \"machine\": \"string\",\n      \"os\": \"string\",\n      \"arch\": \"string\",\n      \"variant\": \"string\",\n      \"kernel\": \"string\",\n      \"limit\": 2715,\n      \"throttle\": 438,\n      \"started\": 4924,\n      \"stopped\": 419,\n      \"created\": 5182,\n      \"updated\": 8054,\n      \"version\": 3072,\n      \"on_success\": true,\n      \"on_failure\": false,\n      \"depends_on\": [\n        \"string\",\n        \"string\"\n      ],\n      \"labels\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"steps\": [\n        {\n          \"id\": 1977,\n          \"step_id\": 9933,\n          \"number\": 4044,\n          \"name\": \"string\",\n          \"status\": \"running\",\n          \"error\": \"string\",\n          \"errignore\": true,\n          \"exit_code\": 2399,\n          \"started\": 3360,\n          \"stopped\": 1582,\n          \"version\": 7367,\n          \"depends_on\": [\n            \"string\",\n            \"string\"\n          ],\n          \"image\": \"string\",\n          \"detached\": false,\n          \"schema\": \"string\"\n        },\n        {\n          \"id\": 1912,\n          \"step_id\": 6584,\n          \"number\": 3531,\n          \"name\": \"string\",\n          \"status\": \"skipped\",\n          \"error\": \"string\",\n          \"errignore\": false,\n          \"exit_code\": 6541,\n          \"started\": 4073,\n          \"stopped\": 2337,\n          \"version\": 177,\n          \"depends_on\": [\n            \"string\",\n            \"string\"\n          ],\n          \"image\": \"string\",\n          \"detached\": true,\n          \"schema\": \"string\"\n        }\n      ]\n    },\n    {\n      \"id\": 1271,\n      \"build_id\": 6901,\n      \"number\": 7982,\n      \"name\": \"string\",\n      \"kind\": \"string\",\n      \"type\": \"string\",\n      \"status\": \"error\",\n      \"error\": \"string\",\n      \"errignore\": true,\n      \"exit_code\": 7027,\n      \"machine\": \"string\",\n      \"os\": \"string\",\n      \"arch\": \"string\",\n      \"variant\": \"string\",\n      \"kernel\": \"string\",\n      \"limit\": 9914,\n      \"throttle\": 2924,\n      \"started\": 4989,\n      \"stopped\": 3605,\n      \"created\": 4125,\n      \"updated\": 9978,\n      \"version\": 4054,\n      \"on_success\": true,\n      \"on_failure\": false,\n      \"depends_on\": [\n        \"string\",\n        \"string\"\n      ],\n      \"labels\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"steps\": [\n        {\n          \"id\": 7600,\n          \"step_id\": 173,\n          \"number\": 6767,\n          \"name\": \"string\",\n          \"status\": \"passing\",\n          \"error\": \"string\",\n          \"errignore\": false,\n          \"exit_code\": 223,\n          \"started\": 7787,\n          \"stopped\": 5871,\n          \"version\": 8439,\n          \"depends_on\": [\n            \"string\",\n            \"string\"\n          ],\n          \"image\": \"string\",\n          \"detached\": true,\n          \"schema\": \"string\"\n        },\n        {\n          \"id\": 9541,\n          \"step_id\": 7687,\n          \"number\": 6049,\n          \"name\": \"string\",\n          \"status\": \"failing\",\n          \"error\": \"string\",\n          \"errignore\": false,\n          \"exit_code\": 9495,\n          \"started\": 6509,\n          \"stopped\": 266,\n          \"version\": 1122,\n          \"depends_on\": [\n            \"string\",\n            \"string\"\n          ],\n          \"image\": \"string\",\n          \"detached\": true,\n          \"schema\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f8b1909a-316e-40ed-92b2-c6a2d3e25c89",
+              "name": "Authentication credentials missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "repos",
+                    ":namespace",
+                    ":name",
+                    "builds",
+                    ":build"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "branch",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "build",
+                      "description": "(Required) The build number. Use \"latest\" to get the most recent build."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 9523,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "03941c25-284a-4cd1-8801-58599c6e7aca",
+              "name": "Resource not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "repos",
+                    ":namespace",
+                    ":name",
+                    "builds",
+                    ":build"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "branch",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "build",
+                      "description": "(Required) The build number. Use \"latest\" to get the most recent build."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 9523,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f11644bb-e042-43f9-93fc-ae46ba521d61",
+          "name": "Restart a build",
+          "request": {
+            "name": "Restart a build",
+            "description": {
+              "content": "Re-starts a stopped or completed build.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "repos",
+                ":namespace",
+                ":name",
+                "builds",
+                ":build"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "namespace",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "build",
+                  "description": "(Required) The build number. Use \"latest\" to get the most recent build."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "940a4fbc-a4c0-467f-bb2b-968e39013d14",
+              "name": "Restarted build.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "repos",
+                    ":namespace",
+                    ":name",
+                    "builds",
+                    ":build"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "build",
+                      "description": "(Required) The build number. Use \"latest\" to get the most recent build."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 7580,\n  \"repo_id\": 3821,\n  \"trigger\": \"string\",\n  \"number\": 2891,\n  \"parent\": 6732,\n  \"status\": \"skipped\",\n  \"error\": \"string\",\n  \"event\": \"custom\",\n  \"action\": \"string\",\n  \"link\": \"https://gBTJPUcxyUkueBSOGTlSxxVtxjIU.uzwmDKwr+oabiRVfsO+NMZXYuvOH0BT0.jhPtPgGqGpfkMZODxJy+XTRDhyQzXZ637Y0OmhltWHLEJL6THncn--jt4YV\",\n  \"timestamp\": 8613,\n  \"title\": \"string\",\n  \"message\": \"string\",\n  \"before\": \"string\",\n  \"after\": \"string\",\n  \"ref\": \"string\",\n  \"source_repo\": \"string\",\n  \"source\": \"string\",\n  \"target\": \"string\",\n  \"author_login\": \"string\",\n  \"author_name\": \"string\",\n  \"author_email\": \"ePG@aDjmevMFoqMlZTCQ.og\",\n  \"author_avatar\": \"https://gppLmr.oqaquHaH9PnQvrETjcHcxoEp7uJRunZxBWvttiA2O5U6t,LKDD5mX3WOzGCZEm\",\n  \"sender\": \"string\",\n  \"params\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  },\n  \"cron\": \"string\",\n  \"deploy_to\": \"string\",\n  \"deploy_id\": 1203,\n  \"debug\": false,\n  \"started\": 8797,\n  \"finished\": 8851,\n  \"created\": 7266,\n  \"updated\": 5581,\n  \"version\": 8070,\n  \"stages\": [\n    {\n      \"id\": 6409,\n      \"build_id\": 5904,\n      \"number\": 4919,\n      \"name\": \"string\",\n      \"kind\": \"string\",\n      \"type\": \"string\",\n      \"status\": \"waiting_on_dependencies\",\n      \"error\": \"string\",\n      \"errignore\": false,\n      \"exit_code\": 7118,\n      \"machine\": \"string\",\n      \"os\": \"string\",\n      \"arch\": \"string\",\n      \"variant\": \"string\",\n      \"kernel\": \"string\",\n      \"limit\": 2715,\n      \"throttle\": 438,\n      \"started\": 4924,\n      \"stopped\": 419,\n      \"created\": 5182,\n      \"updated\": 8054,\n      \"version\": 3072,\n      \"on_success\": true,\n      \"on_failure\": false,\n      \"depends_on\": [\n        \"string\",\n        \"string\"\n      ],\n      \"labels\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"steps\": [\n        {\n          \"id\": 1977,\n          \"step_id\": 9933,\n          \"number\": 4044,\n          \"name\": \"string\",\n          \"status\": \"running\",\n          \"error\": \"string\",\n          \"errignore\": true,\n          \"exit_code\": 2399,\n          \"started\": 3360,\n          \"stopped\": 1582,\n          \"version\": 7367,\n          \"depends_on\": [\n            \"string\",\n            \"string\"\n          ],\n          \"image\": \"string\",\n          \"detached\": false,\n          \"schema\": \"string\"\n        },\n        {\n          \"id\": 1912,\n          \"step_id\": 6584,\n          \"number\": 3531,\n          \"name\": \"string\",\n          \"status\": \"skipped\",\n          \"error\": \"string\",\n          \"errignore\": false,\n          \"exit_code\": 6541,\n          \"started\": 4073,\n          \"stopped\": 2337,\n          \"version\": 177,\n          \"depends_on\": [\n            \"string\",\n            \"string\"\n          ],\n          \"image\": \"string\",\n          \"detached\": true,\n          \"schema\": \"string\"\n        }\n      ]\n    },\n    {\n      \"id\": 1271,\n      \"build_id\": 6901,\n      \"number\": 7982,\n      \"name\": \"string\",\n      \"kind\": \"string\",\n      \"type\": \"string\",\n      \"status\": \"error\",\n      \"error\": \"string\",\n      \"errignore\": true,\n      \"exit_code\": 7027,\n      \"machine\": \"string\",\n      \"os\": \"string\",\n      \"arch\": \"string\",\n      \"variant\": \"string\",\n      \"kernel\": \"string\",\n      \"limit\": 9914,\n      \"throttle\": 2924,\n      \"started\": 4989,\n      \"stopped\": 3605,\n      \"created\": 4125,\n      \"updated\": 9978,\n      \"version\": 4054,\n      \"on_success\": true,\n      \"on_failure\": false,\n      \"depends_on\": [\n        \"string\",\n        \"string\"\n      ],\n      \"labels\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"steps\": [\n        {\n          \"id\": 7600,\n          \"step_id\": 173,\n          \"number\": 6767,\n          \"name\": \"string\",\n          \"status\": \"passing\",\n          \"error\": \"string\",\n          \"errignore\": false,\n          \"exit_code\": 223,\n          \"started\": 7787,\n          \"stopped\": 5871,\n          \"version\": 8439,\n          \"depends_on\": [\n            \"string\",\n            \"string\"\n          ],\n          \"image\": \"string\",\n          \"detached\": true,\n          \"schema\": \"string\"\n        },\n        {\n          \"id\": 9541,\n          \"step_id\": 7687,\n          \"number\": 6049,\n          \"name\": \"string\",\n          \"status\": \"failing\",\n          \"error\": \"string\",\n          \"errignore\": false,\n          \"exit_code\": 9495,\n          \"started\": 6509,\n          \"stopped\": 266,\n          \"version\": 1122,\n          \"depends_on\": [\n            \"string\",\n            \"string\"\n          ],\n          \"image\": \"string\",\n          \"detached\": true,\n          \"schema\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d671eb97-ab4a-4598-9616-9af625e924e3",
+              "name": "Authentication credentials missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "repos",
+                    ":namespace",
+                    ":name",
+                    "builds",
+                    ":build"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "build",
+                      "description": "(Required) The build number. Use \"latest\" to get the most recent build."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 9523,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e44419f0-a3c4-49aa-9a1e-a1a5ec7b3629",
+          "name": "Cancel a build",
+          "request": {
+            "name": "Cancel a build",
+            "description": {
+              "content": "Cancels a running build.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "repos",
+                ":namespace",
+                ":name",
+                "builds",
+                ":build"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "namespace",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "build",
+                  "description": "(Required) The build number. Use \"latest\" to get the most recent build."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ec400d54-a568-4f25-9127-111584cdc6f6",
+              "name": "Build cancelled.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "repos",
+                    ":namespace",
+                    ":name",
+                    "builds",
+                    ":build"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "build",
+                      "description": "(Required) The build number. Use \"latest\" to get the most recent build."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "046ebbac-8bf9-4963-af45-38a83f73809b",
+              "name": "Authentication credentials missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "repos",
+                    ":namespace",
+                    ":name",
+                    "builds",
+                    ":build"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "build",
+                      "description": "(Required) The build number. Use \"latest\" to get the most recent build."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 9523,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8e1e917d-bf19-4db8-b560-f6ae66241a2d",
+          "name": "Approve a build stage",
+          "request": {
+            "name": "Approve a build stage",
+            "description": {
+              "content": "Approves a blocked build stage awaiting manual approval.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "repos",
+                ":namespace",
+                ":name",
+                "builds",
+                ":build",
+                "approve",
+                ":stage"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "namespace",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "build",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "stage",
+                  "description": "(Required) The stage number to approve."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bfe0a142-8b74-4d12-8868-9ee6ce7c3490",
+              "name": "Build stage approved.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "repos",
+                    ":namespace",
+                    ":name",
+                    "builds",
+                    ":build",
+                    "approve",
+                    ":stage"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "build",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "stage",
+                      "description": "(Required) The stage number to approve."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "10986819-101a-431b-9c16-2ddb55406f87",
+              "name": "Authentication credentials missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "repos",
+                    ":namespace",
+                    ":name",
+                    "builds",
+                    ":build",
+                    "approve",
+                    ":stage"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "build",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "stage",
+                      "description": "(Required) The stage number to approve."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 9523,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3d2c7ce4-1081-42dd-9bcd-3a221c5a9bbc",
+          "name": "Decline a build stage",
+          "request": {
+            "name": "Decline a build stage",
+            "description": {
+              "content": "Declines a blocked build stage awaiting manual approval.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "repos",
+                ":namespace",
+                ":name",
+                "builds",
+                ":build",
+                "decline",
+                ":stage"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "namespace",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "build",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "stage",
+                  "description": "(Required) The stage number to decline."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1efdfddc-5c1e-48c8-9c0c-9fa3c809f2ca",
+              "name": "Build stage declined.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "repos",
+                    ":namespace",
+                    ":name",
+                    "builds",
+                    ":build",
+                    "decline",
+                    ":stage"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "build",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "stage",
+                      "description": "(Required) The stage number to decline."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1ebadd85-6cd9-4238-8e79-05f062bef520",
+              "name": "Authentication credentials missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "repos",
+                    ":namespace",
+                    ":name",
+                    "builds",
+                    ":build",
+                    "decline",
+                    ":stage"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "build",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "stage",
+                      "description": "(Required) The stage number to decline."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 9523,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "aaca7687-a24a-4bd3-b0d6-6bf6ee81cee0",
+          "name": "Promote a build",
+          "request": {
+            "name": "Promote a build",
+            "description": {
+              "content": "Promotes a build to a target deployment environment.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "repos",
+                ":namespace",
+                ":name",
+                "builds",
+                ":build",
+                "promote"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "target",
+                  "value": "<string>",
+                  "description": "(Required) The target environment to promote to (e.g. \"production\")."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "namespace",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "build",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "743bc87c-a35f-459d-af6d-aa3655a67711",
+              "name": "Promoted build.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "repos",
+                    ":namespace",
+                    ":name",
+                    "builds",
+                    ":build",
+                    "promote"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "target",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "build",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 7580,\n  \"repo_id\": 3821,\n  \"trigger\": \"string\",\n  \"number\": 2891,\n  \"parent\": 6732,\n  \"status\": \"skipped\",\n  \"error\": \"string\",\n  \"event\": \"custom\",\n  \"action\": \"string\",\n  \"link\": \"https://gBTJPUcxyUkueBSOGTlSxxVtxjIU.uzwmDKwr+oabiRVfsO+NMZXYuvOH0BT0.jhPtPgGqGpfkMZODxJy+XTRDhyQzXZ637Y0OmhltWHLEJL6THncn--jt4YV\",\n  \"timestamp\": 8613,\n  \"title\": \"string\",\n  \"message\": \"string\",\n  \"before\": \"string\",\n  \"after\": \"string\",\n  \"ref\": \"string\",\n  \"source_repo\": \"string\",\n  \"source\": \"string\",\n  \"target\": \"string\",\n  \"author_login\": \"string\",\n  \"author_name\": \"string\",\n  \"author_email\": \"ePG@aDjmevMFoqMlZTCQ.og\",\n  \"author_avatar\": \"https://gppLmr.oqaquHaH9PnQvrETjcHcxoEp7uJRunZxBWvttiA2O5U6t,LKDD5mX3WOzGCZEm\",\n  \"sender\": \"string\",\n  \"params\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  },\n  \"cron\": \"string\",\n  \"deploy_to\": \"string\",\n  \"deploy_id\": 1203,\n  \"debug\": false,\n  \"started\": 8797,\n  \"finished\": 8851,\n  \"created\": 7266,\n  \"updated\": 5581,\n  \"version\": 8070,\n  \"stages\": [\n    {\n      \"id\": 6409,\n      \"build_id\": 5904,\n      \"number\": 4919,\n      \"name\": \"string\",\n      \"kind\": \"string\",\n      \"type\": \"string\",\n      \"status\": \"waiting_on_dependencies\",\n      \"error\": \"string\",\n      \"errignore\": false,\n      \"exit_code\": 7118,\n      \"machine\": \"string\",\n      \"os\": \"string\",\n      \"arch\": \"string\",\n      \"variant\": \"string\",\n      \"kernel\": \"string\",\n      \"limit\": 2715,\n      \"throttle\": 438,\n      \"started\": 4924,\n      \"stopped\": 419,\n      \"created\": 5182,\n      \"updated\": 8054,\n      \"version\": 3072,\n      \"on_success\": true,\n      \"on_failure\": false,\n      \"depends_on\": [\n        \"string\",\n        \"string\"\n      ],\n      \"labels\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"steps\": [\n        {\n          \"id\": 1977,\n          \"step_id\": 9933,\n          \"number\": 4044,\n          \"name\": \"string\",\n          \"status\": \"running\",\n          \"error\": \"string\",\n          \"errignore\": true,\n          \"exit_code\": 2399,\n          \"started\": 3360,\n          \"stopped\": 1582,\n          \"version\": 7367,\n          \"depends_on\": [\n            \"string\",\n            \"string\"\n          ],\n          \"image\": \"string\",\n          \"detached\": false,\n          \"schema\": \"string\"\n        },\n        {\n          \"id\": 1912,\n          \"step_id\": 6584,\n          \"number\": 3531,\n          \"name\": \"string\",\n          \"status\": \"skipped\",\n          \"error\": \"string\",\n          \"errignore\": false,\n          \"exit_code\": 6541,\n          \"started\": 4073,\n          \"stopped\": 2337,\n          \"version\": 177,\n          \"depends_on\": [\n            \"string\",\n            \"string\"\n          ],\n          \"image\": \"string\",\n          \"detached\": true,\n          \"schema\": \"string\"\n        }\n      ]\n    },\n    {\n      \"id\": 1271,\n      \"build_id\": 6901,\n      \"number\": 7982,\n      \"name\": \"string\",\n      \"kind\": \"string\",\n      \"type\": \"string\",\n      \"status\": \"error\",\n      \"error\": \"string\",\n      \"errignore\": true,\n      \"exit_code\": 7027,\n      \"machine\": \"string\",\n      \"os\": \"string\",\n      \"arch\": \"string\",\n      \"variant\": \"string\",\n      \"kernel\": \"string\",\n      \"limit\": 9914,\n      \"throttle\": 2924,\n      \"started\": 4989,\n      \"stopped\": 3605,\n      \"created\": 4125,\n      \"updated\": 9978,\n      \"version\": 4054,\n      \"on_success\": true,\n      \"on_failure\": false,\n      \"depends_on\": [\n        \"string\",\n        \"string\"\n      ],\n      \"labels\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"steps\": [\n        {\n          \"id\": 7600,\n          \"step_id\": 173,\n          \"number\": 6767,\n          \"name\": \"string\",\n          \"status\": \"passing\",\n          \"error\": \"string\",\n          \"errignore\": false,\n          \"exit_code\": 223,\n          \"started\": 7787,\n          \"stopped\": 5871,\n          \"version\": 8439,\n          \"depends_on\": [\n            \"string\",\n            \"string\"\n          ],\n          \"image\": \"string\",\n          \"detached\": true,\n          \"schema\": \"string\"\n        },\n        {\n          \"id\": 9541,\n          \"step_id\": 7687,\n          \"number\": 6049,\n          \"name\": \"string\",\n          \"status\": \"failing\",\n          \"error\": \"string\",\n          \"errignore\": false,\n          \"exit_code\": 9495,\n          \"started\": 6509,\n          \"stopped\": 266,\n          \"version\": 1122,\n          \"depends_on\": [\n            \"string\",\n            \"string\"\n          ],\n          \"image\": \"string\",\n          \"detached\": true,\n          \"schema\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a64424ea-23e0-4875-982c-51131d14d7f6",
+              "name": "Authentication credentials missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "repos",
+                    ":namespace",
+                    ":name",
+                    "builds",
+                    ":build",
+                    "promote"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "target",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "build",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 9523,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5efa135a-87ad-42d7-8e68-3736fe725dc1",
+          "name": "Rollback a build",
+          "request": {
+            "name": "Rollback a build",
+            "description": {
+              "content": "Rolls back the target environment to a previous build.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "repos",
+                ":namespace",
+                ":name",
+                "builds",
+                ":build",
+                "rollback"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "target",
+                  "value": "<string>",
+                  "description": "(Required) The target environment to roll back."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "namespace",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "build",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "503816c8-66cc-4d19-ad1e-ca080ac4902d",
+              "name": "Rolled-back build.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "repos",
+                    ":namespace",
+                    ":name",
+                    "builds",
+                    ":build",
+                    "rollback"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "target",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "build",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 7580,\n  \"repo_id\": 3821,\n  \"trigger\": \"string\",\n  \"number\": 2891,\n  \"parent\": 6732,\n  \"status\": \"skipped\",\n  \"error\": \"string\",\n  \"event\": \"custom\",\n  \"action\": \"string\",\n  \"link\": \"https://gBTJPUcxyUkueBSOGTlSxxVtxjIU.uzwmDKwr+oabiRVfsO+NMZXYuvOH0BT0.jhPtPgGqGpfkMZODxJy+XTRDhyQzXZ637Y0OmhltWHLEJL6THncn--jt4YV\",\n  \"timestamp\": 8613,\n  \"title\": \"string\",\n  \"message\": \"string\",\n  \"before\": \"string\",\n  \"after\": \"string\",\n  \"ref\": \"string\",\n  \"source_repo\": \"string\",\n  \"source\": \"string\",\n  \"target\": \"string\",\n  \"author_login\": \"string\",\n  \"author_name\": \"string\",\n  \"author_email\": \"ePG@aDjmevMFoqMlZTCQ.og\",\n  \"author_avatar\": \"https://gppLmr.oqaquHaH9PnQvrETjcHcxoEp7uJRunZxBWvttiA2O5U6t,LKDD5mX3WOzGCZEm\",\n  \"sender\": \"string\",\n  \"params\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  },\n  \"cron\": \"string\",\n  \"deploy_to\": \"string\",\n  \"deploy_id\": 1203,\n  \"debug\": false,\n  \"started\": 8797,\n  \"finished\": 8851,\n  \"created\": 7266,\n  \"updated\": 5581,\n  \"version\": 8070,\n  \"stages\": [\n    {\n      \"id\": 6409,\n      \"build_id\": 5904,\n      \"number\": 4919,\n      \"name\": \"string\",\n      \"kind\": \"string\",\n      \"type\": \"string\",\n      \"status\": \"waiting_on_dependencies\",\n      \"error\": \"string\",\n      \"errignore\": false,\n      \"exit_code\": 7118,\n      \"machine\": \"string\",\n      \"os\": \"string\",\n      \"arch\": \"string\",\n      \"variant\": \"string\",\n      \"kernel\": \"string\",\n      \"limit\": 2715,\n      \"throttle\": 438,\n      \"started\": 4924,\n      \"stopped\": 419,\n      \"created\": 5182,\n      \"updated\": 8054,\n      \"version\": 3072,\n      \"on_success\": true,\n      \"on_failure\": false,\n      \"depends_on\": [\n        \"string\",\n        \"string\"\n      ],\n      \"labels\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"steps\": [\n        {\n          \"id\": 1977,\n          \"step_id\": 9933,\n          \"number\": 4044,\n          \"name\": \"string\",\n          \"status\": \"running\",\n          \"error\": \"string\",\n          \"errignore\": true,\n          \"exit_code\": 2399,\n          \"started\": 3360,\n          \"stopped\": 1582,\n          \"version\": 7367,\n          \"depends_on\": [\n            \"string\",\n            \"string\"\n          ],\n          \"image\": \"string\",\n          \"detached\": false,\n          \"schema\": \"string\"\n        },\n        {\n          \"id\": 1912,\n          \"step_id\": 6584,\n          \"number\": 3531,\n          \"name\": \"string\",\n          \"status\": \"skipped\",\n          \"error\": \"string\",\n          \"errignore\": false,\n          \"exit_code\": 6541,\n          \"started\": 4073,\n          \"stopped\": 2337,\n          \"version\": 177,\n          \"depends_on\": [\n            \"string\",\n            \"string\"\n          ],\n          \"image\": \"string\",\n          \"detached\": true,\n          \"schema\": \"string\"\n        }\n      ]\n    },\n    {\n      \"id\": 1271,\n      \"build_id\": 6901,\n      \"number\": 7982,\n      \"name\": \"string\",\n      \"kind\": \"string\",\n      \"type\": \"string\",\n      \"status\": \"error\",\n      \"error\": \"string\",\n      \"errignore\": true,\n      \"exit_code\": 7027,\n      \"machine\": \"string\",\n      \"os\": \"string\",\n      \"arch\": \"string\",\n      \"variant\": \"string\",\n      \"kernel\": \"string\",\n      \"limit\": 9914,\n      \"throttle\": 2924,\n      \"started\": 4989,\n      \"stopped\": 3605,\n      \"created\": 4125,\n      \"updated\": 9978,\n      \"version\": 4054,\n      \"on_success\": true,\n      \"on_failure\": false,\n      \"depends_on\": [\n        \"string\",\n        \"string\"\n      ],\n      \"labels\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"steps\": [\n        {\n          \"id\": 7600,\n          \"step_id\": 173,\n          \"number\": 6767,\n          \"name\": \"string\",\n          \"status\": \"passing\",\n          \"error\": \"string\",\n          \"errignore\": false,\n          \"exit_code\": 223,\n          \"started\": 7787,\n          \"stopped\": 5871,\n          \"version\": 8439,\n          \"depends_on\": [\n            \"string\",\n            \"string\"\n          ],\n          \"image\": \"string\",\n          \"detached\": true,\n          \"schema\": \"string\"\n        },\n        {\n          \"id\": 9541,\n          \"step_id\": 7687,\n          \"number\": 6049,\n          \"name\": \"string\",\n          \"status\": \"failing\",\n          \"error\": \"string\",\n          \"errignore\": false,\n          \"exit_code\": 9495,\n          \"started\": 6509,\n          \"stopped\": 266,\n          \"version\": 1122,\n          \"depends_on\": [\n            \"string\",\n            \"string\"\n          ],\n          \"image\": \"string\",\n          \"detached\": true,\n          \"schema\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ef565a20-a441-4891-97dc-4917533c160d",
+              "name": "Authentication credentials missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "repos",
+                    ":namespace",
+                    ":name",
+                    "builds",
+                    ":build",
+                    "rollback"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "target",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "build",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 9523,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "51a8333f-5ee8-41f2-a6c7-f8302a0ac54b",
+          "name": "Get build step logs",
+          "request": {
+            "name": "Get build step logs",
+            "description": {
+              "content": "Returns the log lines for the specified build stage step.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "repos",
+                ":namespace",
+                ":name",
+                "builds",
+                ":build",
+                "logs",
+                ":stage",
+                ":step"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "namespace",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "build",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "stage",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "step",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fa8990a2-8031-4867-911d-c311f15c7dec",
+              "name": "Log lines.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "repos",
+                    ":namespace",
+                    ":name",
+                    "builds",
+                    ":build",
+                    "logs",
+                    ":stage",
+                    ":step"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "build",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "stage",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "step",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"pos\": 3175,\n    \"out\": \"string\",\n    \"time\": 8923\n  },\n  {\n    \"pos\": 3825,\n    \"out\": \"string\",\n    \"time\": 7799\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bc1e3847-ba3a-49f3-8027-d229346607ee",
+              "name": "Authentication credentials missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "repos",
+                    ":namespace",
+                    ":name",
+                    "builds",
+                    ":build",
+                    "logs",
+                    ":stage",
+                    ":step"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "build",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "stage",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "step",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 9523,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2c9ea681-5f4a-439d-b09b-6a692a919070",
+          "name": "Purge build step logs",
+          "request": {
+            "name": "Purge build step logs",
+            "description": {
+              "content": "Deletes the log lines for the specified build stage step.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "repos",
+                ":namespace",
+                ":name",
+                "builds",
+                ":build",
+                "logs",
+                ":stage",
+                ":step"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "namespace",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "build",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "stage",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "step",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1256106b-5653-4593-8f9f-c5fb8e10e46b",
+              "name": "Logs purged.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "repos",
+                    ":namespace",
+                    ":name",
+                    "builds",
+                    ":build",
+                    "logs",
+                    ":stage",
+                    ":step"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "build",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "stage",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "step",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d676fb5c-a7d4-4322-809a-85715f69e807",
+              "name": "Authentication credentials missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "repos",
+                    ":namespace",
+                    ":name",
+                    "builds",
+                    ":build",
+                    "logs",
+                    ":stage",
+                    ":step"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "build",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "stage",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "step",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 9523,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "66508704-c4b5-4876-b46b-ab52a31be321",
+          "name": "List incomplete builds",
+          "request": {
+            "name": "List incomplete builds",
+            "description": {
+              "content": "Returns a list of repositories with incomplete (running/pending) builds.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "builds",
+                "incomplete"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d1857fd8-6621-47f3-8d8f-05a3b5fd1fab",
+              "name": "List of repositories with incomplete builds.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "builds",
+                    "incomplete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 1704,\n    \"uid\": \"string\",\n    \"user_id\": 3106,\n    \"namespace\": \"string\",\n    \"name\": \"string\",\n    \"slug\": \"string\",\n    \"scm\": \"string\",\n    \"git_http_url\": \"http://ZDWvikpmXrUZSySJHgqokTpnYdX.asugtbdGe,LQjXA+ANYPYDqwCBxhjQPh,XJ9lRcWGckxS0oNYCbx--awR4mwMipCU0ak2gN42YT2qcn\",\n    \"git_ssh_url\": \"string\",\n    \"link\": \"http://nPsTtdtmXzWrqnLyVkA.ascDAkia2yhQ+VeB0k02guizsC\",\n    \"default_branch\": \"string\",\n    \"private\": true,\n    \"visibility\": \"private\",\n    \"active\": true,\n    \"config_path\": \"string\",\n    \"trusted\": false,\n    \"protected\": true,\n    \"ignore_forks\": true,\n    \"ignore_pull_requests\": false,\n    \"auto_cancel_pull_requests\": true,\n    \"auto_cancel_pushes\": true,\n    \"auto_cancel_running\": true,\n    \"throttle\": 2310,\n    \"timeout\": 2471,\n    \"counter\": 2583,\n    \"synced\": 7270,\n    \"created\": 5226,\n    \"updated\": 2846,\n    \"version\": 9706\n  },\n  {\n    \"id\": 4864,\n    \"uid\": \"string\",\n    \"user_id\": 49,\n    \"namespace\": \"string\",\n    \"name\": \"string\",\n    \"slug\": \"string\",\n    \"scm\": \"string\",\n    \"git_http_url\": \"http://FlQ.dpdTf1DUP9IPdIQdcSeAOXdoJlMUY.qG6xmogwxddRkmn-OV-fIaR9o.eT-LsWNM-zdHSUI\",\n    \"git_ssh_url\": \"string\",\n    \"link\": \"http://vcPAklLKbLhiiyOIwVFoQPyIXcr.rudoRNXt2+oNE7OP4bZWBK+KkwM.BrJfnc-.ji2v8CK0llak-eXIS5OcgwyCrMK\",\n    \"default_branch\": \"string\",\n    \"private\": true,\n    \"visibility\": \"internal\",\n    \"active\": false,\n    \"config_path\": \"string\",\n    \"trusted\": true,\n    \"protected\": false,\n    \"ignore_forks\": true,\n    \"ignore_pull_requests\": true,\n    \"auto_cancel_pull_requests\": true,\n    \"auto_cancel_pushes\": true,\n    \"auto_cancel_running\": false,\n    \"throttle\": 4813,\n    \"timeout\": 5231,\n    \"counter\": 4857,\n    \"synced\": 6746,\n    \"created\": 4259,\n    \"updated\": 3468,\n    \"version\": 1044\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3476186d-f4da-4bab-8982-8887f52ea1b1",
+              "name": "Authentication credentials missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "builds",
+                    "incomplete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 9523,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "26c0719e-09ed-4140-89c0-8f45d647c9e2",
+          "name": "List incomplete builds (v2)",
+          "request": {
+            "name": "List incomplete builds (v2)",
+            "description": {
+              "content": "Returns a list of builds, repos and stages that are running or pending.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "builds",
+                "incomplete",
+                "v2"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c5226feb-d17b-4f41-8b2d-aaeb9a3ad534",
+              "name": "List of running/pending build stages with repo and build context.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "builds",
+                    "incomplete",
+                    "v2"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6684585e-1226-4061-9997-e84d06f03ccf",
+              "name": "Authentication credentials missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "builds",
+                    "incomplete",
+                    "v2"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 9523,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://your-drone-server",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "74633c17-b928-4503-bfbc-3522a02a9996",
+    "name": "Drone REST Builds API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Drone REST API provides programmatic access to the Drone CI/CD platform, enabling management of builds, repositories, secrets, cron jobs, templates, and user accounts. Authentication is performed using bearer tokens retrieved from the Drone user interface profile page.\n\nContact Support:\n Name: Drone Support",
+      "type": "text/plain"
+    }
+  }
+}
