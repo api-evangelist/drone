@@ -38,6 +38,16 @@ tags:
   - Containers
   - Docker
   - Build Automation
+  - Open-Source
+  - Self-Hosted
+tags_raw:
+  - CI/CD
+  - Continuous Integration
+  - Continuous Delivery
+  - DevOps
+  - Containers
+  - Docker
+  - Build Automation
   - Open Source
   - Self-Hosted
 apis:
@@ -173,6 +183,8 @@ apis:
   humanURL: https://docs.drone.io/api/overview/
   baseURL: https://your-drone-server/api
   tags:
+  - User
+  tags_raw:
   - Users
   properties:
   - type: OpenAPI
