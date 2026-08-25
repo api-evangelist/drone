@@ -10,13 +10,10 @@
     },
     {
       "source": "https://www.linkedin.com/company/drone-io",
-      "feed_url": "https://www.linkedin.com/company/drone-io",
-      "title": "",
-      "saved": 0,
-      "method": "none"
+      "error": "HTTPError"
     }
   ],
-  "fetched": "2026-08-15T12:22:01Z",
+  "fetched": "2026-08-22T20:20:02Z",
   "post_count": 26,
   "note": "Feed dormant; newest post dated 2020-08-05, all older than prior fetched cutoff (2026-06-14). No new posts."
 }
