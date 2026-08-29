@@ -12,6 +12,18 @@ description: >-
   GitLab, and is available as a free open-source edition (Apache 2 license) or a
   paid enterprise edition for larger organizations.
 type: Index
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: self-serve
