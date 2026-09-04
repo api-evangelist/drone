@@ -1,16 +1,12 @@
 aid: drone
 name: Drone
-description: >-
-  Drone is an open-source, container-native continuous integration and continuous
-  delivery platform that automates software build, testing, and deployment pipelines
-  entirely through Docker containers. Acquired by Harness in 2021, Drone enables
-  development teams to define pipelines as code using simple YAML configuration
-  files committed alongside their source code. The platform provides a comprehensive
-  REST API for managing builds, repositories, secrets, cron jobs, templates, and
-  user accounts in both self-hosted and cloud deployments. Drone supports multiple
-  source control providers including GitHub, GitHub Enterprise, Bitbucket, and
-  GitLab, and is available as a free open-source edition (Apache 2 license) or a
-  paid enterprise edition for larger organizations.
+description: Drone is an open-source, container-native continuous integration and continuous delivery platform that
+  automates software build, testing, and deployment pipelines entirely through Docker containers. Acquired by Harness
+  in 2021, Drone enables development teams to define pipelines as code using simple YAML configuration files committed
+  alongside their source code. The platform provides a comprehensive REST API for managing builds, repositories,
+  secrets, cron jobs, templates, and user accounts in both self-hosted and cloud deployments. Drone supports multiple
+  source control providers including GitHub, GitHub Enterprise, Bitbucket, and GitLab, and is available as a free
+  open-source edition (Apache 2 license) or a paid enterprise edition for larger organizations.
 type: Index
 deliveryModel:
   model: saas
@@ -31,37 +27,38 @@ accessModel:
   try_now: true
   public: false
   label: Freemium (free trial) · Self-serve signup
-  confidence: high
+  confidence: medium
   source:
   - plans
   - authentication
-  generated: '2026-07-22'
+  - security
+  generated: '2026-09-03'
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/drone.png
 url: https://raw.githubusercontent.com/api-evangelist/drone/refs/heads/main/apis.yml
-created: "2026-06-12"
-modified: "2026-06-12"
+created: '2026-06-12'
+modified: '2026-06-12'
 specificationVersion: '0.23'
 tags:
-  - CI/CD
-  - Continuous Integration
-  - Continuous Delivery
-  - DevOps
-  - Containers
-  - Docker
-  - Build Automation
-  - Open-Source
-  - Self-Hosted
+- CI/CD
+- Continuous Integration
+- Continuous Delivery
+- DevOps
+- Containers
+- Docker
+- Build Automation
+- Open-Source
+- Self-Hosted
 tags_raw:
-  - CI/CD
-  - Continuous Integration
-  - Continuous Delivery
-  - DevOps
-  - Containers
-  - Docker
-  - Build Automation
-  - Open Source
-  - Self-Hosted
+- CI/CD
+- Continuous Integration
+- Continuous Delivery
+- DevOps
+- Containers
+- Docker
+- Build Automation
+- Open Source
+- Self-Hosted
 apis:
 - aid: drone:drone-builds-api
   name: Drone Builds API
@@ -205,39 +202,114 @@ apis:
     url: https://docs.drone.io/api/overview/
   - type: Authentication
     url: https://docs.drone.io/api/overview/
-common:
-  - type: AgenticAccess
-    url: agentic-access/drone-agentic-access.yml
-  - type: DomainSecurity
-    url: security/drone-domain-security.yml
-  - type: Authentication
-    url: authentication/drone-authentication.yml
-  - type: Website
-    url: https://www.drone.io/
+- aid: drone:rest
+  name: Drone Server REST API
+  description: Bearer-token authenticated REST API exposed by every Drone server. Endpoints under /api/ for repos,
+    builds, cron, secrets, users, templates, logs and queue status. Default port 8080.
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.drone.io/api/
+  baseURL: http://<drone-server>:8080/api
+  tags:
+  - REST
+  - Builds
+  - Repos
+  - Secrets
+  - Cron
+  - Templates
+  properties:
   - type: Documentation
-    url: https://docs.drone.io/
-  - type: GitHubOrg
-    url: https://github.com/drone
-  - type: LinkedIn
-    url: https://www.linkedin.com/company/drone-io
-  - type: Blog
-    url: https://blog.drone.io
-  - type: Pricing
-    url: https://docs.drone.io/enterprise/
-  - type: X
-    url: https://twitter.com/droneio
-  - type: Plans
-    url: plans/drone-plans-pricing.yml
-  - type: RateLimits
-    url: rate-limits/drone-rate-limits.yml
-  - type: FinOps
-    url: finops/drone-finops.yml
-  - type: BlogRSS
-    url: https://blog.drone.io/index.xml
-  - type: Vocabulary
-    url: vocabulary/drone-vocabulary.yml
-  - type: JSONLDContext
-    url: json-ld/drone-context.jsonld
+    url: https://docs.drone.io/api/
+  - type: APIReference
+    url: https://docs.drone.io/api/overview
+  - type: SDKGo
+    url: https://github.com/drone/go-scm
+  - type: SDKNode
+    url: https://github.com/drone/drone-node
+- aid: drone:drone-ci-builds-api
+  name: Drone Builds API
+  description: The Builds API from Drone — 9 operation(s) for builds.
+  humanURL: https://docs.drone.io/api/
+  baseURL: http://<drone-server>:8080/api
+  tags:
+  - Builds
+  properties:
+  - type: OpenAPI
+    url: openapi/drone-ci-builds-api-openapi.yml
+- aid: drone:drone-ci-cron-api
+  name: Drone Cron API
+  description: The Cron API from Drone — 1 operation(s) for cron.
+  humanURL: https://docs.drone.io/api/
+  baseURL: http://<drone-server>:8080/api
+  tags:
+  - Cron
+  properties:
+  - type: OpenAPI
+    url: openapi/drone-ci-cron-api-openapi.yml
+- aid: drone:drone-ci-secrets-api
+  name: Drone Secrets API
+  description: The Secrets API from Drone — 1 operation(s) for secrets.
+  humanURL: https://docs.drone.io/api/
+  baseURL: http://<drone-server>:8080/api
+  tags:
+  - Secrets
+  properties:
+  - type: OpenAPI
+    url: openapi/drone-ci-secrets-api-openapi.yml
+- aid: drone:drone-ci-templates-api
+  name: Drone Templates API
+  description: The Templates API from Drone — 1 operation(s) for templates.
+  humanURL: https://docs.drone.io/api/
+  baseURL: http://<drone-server>:8080/api
+  tags:
+  - Templates
+  properties:
+  - type: OpenAPI
+    url: openapi/drone-ci-templates-api-openapi.yml
+- aid: drone:drone-ci-user-api
+  name: Drone User API
+  description: The User API from Drone — 1 operation(s) for user.
+  humanURL: https://docs.drone.io/api/
+  baseURL: http://<drone-server>:8080/api
+  tags:
+  - User
+  properties:
+  - type: OpenAPI
+    url: openapi/drone-ci-user-api-openapi.yml
+common:
+- type: AgenticAccess
+  url: agentic-access/drone-agentic-access.yml
+- type: DomainSecurity
+  url: security/drone-domain-security.yml
+- type: Authentication
+  url: authentication/drone-authentication.yml
+- type: Website
+  url: https://www.drone.io/
+- type: Documentation
+  url: https://docs.drone.io/
+- type: GitHubOrg
+  url: https://github.com/drone
+- type: LinkedIn
+  url: https://www.linkedin.com/company/drone-io
+- type: Blog
+  url: https://blog.drone.io
+- type: Pricing
+  url: https://docs.drone.io/enterprise/
+- type: X
+  url: https://twitter.com/droneio
+- type: Plans
+  url: plans/drone-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/drone-rate-limits.yml
+- type: FinOps
+  url: finops/drone-finops.yml
+- type: BlogRSS
+  url: https://blog.drone.io/index.xml
+- type: Vocabulary
+  url: vocabulary/drone-vocabulary.yml
+- type: JSONLDContext
+  url: json-ld/drone-context.jsonld
+- type: Blog
+  url: https://www.harness.io/blog/rss.xml
 maintainers:
-  - FN: Kin Lane
-    email: kin@apievangelist.com
+- FN: Kin Lane
+  email: kin@apievangelist.com
