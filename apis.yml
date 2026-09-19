@@ -94,6 +94,8 @@ apis:
   humanURL: https://docs.drone.io/api/overview/
   baseURL: https://your-drone-server/api
   tags:
+  - Node
+  tags_raw:
   - Nodes
   properties:
   - type: OpenAPI
@@ -108,6 +110,8 @@ apis:
   humanURL: https://docs.drone.io/api/overview/
   baseURL: https://your-drone-server/api
   tags:
+  - Queues
+  tags_raw:
   - Queue
   properties:
   - type: OpenAPI
