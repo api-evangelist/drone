@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Drone REST Builds API
   description: The Drone REST API provides programmatic access to the Drone CI/CD platform, enabling management of builds, repositories, secrets, cron jobs, templates, and user accounts. Authentication is performed using bearer tokens retrieved from the Drone user interface profile page.
@@ -413,6 +413,20 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
+    Line:
+      type: object
+      description: Represents a single line of container/step log output.
+      properties:
+        pos:
+          type: integer
+          description: Line number.
+        out:
+          type: string
+          description: Log message.
+        time:
+          type: integer
+          format: int64
+          description: Unix timestamp of the log line.
     Step:
       type: object
       description: Represents an individual step within a stage.
@@ -462,28 +476,165 @@ components:
           type: boolean
         schema:
           type: string
-    Error:
+    Repo:
       type: object
-      description: API error response.
+      description: Represents a repository registered with Drone.
       properties:
-        code:
-          type: integer
-        message:
-          type: string
-    Line:
-      type: object
-      description: Represents a single line of container/step log output.
-      properties:
-        pos:
-          type: integer
-          description: Line number.
-        out:
-          type: string
-          description: Log message.
-        time:
+        id:
           type: integer
           format: int64
-          description: Unix timestamp of the log line.
+        uid:
+          type: string
+        user_id:
+          type: integer
+          format: int64
+        namespace:
+          type: string
+        name:
+          type: string
+        slug:
+          type: string
+        scm:
+          type: string
+        git_http_url:
+          type: string
+          format: uri
+        git_ssh_url:
+          type: string
+        link:
+          type: string
+          format: uri
+        default_branch:
+          type: string
+        private:
+          type: boolean
+        visibility:
+          type: string
+          enum:
+          - public
+          - private
+          - internal
+        active:
+          type: boolean
+        config_path:
+          type: string
+        trusted:
+          type: boolean
+        protected:
+          type: boolean
+        ignore_forks:
+          type: boolean
+        ignore_pull_requests:
+          type: boolean
+        auto_cancel_pull_requests:
+          type: boolean
+        auto_cancel_pushes:
+          type: boolean
+        auto_cancel_running:
+          type: boolean
+        throttle:
+          type: integer
+          format: int64
+        timeout:
+          type: integer
+          format: int64
+        counter:
+          type: integer
+          format: int64
+        synced:
+          type: integer
+          format: int64
+        created:
+          type: integer
+          format: int64
+        updated:
+          type: integer
+          format: int64
+        version:
+          type: integer
+          format: int64
+    Stage:
+      type: object
+      description: Represents a stage of build execution.
+      properties:
+        id:
+          type: integer
+          format: int64
+        build_id:
+          type: integer
+          format: int64
+        number:
+          type: integer
+        name:
+          type: string
+        kind:
+          type: string
+        type:
+          type: string
+        status:
+          type: string
+          enum:
+          - pending
+          - running
+          - passing
+          - failing
+          - killed
+          - error
+          - skipped
+          - blocked
+          - declined
+          - waiting_on_dependencies
+        error:
+          type: string
+        errignore:
+          type: boolean
+        exit_code:
+          type: integer
+        machine:
+          type: string
+        os:
+          type: string
+        arch:
+          type: string
+        variant:
+          type: string
+        kernel:
+          type: string
+        limit:
+          type: integer
+        throttle:
+          type: integer
+        started:
+          type: integer
+          format: int64
+        stopped:
+          type: integer
+          format: int64
+        created:
+          type: integer
+          format: int64
+        updated:
+          type: integer
+          format: int64
+        version:
+          type: integer
+          format: int64
+        on_success:
+          type: boolean
+        on_failure:
+          type: boolean
+        depends_on:
+          type: array
+          items:
+            type: string
+        labels:
+          type: object
+          additionalProperties:
+            type: string
+        steps:
+          type: array
+          items:
+            $ref: '#/components/schemas/Step'
     Build:
       type: object
       description: Represents a Drone build execution.
@@ -595,174 +746,23 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Stage'
-    Stage:
+    Error:
       type: object
-      description: Represents a stage of build execution.
+      description: API error response.
       properties:
-        id:
+        code:
           type: integer
-          format: int64
-        build_id:
-          type: integer
-          format: int64
-        number:
-          type: integer
-        name:
+        message:
           type: string
-        kind:
-          type: string
-        type:
-          type: string
-        status:
-          type: string
-          enum:
-          - pending
-          - running
-          - passing
-          - failing
-          - killed
-          - error
-          - skipped
-          - blocked
-          - declined
-          - waiting_on_dependencies
-        error:
-          type: string
-        errignore:
-          type: boolean
-        exit_code:
-          type: integer
-        machine:
-          type: string
-        os:
-          type: string
-        arch:
-          type: string
-        variant:
-          type: string
-        kernel:
-          type: string
-        limit:
-          type: integer
-        throttle:
-          type: integer
-        started:
-          type: integer
-          format: int64
-        stopped:
-          type: integer
-          format: int64
-        created:
-          type: integer
-          format: int64
-        updated:
-          type: integer
-          format: int64
-        version:
-          type: integer
-          format: int64
-        on_success:
-          type: boolean
-        on_failure:
-          type: boolean
-        depends_on:
-          type: array
-          items:
-            type: string
-        labels:
-          type: object
-          additionalProperties:
-            type: string
-        steps:
-          type: array
-          items:
-            $ref: '#/components/schemas/Step'
-    Repo:
-      type: object
-      description: Represents a repository registered with Drone.
-      properties:
-        id:
-          type: integer
-          format: int64
-        uid:
-          type: string
-        user_id:
-          type: integer
-          format: int64
-        namespace:
-          type: string
-        name:
-          type: string
-        slug:
-          type: string
-        scm:
-          type: string
-        git_http_url:
-          type: string
-          format: uri
-        git_ssh_url:
-          type: string
-        link:
-          type: string
-          format: uri
-        default_branch:
-          type: string
-        private:
-          type: boolean
-        visibility:
-          type: string
-          enum:
-          - public
-          - private
-          - internal
-        active:
-          type: boolean
-        config_path:
-          type: string
-        trusted:
-          type: boolean
-        protected:
-          type: boolean
-        ignore_forks:
-          type: boolean
-        ignore_pull_requests:
-          type: boolean
-        auto_cancel_pull_requests:
-          type: boolean
-        auto_cancel_pushes:
-          type: boolean
-        auto_cancel_running:
-          type: boolean
-        throttle:
-          type: integer
-          format: int64
-        timeout:
-          type: integer
-          format: int64
-        counter:
-          type: integer
-          format: int64
-        synced:
-          type: integer
-          format: int64
-        created:
-          type: integer
-          format: int64
-        updated:
-          type: integer
-          format: int64
-        version:
-          type: integer
-          format: int64
   responses:
-    Unauthorized:
-      description: Authentication credentials missing or invalid.
+    NotFound:
+      description: Resource not found.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    NotFound:
-      description: Resource not found.
+    Unauthorized:
+      description: Authentication credentials missing or invalid.
       content:
         application/json:
           schema:

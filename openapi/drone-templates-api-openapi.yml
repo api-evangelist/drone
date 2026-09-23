@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Drone REST Builds Templates API
+  title: Drone REST Templates API
   description: The Drone REST API provides programmatic access to the Drone CI/CD platform, enabling management of builds, repositories, secrets, cron jobs, templates, and user accounts. Authentication is performed using bearer tokens retrieved from the Drone user interface profile page.
   version: 1.0.0
   contact:
@@ -145,7 +145,28 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
+  responses:
+    Unauthorized:
+      description: Authentication credentials missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
+    Error:
+      type: object
+      description: API error response.
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
     Template:
       type: object
       description: Represents a pipeline template stored in Drone.
@@ -155,27 +176,6 @@ components:
         data:
           type: string
           description: Template content (YAML/Jsonnet).
-    Error:
-      type: object
-      description: API error response.
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-  responses:
-    NotFound:
-      description: Resource not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication credentials missing or invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   securitySchemes:
     BearerAuth:
       type: http

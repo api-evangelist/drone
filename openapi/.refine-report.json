@@ -1,16 +1,7 @@
 {
   "provider": "drone",
   "sources": [
-    "drone-builds-api-openapi.yml",
-    "drone-cron-api-openapi.yml",
-    "drone-nodes-api-openapi.yml",
-    "drone-queue-api-openapi.yml",
-    "drone-repos-api-openapi.yml",
-    "drone-secrets-api-openapi.yml",
-    "drone-system-api-openapi.yml",
-    "drone-templates-api-openapi.yml",
-    "drone-user-api-openapi.yml",
-    "drone-users-api-openapi.yml"
+    "_original/drone-api-openapi.yml"
   ],
   "outputs": [
     "drone-builds-api-openapi.yml",
@@ -27,6 +18,21 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "drone-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "drone-builds-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "drone-cron-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "drone-nodes-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "drone-queue-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "drone-repos-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "drone-secrets-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "drone-system-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "drone-templates-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "drone-user-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "drone-users-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

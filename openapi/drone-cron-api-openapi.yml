@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Drone REST Builds Cron API
+  title: Drone REST Cron API
   description: The Drone REST API provides programmatic access to the Drone CI/CD platform, enabling management of builds, repositories, secrets, cron jobs, templates, and user accounts. Authentication is performed using bearer tokens retrieved from the Drone user interface profile page.
   version: 1.0.0
   contact:
@@ -147,15 +147,20 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
+  responses:
+    NotFound:
+      description: Resource not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication credentials missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
-    Error:
-      type: object
-      description: API error response.
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
     CronPatch:
       type: object
       description: Patch request for a cron job.
@@ -208,19 +213,14 @@ components:
         updated:
           type: integer
           format: int64
-  responses:
-    Unauthorized:
-      description: Authentication credentials missing or invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: Resource not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+    Error:
+      type: object
+      description: API error response.
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
   securitySchemes:
     BearerAuth:
       type: http
