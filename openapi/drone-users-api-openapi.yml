@@ -126,6 +126,19 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
+  responses:
+    Unauthorized:
+      description: Authentication credentials missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
     UserPatch:
       type: object
@@ -138,6 +151,14 @@ components:
         machine:
           type: boolean
         token:
+          type: string
+    Error:
+      type: object
+      description: API error response.
+      properties:
+        code:
+          type: integer
+        message:
           type: string
     User:
       type: object
@@ -176,27 +197,6 @@ components:
           format: int64
         token:
           type: string
-    Error:
-      type: object
-      description: API error response.
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-  responses:
-    NotFound:
-      description: Resource not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication credentials missing or invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   securitySchemes:
     BearerAuth:
       type: http

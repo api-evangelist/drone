@@ -169,6 +169,14 @@ components:
         updated:
           type: integer
           format: int64
+    Error:
+      type: object
+      description: API error response.
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
     NodePatch:
       type: object
       description: Patch request for a node.
@@ -203,23 +211,15 @@ components:
           type: boolean
         protected:
           type: boolean
-    Error:
-      type: object
-      description: API error response.
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
   responses:
-    NotFound:
-      description: Resource not found.
+    Unauthorized:
+      description: Authentication credentials missing or invalid.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication credentials missing or invalid.
+    NotFound:
+      description: Resource not found.
       content:
         application/json:
           schema:

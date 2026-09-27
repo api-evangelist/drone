@@ -70,6 +70,13 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
+  responses:
+    Unauthorized:
+      description: Authentication credentials missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
     Repo:
       type: object
@@ -148,14 +155,6 @@ components:
         version:
           type: integer
           format: int64
-    Error:
-      type: object
-      description: API error response.
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
     User:
       type: object
       description: Represents a Drone user account.
@@ -193,13 +192,14 @@ components:
           format: int64
         token:
           type: string
-  responses:
-    Unauthorized:
-      description: Authentication credentials missing or invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+    Error:
+      type: object
+      description: API error response.
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
   securitySchemes:
     BearerAuth:
       type: http
