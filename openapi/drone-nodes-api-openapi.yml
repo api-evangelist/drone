@@ -115,7 +115,62 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
+  responses:
+    NotFound:
+      description: Resource not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication credentials missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
+    NodePatch:
+      type: object
+      description: Patch request for a node.
+      properties:
+        uid:
+          type: string
+        provider:
+          type: string
+        state:
+          type: string
+        image:
+          type: string
+        region:
+          type: string
+        size:
+          type: string
+        address:
+          type: string
+        capacity:
+          type: integer
+        filters:
+          type: array
+          items:
+            type: string
+        labels:
+          type: object
+          additionalProperties:
+            type: string
+        error:
+          type: string
+        paused:
+          type: boolean
+        protected:
+          type: boolean
+    Error:
+      type: object
+      description: API error response.
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
     Node:
       type: object
       description: Represents a runner/agent node registered with Drone.
@@ -169,61 +224,6 @@ components:
         updated:
           type: integer
           format: int64
-    Error:
-      type: object
-      description: API error response.
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-    NodePatch:
-      type: object
-      description: Patch request for a node.
-      properties:
-        uid:
-          type: string
-        provider:
-          type: string
-        state:
-          type: string
-        image:
-          type: string
-        region:
-          type: string
-        size:
-          type: string
-        address:
-          type: string
-        capacity:
-          type: integer
-        filters:
-          type: array
-          items:
-            type: string
-        labels:
-          type: object
-          additionalProperties:
-            type: string
-        error:
-          type: string
-        paused:
-          type: boolean
-        protected:
-          type: boolean
-  responses:
-    Unauthorized:
-      description: Authentication credentials missing or invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: Resource not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   securitySchemes:
     BearerAuth:
       type: http

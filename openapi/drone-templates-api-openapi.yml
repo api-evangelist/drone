@@ -145,6 +145,24 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
+  schemas:
+    Template:
+      type: object
+      description: Represents a pipeline template stored in Drone.
+      properties:
+        name:
+          type: string
+        data:
+          type: string
+          description: Template content (YAML/Jsonnet).
+    Error:
+      type: object
+      description: API error response.
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
   responses:
     NotFound:
       description: Resource not found.
@@ -158,24 +176,6 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-  schemas:
-    Error:
-      type: object
-      description: API error response.
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-    Template:
-      type: object
-      description: Represents a pipeline template stored in Drone.
-      properties:
-        name:
-          type: string
-        data:
-          type: string
-          description: Template content (YAML/Jsonnet).
   securitySchemes:
     BearerAuth:
       type: http

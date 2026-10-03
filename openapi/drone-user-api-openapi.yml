@@ -70,14 +70,44 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  responses:
-    Unauthorized:
-      description: Authentication credentials missing or invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
+    User:
+      type: object
+      description: Represents a Drone user account.
+      properties:
+        id:
+          type: integer
+          format: int64
+        login:
+          type: string
+        email:
+          type: string
+          format: email
+        avatar_url:
+          type: string
+          format: uri
+        active:
+          type: boolean
+        admin:
+          type: boolean
+        machine:
+          type: boolean
+        syncing:
+          type: boolean
+        synced:
+          type: integer
+          format: int64
+        created:
+          type: integer
+          format: int64
+        updated:
+          type: integer
+          format: int64
+        last_login:
+          type: integer
+          format: int64
+        token:
+          type: string
     Repo:
       type: object
       description: Represents a repository registered with Drone.
@@ -155,43 +185,6 @@ components:
         version:
           type: integer
           format: int64
-    User:
-      type: object
-      description: Represents a Drone user account.
-      properties:
-        id:
-          type: integer
-          format: int64
-        login:
-          type: string
-        email:
-          type: string
-          format: email
-        avatar_url:
-          type: string
-          format: uri
-        active:
-          type: boolean
-        admin:
-          type: boolean
-        machine:
-          type: boolean
-        syncing:
-          type: boolean
-        synced:
-          type: integer
-          format: int64
-        created:
-          type: integer
-          format: int64
-        updated:
-          type: integer
-          format: int64
-        last_login:
-          type: integer
-          format: int64
-        token:
-          type: string
     Error:
       type: object
       description: API error response.
@@ -200,6 +193,13 @@ components:
           type: integer
         message:
           type: string
+  responses:
+    Unauthorized:
+      description: Authentication credentials missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     BearerAuth:
       type: http
