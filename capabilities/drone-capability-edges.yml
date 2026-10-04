@@ -1,0 +1,37 @@
+slug: drone
+provider: Drone
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 2
+edges:
+- tag: Secrets
+  spec_file: drone-secrets-api-openapi.yml
+  capability_id: BC-4210.60
+  capability_id_l1: BC-4210
+  capability_name: Configuration & Secrets Management
+  confidence: 0.9
+  evidence: 'POST /api/repos/{namespace}/{name}/secrets createRepoSecret "Create a repository secret";
+    schemas: Secret'
+  reason: Lifecycle of pipeline secrets at repository, namespace and organisation scope is exactly configuration
+    and secrets management for the delivery platform.
+- tag: Builds
+  spec_file: drone-builds-api-openapi.yml
+  capability_id: BC-4210.10
+  capability_id_l1: BC-4210
+  capability_name: Continuous Integration Management
+  confidence: 0.88
+  evidence: POST /api/repos/{namespace}/{name}/builds createBuild "Create a build"; "restartBuild"; "getBuildLogs
+    Get build step logs"
+  reason: Operations create, restart, cancel, approve and inspect CI builds and their stages/steps on
+    a container-native CI/CD platform — this is build pipeline execution, i.e. continuous integration
+    management. Promote/rollback hints at deployment orchestration, so the L1 is the safe anchor with
+    CI as the best-fit L2.

@@ -232,6 +232,9 @@ apis:
   - type: SDKNode
     url: https://github.com/drone/drone-node
 common:
+- type: CapabilityMap
+  url: capabilities/drone-capability-edges.yml
+  name: Drone Business Capability Map
 - type: AgenticAccess
   url: agentic-access/drone-agentic-access.yml
 - type: DomainSecurity
