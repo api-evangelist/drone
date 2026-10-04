@@ -412,20 +412,29 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  responses:
-    NotFound:
-      description: Resource not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication credentials missing or invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
+    Error:
+      type: object
+      description: API error response.
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+    Line:
+      type: object
+      description: Represents a single line of container/step log output.
+      properties:
+        pos:
+          type: integer
+          description: Line number.
+        out:
+          type: string
+          description: Log message.
+        time:
+          type: integer
+          format: int64
+          description: Unix timestamp of the log line.
     Repo:
       type: object
       description: Represents a repository registered with Drone.
@@ -503,13 +512,54 @@ components:
         version:
           type: integer
           format: int64
-    Error:
+    Step:
       type: object
-      description: API error response.
+      description: Represents an individual step within a stage.
       properties:
-        code:
+        id:
           type: integer
-        message:
+          format: int64
+        step_id:
+          type: integer
+          format: int64
+        number:
+          type: integer
+        name:
+          type: string
+        status:
+          type: string
+          enum:
+          - pending
+          - running
+          - passing
+          - failing
+          - killed
+          - error
+          - skipped
+        error:
+          type: string
+        errignore:
+          type: boolean
+        exit_code:
+          type: integer
+        started:
+          type: integer
+          format: int64
+        stopped:
+          type: integer
+          format: int64
+        version:
+          type: integer
+          format: int64
+        depends_on:
+          type: array
+          items:
+            type: string
+        image:
+          type: string
+        detached:
+          type: boolean
+        schema:
           type: string
     Stage:
       type: object
@@ -593,69 +643,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Step'
-    Step:
-      type: object
-      description: Represents an individual step within a stage.
-      properties:
-        id:
-          type: integer
-          format: int64
-        step_id:
-          type: integer
-          format: int64
-        number:
-          type: integer
-        name:
-          type: string
-        status:
-          type: string
-          enum:
-          - pending
-          - running
-          - passing
-          - failing
-          - killed
-          - error
-          - skipped
-        error:
-          type: string
-        errignore:
-          type: boolean
-        exit_code:
-          type: integer
-        started:
-          type: integer
-          format: int64
-        stopped:
-          type: integer
-          format: int64
-        version:
-          type: integer
-          format: int64
-        depends_on:
-          type: array
-          items:
-            type: string
-        image:
-          type: string
-        detached:
-          type: boolean
-        schema:
-          type: string
-    Line:
-      type: object
-      description: Represents a single line of container/step log output.
-      properties:
-        pos:
-          type: integer
-          description: Line number.
-        out:
-          type: string
-          description: Log message.
-        time:
-          type: integer
-          format: int64
-          description: Unix timestamp of the log line.
     Build:
       type: object
       description: Represents a Drone build execution.
@@ -767,6 +754,19 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Stage'
+  responses:
+    Unauthorized:
+      description: Authentication credentials missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     BearerAuth:
       type: http
