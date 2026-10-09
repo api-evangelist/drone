@@ -1,3 +1,7 @@
+# Provenance stamped 2026-10-07 (roadmap#943): written by an API Evangelist sweep (undated — the file carries no date and git cannot supply one), not
+# harvested from the provider. `method: generated` so the economics campaign may replace it with a
+# dated, verbatim transcription; every figure below is unverified until it does.
+method: generated
 name: Drone Plans and Pricing
 description: >-
   Drone CI/CD platform pricing is structured around two main editions — a free
@@ -86,3 +90,29 @@ plans:
       - Autoscaling
       - Extensions support
       - Commercial license
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - free
+  - subscription
+  units: []
+  plans:
+  - name: Open Source Edition
+    access: other
+    model: free
+    model_how: derived
+    units: []
+    periods: []
+  - name: Enterprise Edition (Free Tier)
+    access: other
+    model: free
+    model_how: derived
+    units: []
+    periods: []
+  - name: Enterprise Edition (Paid)
+    access: other
+    model: subscription
+    model_how: derived
+    units: []
+    periods: []
