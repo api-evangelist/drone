@@ -127,6 +127,18 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
+    UserPatch:
+      type: object
+      description: Patch request for a user account.
+      properties:
+        active:
+          type: boolean
+        admin:
+          type: boolean
+        machine:
+          type: boolean
+        token:
+          type: string
     Error:
       type: object
       description: API error response.
@@ -172,27 +184,15 @@ components:
           format: int64
         token:
           type: string
-    UserPatch:
-      type: object
-      description: Patch request for a user account.
-      properties:
-        active:
-          type: boolean
-        admin:
-          type: boolean
-        machine:
-          type: boolean
-        token:
-          type: string
   responses:
-    Unauthorized:
-      description: Authentication credentials missing or invalid.
+    NotFound:
+      description: Resource not found.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    NotFound:
-      description: Resource not found.
+    Unauthorized:
+      description: Authentication credentials missing or invalid.
       content:
         application/json:
           schema:

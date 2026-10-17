@@ -148,6 +148,18 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
+    CronPatch:
+      type: object
+      description: Patch request for a cron job.
+      properties:
+        event:
+          type: string
+        branch:
+          type: string
+        target:
+          type: string
+        disabled:
+          type: boolean
     Error:
       type: object
       description: API error response.
@@ -196,27 +208,15 @@ components:
         updated:
           type: integer
           format: int64
-    CronPatch:
-      type: object
-      description: Patch request for a cron job.
-      properties:
-        event:
-          type: string
-        branch:
-          type: string
-        target:
-          type: string
-        disabled:
-          type: boolean
   responses:
-    Unauthorized:
-      description: Authentication credentials missing or invalid.
+    NotFound:
+      description: Resource not found.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    NotFound:
-      description: Resource not found.
+    Unauthorized:
+      description: Authentication credentials missing or invalid.
       content:
         application/json:
           schema:

@@ -183,6 +183,41 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
+    RepoPatch:
+      type: object
+      description: Patch request for a repository.
+      properties:
+        config_path:
+          type: string
+        protected:
+          type: boolean
+        trusted:
+          type: boolean
+        throttle:
+          type: integer
+          format: int64
+        timeout:
+          type: integer
+          format: int64
+        visibility:
+          type: string
+          enum:
+          - public
+          - private
+          - internal
+        ignore_forks:
+          type: boolean
+        ignore_pull_requests:
+          type: boolean
+        auto_cancel_pull_requests:
+          type: boolean
+        auto_cancel_pushes:
+          type: boolean
+        auto_cancel_running:
+          type: boolean
+        counter:
+          type: integer
+          format: int64
     Error:
       type: object
       description: API error response.
@@ -268,50 +303,15 @@ components:
         version:
           type: integer
           format: int64
-    RepoPatch:
-      type: object
-      description: Patch request for a repository.
-      properties:
-        config_path:
-          type: string
-        protected:
-          type: boolean
-        trusted:
-          type: boolean
-        throttle:
-          type: integer
-          format: int64
-        timeout:
-          type: integer
-          format: int64
-        visibility:
-          type: string
-          enum:
-          - public
-          - private
-          - internal
-        ignore_forks:
-          type: boolean
-        ignore_pull_requests:
-          type: boolean
-        auto_cancel_pull_requests:
-          type: boolean
-        auto_cancel_pushes:
-          type: boolean
-        auto_cancel_running:
-          type: boolean
-        counter:
-          type: integer
-          format: int64
   responses:
-    Unauthorized:
-      description: Authentication credentials missing or invalid.
+    NotFound:
+      description: Resource not found.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    NotFound:
-      description: Resource not found.
+    Unauthorized:
+      description: Authentication credentials missing or invalid.
       content:
         application/json:
           schema:

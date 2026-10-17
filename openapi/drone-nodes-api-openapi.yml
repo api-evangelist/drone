@@ -116,14 +116,6 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
-    Error:
-      type: object
-      description: API error response.
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
     Node:
       type: object
       description: Represents a runner/agent node registered with Drone.
@@ -177,6 +169,14 @@ components:
         updated:
           type: integer
           format: int64
+    Error:
+      type: object
+      description: API error response.
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
     NodePatch:
       type: object
       description: Patch request for a node.
