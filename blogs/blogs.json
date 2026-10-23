@@ -19,7 +19,7 @@
       "source": "https://www.harness.io/blog/rss.xml",
       "feed_url": "https://www.harness.io/blog/rss.xml",
       "title": "",
-      "saved": 6,
+      "saved": 0,
       "method": "feed"
     },
     {
@@ -30,8 +30,8 @@
       "method": "none"
     }
   ],
-  "fetched": "2026-10-10T13:15:00Z",
-  "post_count": 32,
+  "fetched": "2026-10-17T14:53:57Z",
+  "post_count": 76,
   "note": "Feed dormant; newest post dated 2020-08-05, all older than prior fetched cutoff (2026-06-14). No new posts.",
   "feed_nature": "vendor-blog",
   "feed_nature_basis": "blog_subdomain",
