@@ -1,4 +1,4 @@
-# Drone (drone)
+# Drone
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,78 +66,168 @@
 
 Drone is an open-source, container-native continuous integration and continuous delivery platform that automates software build, testing, and deployment pipelines entirely through Docker containers. Acquired by Harness in 2021, Drone enables development teams to define pipelines as code using simple YAML configuration files committed alongside their source code. The platform provides a comprehensive REST API for managing builds, repositories, secrets, cron jobs, templates, and user accounts in both self-hosted and cloud deployments. Drone supports multiple source control providers including GitHub, GitHub Enterprise, Bitbucket, and GitLab, and is available as a free open-source edition (Apache 2 license) or a paid enterprise edition for larger organizations.
 
-**APIs.json:** https://raw.githubusercontent.com/api-evangelist/drone/refs/heads/main/apis.yml
+**Areas:** CI/CD · Continuous Integration · Continuous Delivery · DevOps · Containers · Docker · Build Automation · Open Source · Self-Hosted
 
-**Naftiko:** https://github.com/naftiko/fleet?utm_source=api-evangelist&utm_medium=readme&utm_campaign=drone-api-evangelist&utm_content=repo
+## Drone on APIs.io
 
-## Tags
+Everything profiled for Drone is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/drone/](https://apis.io/providers/drone/)** — or go straight to one of the APIs or properties below.
 
-- CI/CD
-- Continuous Integration
-- Continuous Delivery
-- DevOps
-- Containers
-- Docker
-- Build Automation
-- Open Source
-- Self-Hosted
+### APIs (11)
 
-## APIs
+- [Drone Builds API](https://apis.io/apis/drone/drone-builds-api/) — Build creation, management, and log access.
+- [Drone Cron API](https://apis.io/apis/drone/drone-cron-api/) — Cron job scheduling for automated builds.
+- [Drone Nodes API](https://apis.io/apis/drone/drone-nodes-api/) — Runner node management.
+- [Drone Queue API](https://apis.io/apis/drone/drone-queue-api/) — Build queue management.
+- [Drone Repos API](https://apis.io/apis/drone/drone-repos-api/) — Repository activation and management.
+- [Drone Secrets API](https://apis.io/apis/drone/drone-secrets-api/) — Secret variable management for repos and organizations.
+- [Drone System API](https://apis.io/apis/drone/drone-system-api/) — System information.
+- [Drone Templates API](https://apis.io/apis/drone/drone-templates-api/) — Reusable pipeline template management.
+- [Drone User API](https://apis.io/apis/drone/drone-user-api/) — Current authenticated user operations.
+- [Drone Users API](https://apis.io/apis/drone/drone-users-api/) — User account management (admin).
+- [Drone Server REST API](https://apis.io/apis/drone/rest/) — Bearer-token authenticated REST API exposed by every Drone server. Endpoints under /api/ for repos, builds, cron, secrets, users, templates, logs and queue…
 
-### Drone REST API
+### Published properties
 
-The Drone REST API provides programmatic access to the Drone CI/CD platform, enabling management of builds, repositories, secrets, cron jobs, templates, and user accounts. Authentication is performed using bearer tokens retrieved from the Drone user interface profile page. The API supports operations across seven resource categories: builds, cron jobs, repositories, secrets, templates, individual user profile, and administrative user management.
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-- **Documentation:** https://docs.drone.io/api/overview/
-- **Base URL:** https://your-drone-server/api
+#### Agentic access (1)
 
-**API Resources:**
+Which operations an agent can call, which act, and which need a human in the loop.
 
-| Resource | Operations |
-|----------|-----------|
-| Builds | approve, create, decline, list, logs, promote, restart, stop |
-| Cron | create, delete, get, list, trigger, update |
-| Repos | change owner, enable, disable, get, list, repair, update |
-| Secrets | create, delete, get, list, update |
-| Templates | create, delete, get, list, update |
-| User | get feed, get info, get repos, sync |
-| Users (admin) | create, delete, get, list, update |
+- [Drone Agentic Access](https://apis.io/agentic-access/drone/drone-agentic-access/)
 
-## Plans, Rate Limits, and FinOps
+#### JSON Schema (3)
 
-| Resource | File |
-|----------|------|
-| Plans and Pricing | [plans/drone-plans-pricing.yml](plans/drone-plans-pricing.yml) |
-| Rate Limits | [rate-limits/drone-rate-limits.yml](rate-limits/drone-rate-limits.yml) |
-| FinOps | [finops/drone-finops.yml](finops/drone-finops.yml) |
+The data models the API reads and writes.
 
-**Pricing Summary:**
+- [Build](https://apis.io/schemas/drone/drone-build/)
+- [Repository](https://apis.io/schemas/drone/drone-repo/)
+- [Secret](https://apis.io/schemas/drone/drone-secret/)
 
-| Plan | Price | Notes |
-|------|-------|-------|
-| Open Source Edition | Free | Apache 2 license, self-hosted, single machine |
-| Enterprise Edition (Free Tier) | Free | For orgs under $1M annual revenue |
-| Enterprise Edition (Paid) | From $299/month | For orgs over $1M annual revenue |
+#### JSON-LD (1)
 
-## Timestamps
+Linked-data contexts for the provider's vocabulary.
 
-- **Created:** 2026-06-12
-- **Modified:** 2026-06-12
+- [Drone Context](https://apis.io/jsonld/drone/drone-context/)
 
-## Common
+#### Vocabulary (1)
 
-| Type | URL |
-|------|-----|
-| Website | https://www.drone.io/ |
-| Documentation | https://docs.drone.io/ |
-| GitHub Org | https://github.com/drone |
-| LinkedIn | https://www.linkedin.com/company/drone-io |
-| Blog | https://blog.drone.io |
-| Pricing | https://docs.drone.io/enterprise/ |
-| X (Twitter) | https://twitter.com/droneio |
+The provider's domain terms, defined.
 
-## Maintainers
+- [Drone CI/CD Vocabulary](https://apis.io/vocabularies/drone/drone-vocabulary/)
 
-| Name | Email |
-|------|-------|
-| Kin Lane | kin@apievangelist.com |
+#### Examples (3)
+
+Example requests and responses.
+
+- [Drone Build Example](https://apis.io/examples/drone/drone-build-example/)
+- [Drone Repo Example](https://apis.io/examples/drone/drone-repo-example/)
+- [Drone Secret Example](https://apis.io/examples/drone/drone-secret-example/)
+
+#### Collections (10)
+
+Postman and Open Collection request collections.
+
+- [Drone REST Builds API](https://apis.io/collections/drone/open-drone-builds-api/)
+- [Drone REST Builds Cron API](https://apis.io/collections/drone/open-drone-cron-api/)
+- [Drone REST Builds Nodes API](https://apis.io/collections/drone/open-drone-nodes-api/)
+- [Drone REST Builds Queue API](https://apis.io/collections/drone/open-drone-queue-api/)
+- [Drone REST Builds Repos API](https://apis.io/collections/drone/open-drone-repos-api/)
+- [Drone REST Builds Secrets API](https://apis.io/collections/drone/open-drone-secrets-api/)
+- [Drone REST Builds System API](https://apis.io/collections/drone/open-drone-system-api/)
+- [Drone REST Builds Templates API](https://apis.io/collections/drone/open-drone-templates-api/)
+- [Drone REST Builds User API](https://apis.io/collections/drone/open-drone-user-api/)
+- [Drone REST Builds Users API](https://apis.io/collections/drone/open-drone-users-api/)
+
+#### Governance rules (1)
+
+Spectral rulesets for the provider's contracts.
+
+- [Drone — jsonschema rules](https://apis.io/rules/drone/drone-jsonschema-spectral-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Drone Authentication](https://apis.io/security/drone/drone-authentication/)
+- [Drone Domain Security](https://apis.io/security/drone/drone-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Drone Plans Pricing](https://apis.io/plans/drone/drone-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Drone Rate Limits](https://apis.io/rate-limits/drone/drone-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Drone Finops](https://apis.io/finops/drone/drone-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.drone.io/)
+- [Documentation](https://docs.drone.io/)
+- [Pricing](https://docs.drone.io/enterprise/)
+- [Blog](https://blog.drone.io)
+
+## API Evangelist rating
+
+**Kin Score 33.5** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 55.9 |
+| Contract governance | 23.5 |
+| Operational transparency | 5.3 |
+| Developer ergonomics | 31.0 |
+| Access clarity | 18.4 |
+
+**Agent readiness 19.6** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | documented (partial credit) |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 16.7** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/drone/](https://apis.io/providers/drone/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Drone: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/drone/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
